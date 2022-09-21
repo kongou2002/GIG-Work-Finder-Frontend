@@ -6,13 +6,6 @@ import Footer from './component/footer';
 import Header from './component/header';
 import Login from './pages/Login'
 function App() {
-  useEffect(()=>{
-    const fetchCompany = async() =>{
-      const productList = await companyApi.getAll();
-      console.log(productList)
-    }
-      fetchCompany();
-  },[]);
   return (
     <div className="App">
       <Header/>
