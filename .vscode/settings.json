@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/97174872-cdfc-4920-bb09-0f82c5a1d564/appservices/subscriptions/97174872-cdfc-4920-bb09-0f82c5a1d564/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/Gig-worker-frontend",
+  "appService.deploySubpath": "."
+}

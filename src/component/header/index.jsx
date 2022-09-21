@@ -8,6 +8,7 @@ import { Link, NavLink } from 'react-router-dom';
 import "./style.scss";
 import {ReactComponent as Company} from '../header/logo 1.svg';
 
+
 export default function Header() {
     return (
         <Box sx={{ flexGrow: 1 }}>

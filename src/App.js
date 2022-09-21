@@ -7,11 +7,11 @@ import Header from './component/header';
 import Login from './pages/Login'
 function App() {
   useEffect(()=>{
-    const fetchProduct = async() =>{
+    const fetchCompany = async() =>{
       const productList = await companyApi.getAll();
-      productList();
+      console.log(productList)
     }
-      fetchProduct();
+      fetchCompany();
   },[]);
   return (
     <div className="App">

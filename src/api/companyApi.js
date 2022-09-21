@@ -6,19 +6,19 @@ const companyApi = {
         return axiosClient.get(url, { params })
     },
     get(id) {
-        const url = `/products/${id}`;
+        const url = `/companies/${id}`;
         return axiosClient.get(url);
     },
     add(data) {
-        const url = '/products'
+        const url = '/companies'
         return axiosClient.post(url, data);
     },
     update(data) {
-        const url = `/products/${data.id}`;
+        const url = `/companies/${data.id}`;
         return axiosClient.patch(url, data);
     },
     remove(id) {
-        const url = `/products/${id}`;
+        const url = `/companies/${id}`;
         return axiosClient.delete(url);
     }
 };
