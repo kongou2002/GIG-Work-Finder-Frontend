@@ -1,8 +1,5 @@
 import React from 'react';
 import './style.scss';
-footer.propTypes = {
-
-};
 
 function footer(props) {
     return (

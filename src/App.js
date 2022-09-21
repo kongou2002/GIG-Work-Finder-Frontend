@@ -1,18 +1,18 @@
-import { useEffect } from 'react';
-import { Route,Routes } from 'react-router-dom';
-import companyApi from './api/companyApi';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './component/footer';
 import Header from './component/header';
-import Login from './pages/Login'
+import Login from './pages/Login';
 function App() {
   return (
     <div className="App">
-      <Header/>
+      <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path='/login' element={<Login/>}/>
+        <Route exact path='/login' element={<Login />} />
       </Routes>
-      <Footer/>
+      <Footer />
+      </BrowserRouter>
     </div>
   );
 }

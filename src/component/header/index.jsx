@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import "./style.scss";
-import {ReactComponent as Company} from '../header/logo 1.svg';
+import { ReactComponent as Company } from '../header/logo 1.svg';
 
 
 export default function Header() {
@@ -16,7 +16,7 @@ export default function Header() {
                 <Toolbar >
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <Box className='menu'>
-                            <Link to={'/'}>
+                            <Link to={'/home'}>
                                 <Company />
                             </Link>
                             <NavLink to={"/work"} >
@@ -33,7 +33,6 @@ export default function Header() {
                             </NavLink>
                         </Box>
                     </Typography>
-
                     <Button color="inherit">register</Button>
                 </Toolbar>
             </AppBar>
