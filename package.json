@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@userfront/react": "^0.3.1",
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "node-sass": "^7.0.3",

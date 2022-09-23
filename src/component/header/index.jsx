@@ -6,20 +6,20 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import "./style.scss";
-import { ReactComponent as Company } from '../header/logo 1.svg';
+// import { ReactComponent as Company } from './logo 1.svg';
 
 
 export default function Header() {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="static" color='primary'>
                 <Toolbar >
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <Box className='menu'>
                             <Link to={'/home'}>
-                                <Company />
+                                {<img src='./logo 1.jpg' alt='' />}
                             </Link>
-                            <NavLink to={"/work"} >
+                            <NavLink to={"/jobs"} >
                                 <Button color="inherit" className='link'>Việc làm</Button>
                             </NavLink>
                             <NavLink to={"/company"} >
@@ -33,7 +33,9 @@ export default function Header() {
                             </NavLink>
                         </Box>
                     </Typography>
-                    <Button color="inherit">register</Button>
+                    <Link to={'/register'}>
+                        <Button color="inherit">register</Button>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </Box>

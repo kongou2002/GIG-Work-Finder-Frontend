@@ -1,18 +1,31 @@
+$max-width:1024px;
+
 * {
     margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
 }
+.footer-top{
+    display: flex;
+    width: $max-width !important;
+    justify-content: space-between;
+
+}
+.footer-bot{
+    text-align: center;
+    width: $max-width !important;
+}
 
 ul{
     list-style-type: none;
 }
+HR{
+    margin-left: 10rem !important;
+    border-radius: 1px solid black !important;
+}
 
 .container {
-    display: flex;
-    width: 1260px;
-    height: 290px;
     & > div{
         width: 500px;
     }
