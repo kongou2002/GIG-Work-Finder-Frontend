@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 const companyApi = {
     getAll(params) {
-        const url = '/products'
+        const url = '/JobOffer/ALL'
         return axiosClient.get(url, { params })
     },
     get(id) {
