@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'Gig-worker-frontend'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B837BD0A4ECD4634AE561034E723835D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_12A0D32C95B14500BE86ED87CCFBEEB8 }}
           package: .
