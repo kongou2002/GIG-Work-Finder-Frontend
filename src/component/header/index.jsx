@@ -13,28 +13,31 @@ export default function Header() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" color='primary'>
-                <Toolbar >
+                <Toolbar className="toolbar">
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <Box className='menu'>
-                            <Link to={'/home'}>
-                                {<img src='./logo 1.jpg' alt='' />}
+                            <Link to={'/'}>
+                                <img src='/logo 1.jpg' alt='' />
                             </Link>
-                            <NavLink to={"/jobs"} >
+                            <NavLink to={"/jobs"} className='navlink'>
                                 <Button color="inherit" className='link'>Việc làm</Button>
                             </NavLink>
-                            <NavLink to={"/company"} >
+                            <NavLink to={"/company"} className='navlink'>
                                 <Button color="inherit" className='link'>Công ty</Button>
                             </NavLink>
-                            <NavLink to={"/news"} >
+                            <NavLink to={"/news"} className='navlink'>
                                 <Button color="inherit" className='link'>Tin tức</Button>
                             </NavLink>
-                            <NavLink to={"/support"} >
+                            <NavLink to={"/support"} className='navlink'>
                                 <Button color="inherit" className='link'>Hỗ trợ</Button>
                             </NavLink>
                         </Box>
                     </Typography>
-                    <Link to={'/register'}>
-                        <Button color="inherit">register</Button>
+                    <Link to={'/login'} className='login'>
+                        <Button color="inherit">Đăng nhập</Button>
+                    </Link>
+                    <Link to={'/register'} className='regis'>
+                        <Button color="inherit">Đăng ký</Button>
                     </Link>
                 </Toolbar>
             </AppBar>

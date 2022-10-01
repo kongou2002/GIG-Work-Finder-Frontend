@@ -1,16 +1,35 @@
 $login-width : 35rem;
-.container{
+
+.container {
     height: 40rem;
-    
+
 }
-.text-field{
+
+.text-field {
     width: $login-width;
 
 }
+
 .submit {
     width: $login-width;
 }
-.input{
+
+.input {
     text-align: center;
     width: 50rem;
+}
+
+.loginPage {
+    margin-top: 50px;
+}
+
+.benefitList {
+    margin-top: 70px;
+    margin-right: 250px;
+}
+
+.benetfit {
+    &>li {
+        font-weight: bold;
+    }
 }

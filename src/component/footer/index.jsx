@@ -10,8 +10,8 @@ function footer(props) {
                     <h3>About Us</h3>
                     <ul>
                         <li>Trang chủ</li>
-                        <li>về GIG-Worker</li>
-                        <li>câu hỏi thường gặp</li>
+                        <li>Về GIG-Worker</li>
+                        <li>Câu hỏi thường gặp</li>
                         <li>Liên hệ</li>
                     </ul>
                 </Box>
@@ -33,8 +33,8 @@ function footer(props) {
                 </Box>
             </Box>
             <Box className='footer-bot'>
-                <h6>coppyright © 2022</h6>
-                <h6>GIG-Worker</h6>
+                <p>Coppyright © 2022</p>
+                <p>GIG-Worker</p>
             </Box>
         </Stack>
     );
