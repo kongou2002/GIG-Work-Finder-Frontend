@@ -5,20 +5,24 @@ const companyApi = {
         const url = '/JobOffer/ALL'
         return axiosClient.get(url, { params })
     },
-    get(id) {
-        const url = `/companies/${id}`;
+    getID(id) {
+        const url = `/JobOffer/ID/${id}`;
+        return axiosClient.get(url);
+    },
+    getLID(id) {
+        const url = `/jobOffer/LID/${id}`;
         return axiosClient.get(url);
     },
     add(data) {
-        const url = '/companies'
+        const url = '/jobOffer'
         return axiosClient.post(url, data);
     },
     update(data) {
-        const url = `/companies/${data.id}`;
+        const url = `/jobOffer/${data.id}`;
         return axiosClient.patch(url, data);
     },
     remove(id) {
-        const url = `/companies/${id}`;
+        const url = `/jobOffer/${id}`;
         return axiosClient.delete(url);
     }
 };
