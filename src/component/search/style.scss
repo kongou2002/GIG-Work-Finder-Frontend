@@ -1,0 +1,27 @@
+.searchBox {
+    margin-top: 20px;
+
+    &>input {
+        margin-left: 80px;
+        width: 500px;
+        height: 40px;
+        border: solid black 3px;
+        border-radius: 10px;
+    }
+
+    &>button {
+        background-color: #35C842;
+        color: white;
+        margin-left: 10px;
+        width: 100px;
+        height: 40px;
+        border: solid black 3px;
+        border-radius: 10px;
+    }
+
+    &>p {
+        color: black;
+        margin-left: 80px;
+        font-weight: bold;
+    }
+}

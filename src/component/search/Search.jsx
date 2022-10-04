@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
+import "./style.scss";
 
 function Search(props) {
     const [input, setInput] = useState({
@@ -9,19 +10,20 @@ function Search(props) {
     const inputsHandler = (e) => {
         setInput({ [e.target.name]: e.target.value })
     }
-        const submitButton = () => {
-            console.log(input.search)
+    const submitButton = () => {
+        console.log(input.search)
     }
 
     return (
-        <div>
+        <div className='searchBox'>
+            <p>Tìm kiếm công việc thời vụ phù hợp với bạn:</p>
             <input
                 type='text'
                 name='search'
                 onChange={inputsHandler}
-                placeholder='type here to search for your dream job'
+                placeholder='  Tìm theo tên công việc, công ty, vị trí gần bạn'
                 value={setInput.Search} />
-            <button onClick={submitButton} >Search</button>    
+            <button onClick={submitButton} >Tìm kiếm</button>
         </div>
     )
 }

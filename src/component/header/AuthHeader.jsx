@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState } from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
-// import "./style.scss";
+import "./style.scss";
 import { Stack } from "@mui/system";
 export default function AuthHeader() {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,45 +19,49 @@ export default function AuthHeader() {
             returnTo: window.location.origin,
         });
     return (
-        <div className="nav-container">
-            <Stack color="light" light expand="md">
-                <div className="container">
+        <div className="nav-container, headPage">
+            <Stack color="light" light expand="md" >
+                <div>
                     <div className="logo" />
                     <div onClick={toggle} />
                     <div isOpen={isOpen} navbar>
                         <div className="mr-auto" navbar>
                             <div>
                                 <RouterNavLink
+                                    className='headContent'
                                     tag={RouterNavLink}
                                     to="/job"
                                     exact
                                     activeClassName="router-link-exact-active"
                                 >
-                                    việc làm
+                                    Việc Làm
                                 </RouterNavLink>
                                 <RouterNavLink
+                                    className='headContent'
                                     tag={RouterNavLink}
                                     to="/company"
                                     exact
                                     activeClassName="router-link-exact-active"
                                 >
-                                    công ty
+                                    Công Ty
                                 </RouterNavLink>
                                 <RouterNavLink
+                                    className='headContent'
                                     tag={RouterNavLink}
                                     to="/news"
                                     exact
                                     activeClassName="router-link-exact-active"
                                 >
-                                    tin tức
+                                    Tin Tức
                                 </RouterNavLink>
                                 <RouterNavLink
+                                    className='headContent'
                                     tag={RouterNavLink}
                                     to="/support"
                                     exact
                                     activeClassName="router-link-exact-active"
                                 >
-                                    hỗ trợ
+                                    Hỗ Trợ
                                 </RouterNavLink>
                                 {/* {isAuthenticated &&(
                                     <div>
@@ -85,51 +89,54 @@ export default function AuthHeader() {
                                 </div>
                             )}
                         </div>
-                        <div className="d-none d-md-block" navbar>
-                            {isAuthenticated && (
-                                <div nav inNavbar>
-                                    <div nav caret id="profileDropDown">
-                                        <img
-                                            src={user.picture}
-                                            alt="Profile"
-                                            className="nav-user-profile rounded-circle"
-                                            width="50"
-                                        />
+
+                        <div className='log-in-out'>
+                            <div className="d-none d-md-block" navbar>
+                                {isAuthenticated && (
+                                    <div nav inNavbar>
+                                        <div nav caret id="profileDropDown">
+                                            <img
+                                                src={user.picture}
+                                                alt="Profile"
+                                                className="nav-user-profile rounded-circle"
+                                                width="50"
+                                            />
+                                        </div>
+                                        <div>
+                                            <div header>{user.name}</div>
+                                            <RouterNavLink
+                                                tag={RouterNavLink}
+                                                to="/profile"
+                                                className="dropdown-profile"
+                                                activeClassName="router-link-exact-active"
+                                            >
+                                                Profile
+                                            </RouterNavLink>
+                                            <RouterNavLink
+                                                id="qsLogoutBtn"
+                                                onClick={() => logoutWithRedirect()}
+                                            >
+                                                Logout
+                                            </RouterNavLink>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <div header>{user.name}</div>
-                                        <RouterNavLink
-                                            tag={RouterNavLink}
-                                            to="/profile"
-                                            className="dropdown-profile"
-                                            activeClassName="router-link-exact-active"
+                                )}
+                            </div>
+                            {!isAuthenticated && (
+                                <div className="d-md-none" navbar>
+                                    <div className='btn-login'>
+                                        <button
+                                            id="qsLoginBtn"
+                                            color="primary"
+                                            block
+                                            onClick={() => loginWithRedirect({})}
                                         >
-                                             Profile
-                                        </RouterNavLink>
-                                        <RouterNavLink
-                                            id="qsLogoutBtn"
-                                            onClick={() => logoutWithRedirect()}
-                                        >
-                                             Logout
-                                        </RouterNavLink>
+                                            Đăng nhập
+                                        </button>
                                     </div>
                                 </div>
                             )}
                         </div>
-                        {!isAuthenticated && (
-                            <div className="d-md-none" navbar>
-                                <div>
-                                    <button
-                                        id="qsLoginBtn"
-                                        color="primary"
-                                        block
-                                        onClick={() => loginWithRedirect({})}
-                                    >
-                                        Log in
-                                    </button>
-                                </div>
-                            </div>
-                        )}
                     </div>
                 </div>
             </Stack>
