@@ -1,3 +1,4 @@
+import { color } from '@mui/system';
 import { React, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import jobOfferApi from '../../api/JobOffer';
@@ -21,19 +22,21 @@ function JobOffer() {
     return (
         <div className='box-job'>
             {repo.map((jobLists) => (
-                <div className='column' key={jobLists.offerID}>
-                    <div className='card'>
-                        <img src={logo} alt='' style={{ width: "100px" }} />
-                        <h1>{jobLists.userID}</h1>
-                        <div className='description'>
-                            <h1>{jobLists.title} - (địt m3 lz nào để lộn data title vs description)</h1>
-                            <p>{jobLists.jobDescription} - (làm mò css cả buổi)</p>
-                            <p>{jobLists.salary}</p>
-                            <p>{jobLists.address}</p>
-                            <p className='film-button'>
+                <div className='card' key={jobLists.offerID}>
+                    <img src={logo} alt='' style={{ width: "100px" }} />
+                    <div className='description'>
+                        <h1>{jobLists.jobType.name}</h1>
+                        <div className='desDiv'>
+                            <p>Luơng: {jobLists.salary} VND/giờ</p>
+                            <p>Địa chỉ: {jobLists.address}, {jobLists.location.province}, {jobLists.location.city}</p>
+                        </div>
+                        <div className='bottomButton'>
+                            <p style={{ color: "blue", textDecoration: "none" }}>Số lượng tuyển: {jobLists.numOfRecruit} người</p>
+                            <div className='film-button'>
                                 <button >
-                                    <Link to={`detail/${jobLists.offerID}`}>detail</Link>
-                                </button></p>
+                                    <Link to={`detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

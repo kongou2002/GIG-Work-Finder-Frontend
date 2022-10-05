@@ -1,21 +1,32 @@
+.link {
+    text-decoration: none;
+    color: #00B800;
+}
+
 .box-job {
-    -ms-flex: 0 0 25%;
-    flex: 0 0 25%;
-    max-width: 25%;
-    position: relative;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: 10px 10px 10px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.description {
+    &>h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #00B800;
+    }
 }
 
 .card {
+    padding: 10px 10px 10px 10px;
+
     &>img {
         float: left;
         border-radius: 10px;
-        margin: 10px 10px 10px 10px;
+        margin-right: 10px;
     }
 
-    width: 450px;
+    width: 420px;
     height: 150px;
     background-color: white;
     margin-bottom: 10px;
@@ -23,22 +34,31 @@
     border-radius: 10px;
 }
 
-.description {
-    margin-top: 10px;
-
-    &>h1 {
-        font-weight: large !important; //ko chỉnh size chữ đc
-        color: green;
-    }
+.desDiv {
+    height: 75px;
 
     &>p {
-        color: blue;
+        font-size: 18px;
+        color: #021C1E;
     }
 }
 
+.bottomButton {
+    display: flex;
+}
+
 .film-button {
+    margin-left: 100px;
+
     &>button {
-        height: 15px;
-        float: right;
+        background-color: #00B800;
+        color: white !important;
+        margin-left: 10px;
+        height: 20px;
+        width: 100px;
+        border: solid black 2px;
+        border-radius: 10px;
+        height: 25px;
     }
+
 }

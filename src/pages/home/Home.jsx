@@ -20,9 +20,11 @@ function job() {
       </div>
       <br></br>
       <div className='job-zone'>
-        <div className='job-zone-list-box'>
+        <div class='job-zone-list-box-title'>
           <h1>Khám phá các công việc phổ biến</h1>
-          <JobOffer />
+          <div className='job-zone-list-box'>
+            <JobOffer />
+          </div>
         </div>
       </div>
       <div className='img-zone'>
