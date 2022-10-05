@@ -32,10 +32,11 @@
     background-color: #21BB2E;
     padding: 20px 20px 20px 20px;
     border-radius: 10px;
-
     &>h1 {
+        position: relative;
         color: white;
         font-weight: bold;
+        height: 10%;
         font-size: 25px;
         margin-bottom: 15px;
         margin-left: 15px;

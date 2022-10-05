@@ -9,11 +9,15 @@ function JobOffer() {
     /* A hook that is called when the component is mounted. */
     useEffect(() => {
         const fetchJobOffer = async () => {
-            const jobList = await (await jobOfferApi.getAll()).data;
+            const params = {
+                limit: 6,
+            };
+            const jobList = await jobOfferApi.getAll(params);
             setRepo(jobList);
         }
         fetchJobOffer();
     }, []);
+    console.log(repo)
     return (
         <div className='box-job'>
             {repo.map((jobLists) => (

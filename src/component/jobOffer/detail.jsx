@@ -8,11 +8,12 @@ function Detail() {
     const [repo, setRepo] = useState([]);
     useEffect(() => {
         const fetchJobOffer = async () => {
-            const jobList = await (await jobOfferApi.getID(id.id)).data;
+            const jobList = await jobOfferApi.getID(id.id);
             setRepo(jobList);
         }
         fetchJobOffer();
     }, []);
+    
   return (
     <div className='container'>
         <div>

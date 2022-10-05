@@ -5,13 +5,20 @@ import "./style.scss";
 import { Stack } from "@mui/system";
 export default function AuthHeader() {
     const [isOpen, setIsOpen] = useState(false);
+    const [data, setData] = useState({
+        email: '',
+        image: '',
+    });
     const {
         user,
         isAuthenticated,
         loginWithRedirect,
         logout,
     } = useAuth0();
-    console.log(user)
+    const get = () =>{
+        setData(user.email, user.picture)
+    }
+    console.log()
     const toggle = () => setIsOpen(!isOpen);
 
     const logoutWithRedirect = () =>
@@ -30,7 +37,7 @@ export default function AuthHeader() {
                                 <RouterNavLink
                                     className='headContent'
                                     tag={RouterNavLink}
-                                    to="/job"
+                                    to="/"
                                     exact
                                     activeClassName="router-link-exact-active"
                                 >
