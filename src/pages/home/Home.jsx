@@ -27,6 +27,9 @@ function job() {
           </div>
         </div>
       </div>
+      <div className='banner-member'>
+
+      </div>
       <div className='img-zone'>
         {image.map((image) =>
           <div>{image}</div>
