@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import "./style.scss";
 import { Stack } from "@mui/system";
+import Logo from '../../asset/image/logo.jpg'
 export default function AuthHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [data, setData] = useState({
@@ -15,7 +16,7 @@ export default function AuthHeader() {
         loginWithRedirect,
         logout,
     } = useAuth0();
-    const get = () =>{
+    const get = () => {
         setData(user.email, user.picture)
     }
     console.log()
@@ -29,7 +30,9 @@ export default function AuthHeader() {
         <div className="nav-container, headPage">
             <Stack color="light" light expand="md" >
                 <div>
-                    <div className="logo" />
+                    <div className='logo'>
+                        <img src={Logo} alt='' style={{ width: "100px", height: "60px" }} />
+                    </div>
                     <div onClick={toggle} />
                     <div isOpen={isOpen} navbar>
                         <div className="mr-auto" navbar>
