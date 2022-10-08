@@ -1,4 +1,3 @@
-import { color } from '@mui/system';
 import { React, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import jobOfferApi from '../../api/JobOffer';
@@ -13,7 +12,7 @@ function JobOffer() {
             const params = {
                 limit: 6,
             };
-            const jobList = await jobOfferApi.getAll(params);
+            const jobList = await jobOfferApi.getPopular(params);
             setRepo(jobList);
         }
         fetchJobOffer();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import JobOffer from '../../component/jobOffer/joboffer';
-import Search from '../../component/search/Find';
+import Search from '../../component/search/Search';
 import "./style.scss";
 
 function job() {

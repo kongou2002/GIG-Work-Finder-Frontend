@@ -1,6 +1,6 @@
 import axiosClient from "./axiosClient";
 
-const companyApi = {
+const jobOfferApi = {
     getAll(params) {
         const url = '/JobOffer/ALL'
         return axiosClient.get(url, { params });
@@ -9,9 +9,9 @@ const companyApi = {
         const url = `/JobOffer/ID/${id}`;
         return axiosClient.get(url);
     },
-    getLID(id) {
-        const url = `/jobOffer/LID/${id}`;
-        return axiosClient.get(url);
+    getPopular(params) {
+        const url = '/JobOffer/GetPopular'
+        return axiosClient.get(url, { params });
     },
     add(data) {
         const url = '/jobOffer'
@@ -26,4 +26,4 @@ const companyApi = {
         return axiosClient.delete(url);
     }
 };
-export default companyApi;
+export default jobOfferApi;

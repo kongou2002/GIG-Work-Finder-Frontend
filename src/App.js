@@ -14,6 +14,7 @@ function App() {
         <Route exact path='/' element={<Job />} />
         <Route exact path='/profile' element = {<Profile />} />
         <Route exact path='/detail/:id' element={<Detail />} />
+        
       </Routes>
       <Footer />
     </div>

@@ -1,8 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { AccountCircle } from "@mui/icons-material";
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import React, { useState } from 'react';
-import { NavLink as RouterNavLink } from 'react-router-dom';
 import "./style.scss";
-import { Stack } from "@mui/system";
 export default function AuthHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [data, setData] = useState({
@@ -25,128 +26,68 @@ export default function AuthHeader() {
         logout({
             returnTo: window.location.origin,
         });
-    return (
-        <div className="nav-container, headPage">
-            <Stack color="light" light expand="md" >
-                <div>
-                    <div className="logo" />
-                    <div onClick={toggle} />
-                    <div isOpen={isOpen} navbar>
-                        <div className="mr-auto" navbar>
-                            <div>
-                                <RouterNavLink
-                                    className='headContent'
-                                    tag={RouterNavLink}
-                                    to="/"
-                                    exact
-                                    activeClassName="router-link-exact-active"
-                                >
-                                    Việc Làm
-                                </RouterNavLink>
-                                <RouterNavLink
-                                    className='headContent'
-                                    tag={RouterNavLink}
-                                    to="/company"
-                                    exact
-                                    activeClassName="router-link-exact-active"
-                                >
-                                    Công Ty
-                                </RouterNavLink>
-                                <RouterNavLink
-                                    className='headContent'
-                                    tag={RouterNavLink}
-                                    to="/news"
-                                    exact
-                                    activeClassName="router-link-exact-active"
-                                >
-                                    Tin Tức
-                                </RouterNavLink>
-                                <RouterNavLink
-                                    className='headContent'
-                                    tag={RouterNavLink}
-                                    to="/support"
-                                    exact
-                                    activeClassName="router-link-exact-active"
-                                >
-                                    Hỗ Trợ
-                                </RouterNavLink>
-                                {/* {isAuthenticated &&(
-                                    <div>
-                                        <RouterNavLink
-                                            tag={RouterNavLink}
-                                            to="/external-api"
-                                            exact
-                                            activeClassName="router-link-exact-active"
-                                        >
-                                            External API
-                                        </RouterNavLink>
-                                    </div>
-                                )} */}
-                            </div>
-                            {isAuthenticated && (
-                                <div>
-                                    <RouterNavLink
-                                        tag={RouterNavLink}
-                                        to="/external-api"
-                                        exact
-                                        activeClassName="router-link-exact-active"
-                                    >
-                                        External API
-                                    </RouterNavLink>
-                                </div>
-                            )}
-                        </div>
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
-                        <div className='log-in-out'>
-                            <div className="d-none d-md-block" navbar>
-                                {isAuthenticated && (
-                                    <div nav inNavbar>
-                                        <div nav caret id="profileDropDown">
-                                            <img
-                                                src={user.picture}
-                                                alt="Profile"
-                                                className="nav-user-profile rounded-circle"
-                                                width="50"
-                                            />
-                                        </div>
-                                        <div>
-                                            <div header>{user.name}</div>
-                                            <RouterNavLink
-                                                tag={RouterNavLink}
-                                                to="/profile"
-                                                className="dropdown-profile"
-                                                activeClassName="router-link-exact-active"
-                                            >
-                                                Profile
-                                            </RouterNavLink>
-                                            <RouterNavLink
-                                                id="qsLogoutBtn"
-                                                onClick={() => logoutWithRedirect()}
-                                            >
-                                                Logout
-                                            </RouterNavLink>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                            {!isAuthenticated && (
-                                <div className="d-md-none" navbar>
-                                    <div className='btn-login'>
-                                        <button
-                                            id="qsLoginBtn"
-                                            color="primary"
-                                            block
-                                            onClick={() => loginWithRedirect({})}
-                                        >
-                                            Đăng nhập
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
+
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    return (
+        <div>
+            
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        GIG-worker
+                    </Typography>
+                    {isAuthenticated && (
+                        <div>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleMenu}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={handleClose}>Log out</MenuItem>
+                            </Menu>
                         </div>
-                    </div>
-                </div>
-            </Stack>
+                    )}
+                </Toolbar>
+            </AppBar>
         </div>
     );
 };
