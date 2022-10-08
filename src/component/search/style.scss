@@ -6,11 +6,13 @@
 }
 
 .search-area {
+    margin-left: 80px;
+
     &>input {
-        margin-left: 80px;
+        //margin-left: 80px;
         width: 500px;
         height: 40px;
-        border: solid black 3px;
+        border: solid black 2px;
         border-radius: 10px;
     }
 
@@ -20,14 +22,15 @@
         margin-left: 10px;
         width: 100px;
         height: 40px;
-        border: solid black 3px;
+        border: solid black 2px;
         border-radius: 10px;
     }
 
     &>p {
         color: black;
-        margin-left: 80px;
+        //margin-left: 80px;
         font-weight: bold;
+        margin-bottom: 5px;
     }
 }
 
@@ -36,7 +39,7 @@
 
     &>h1 {
         float: left;
-        margin-left: 80px;
+        //margin-left: 80px;
         margin-right: 20px;
         color: #00B800;
         font-weight: bold;

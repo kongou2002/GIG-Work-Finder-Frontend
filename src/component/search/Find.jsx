@@ -29,7 +29,7 @@ function Search(props) {
                     type='text'
                     name='search'
                     onChange={inputsHandler}
-                    placeholder='Tìm theo tên công việc, công ty, vị trí gần bạn'
+                    placeholder='  Tìm theo tên công việc, công ty, vị trí gần bạn'
                     value={setInput.Search} />
                 <button onClick={submitButton} >Tìm kiếm</button>
             </div>

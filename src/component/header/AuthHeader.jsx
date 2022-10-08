@@ -4,6 +4,7 @@ import { NavLink as RouterNavLink } from 'react-router-dom';
 import "./style.scss";
 import { Stack } from "@mui/system";
 import Logo from '../../asset/image/logo.jpg'
+import { Button } from "@mui/material";
 export default function AuthHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [data, setData] = useState({
@@ -135,14 +136,14 @@ export default function AuthHeader() {
                             {!isAuthenticated && (
                                 <div className="d-md-none" navbar>
                                     <div className='btn-login'>
-                                        <button
+                                        <Button
                                             id="qsLoginBtn"
                                             color="primary"
                                             block
                                             onClick={() => loginWithRedirect({})}
                                         >
                                             Đăng nhập
-                                        </button>
+                                        </Button>
                                     </div>
                                 </div>
                             )}

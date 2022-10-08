@@ -13,7 +13,7 @@ function JobOffer() {
             const params = {
                 limit: 6,
             };
-            const jobList = await jobOfferApi.getAll(params);
+            const jobList = await jobOfferApi.getPopular(params);
             setRepo(jobList);
         }
         fetchJobOffer();
@@ -24,10 +24,10 @@ function JobOffer() {
             {repo.map((jobLists) => (
                 <div className='card' key={jobLists.offerID}>
                     <div className='description-box'>
-                        <img src={logo} alt='' style={{ width: "100px" }} />
+                        <img src={jobLists.business.businessLogo} alt='' style={{ width: "100px" }} />
                         <div className='description'>
                             <h1>{jobLists.jobType.name}</h1>
-                            <p>Luơng: {jobLists.salary} VND/giờ</p>
+                            <p className='salary'>Luơng: {jobLists.salary} VND/giờ</p>
                             <p>Địa chỉ: {jobLists.address}, {jobLists.location.city}, {jobLists.location.province}</p>
                         </div>
                     </div>

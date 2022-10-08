@@ -5,14 +5,15 @@ import AuthHeader from './component/header/AuthHeader';
 import Detail from './component/jobOffer/detail';
 import Job from './pages/home/Home';
 import Profile from './pages/user/Profile';
+
 function App() {
 
   return (
     <div className="App">
-      <AuthHeader/>
+      <AuthHeader />
       <Routes>
         <Route exact path='/' element={<Job />} />
-        <Route exact path='/profile' element = {<Profile />} />
+        <Route exact path='/profile' element={<Profile />} />
         <Route exact path='/detail/:id' element={<Detail />} />
       </Routes>
       <Footer />

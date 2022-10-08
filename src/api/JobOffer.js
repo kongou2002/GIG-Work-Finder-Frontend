@@ -5,6 +5,10 @@ const companyApi = {
         const url = '/JobOffer/ALL'
         return axiosClient.get(url, { params });
     },
+    getPopular(params) {
+        const url = '/JobOffer/GetPopular'
+        return axiosClient.get(url, { params });
+    },
     getID(id) {
         const url = `/JobOffer/ID/${id}`;
         return axiosClient.get(url);
