@@ -1,26 +1,7 @@
 .search-zone {
     background-color: #F2FFEE !important;
-    width: 1920px;
     padding-bottom: 30px;
-}
-
-.intro {
-    &>h1 {
-        float: left;
-        margin-left: 80px;
-        margin-right: 20px;
-        color: #00B800;
-        font-weight: bold;
-        font-size: 50px;
-        -webkit-text-stroke: black 1px;
-    }
-
-    &>h2 {
-        color: white;
-        font-weight: lighter;
-        font-size: 25px;
-        -webkit-text-stroke: #35C842 1px;
-    }
+    padding-top: 10px;
 }
 
 .job-zone {
@@ -30,6 +11,7 @@
 
 .job-zone-list-box-title {
     background-color: #21BB2E;
+    //display: list-item;
     padding: 20px 20px 20px 20px;
     border-radius: 10px;
 

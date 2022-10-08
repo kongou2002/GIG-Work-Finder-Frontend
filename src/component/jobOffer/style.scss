@@ -3,52 +3,82 @@
     color: #00B800;
 }
 
-.box-job {
-    padding: 10px 10px 10px 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
+@media only screen and (min-width: 520px) {
 
-.description {
-    &>h1 {
-        font-size: 24px;
-        font-weight: bold;
-        color: #00B800;
+    /* For phone: */
+    .box-job {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-left: 15px;
+        margin-right: 15px;
     }
 }
 
-.card {
-    padding: 10px 10px 10px 10px;
+@media only screen and (min-width: 960px) {
+
+    /* For tablets: */
+    .box-job {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+@media only screen and (min-width: 1370px) {
+
+    /* For desktop: */
+    .box-job {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+.description-box {
+    display: flex;
+    height: 100px;
 
     &>img {
         float: left;
         border-radius: 10px;
         margin-right: 10px;
     }
+}
 
+.description {
+    &>h1 {
+        font-size: 24px;
+        font-weight: bold;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: #00B800;
+    }
+
+    margin-left: 5px;
+}
+
+.card {
+    padding: 10px 10px 10px 10px;
     width: 420px;
-    height: 150px;
+    height: 160px;
     background-color: white;
     margin-bottom: 10px;
-    border: solid black;
+    border: solid black 2px;
     border-radius: 10px;
 }
 
-.desDiv {
-    height: 75px;
-
-    &>p {
-        font-size: 18px;
-        color: #021C1E;
-    }
+.salary {
+    font-weight: bold;
 }
 
 .bottomButton {
     display: flex;
+    margin-top: 5px;
 }
 
 .film-button {
-    margin-left: 100px;
+    margin-left: 90px;
 
     &>button {
         background-color: #00B800;
@@ -56,7 +86,7 @@
         margin-left: 10px;
         height: 20px;
         width: 100px;
-        border: solid black 2px;
+        border: solid black 1px;
         border-radius: 10px;
         height: 25px;
     }

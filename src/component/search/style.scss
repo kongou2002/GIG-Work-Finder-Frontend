@@ -1,11 +1,18 @@
 .searchBox {
+    //display: flex;
+    display: grid;
+    grid-template-columns: 70% 30%;
     margin-top: 20px;
+}
+
+.search-area {
+    margin-left: 80px;
 
     &>input {
-        margin-left: 80px;
+        //margin-left: 80px;
         width: 500px;
         height: 40px;
-        border: solid black 3px;
+        border: solid black 2px;
         border-radius: 10px;
     }
 
@@ -15,13 +22,46 @@
         margin-left: 10px;
         width: 100px;
         height: 40px;
-        border: solid black 3px;
+        border: solid black 2px;
         border-radius: 10px;
     }
 
     &>p {
         color: black;
-        margin-left: 80px;
+        //margin-left: 80px;
         font-weight: bold;
+        margin-bottom: 5px;
+    }
+}
+
+.intro {
+    margin-bottom: 20px;
+
+    &>h1 {
+        float: left;
+        //margin-left: 80px;
+        margin-right: 20px;
+        color: #00B800;
+        font-weight: bold;
+        font-size: 50px;
+        -webkit-text-stroke: black 1px;
+    }
+
+    &>h2 {
+        color: white;
+        font-weight: lighter;
+        font-size: 25px;
+        -webkit-text-stroke: #35C842 1px;
+    }
+}
+
+.bg-img-banner {
+    background-color: white;
+    width: 340px;
+    padding: 10px;
+    border-radius: 10px;
+
+    &>img {
+        border-radius: 10px;
     }
 }

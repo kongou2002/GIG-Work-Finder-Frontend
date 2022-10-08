@@ -22,20 +22,20 @@ function JobOffer() {
         <div className='box-job'>
             {repo.map((jobLists) => (
                 <div className='card' key={jobLists.offerID}>
-                    <img src={logo} alt='' style={{ width: "100px" }} />
-                    <div className='description'>
-                        <h1>{jobLists.jobType.name}</h1>
-                        <div className='desDiv'>
-                            <p>Luơng: {jobLists.salary} VND/giờ</p>
-                            <p>Địa chỉ: {jobLists.address}, {jobLists.location.province}, {jobLists.location.city}</p>
+                    <div className='description-box'>
+                        <img src={jobLists.business.businessLogo} alt='' style={{ width: "100px" }} />
+                        <div className='description'>
+                            <h1>{jobLists.jobType.name}</h1>
+                            <p className='salary'>Luơng: {jobLists.salary} VND/giờ</p>
+                            <p>Địa chỉ: {jobLists.address}, {jobLists.location.city}, {jobLists.location.province}</p>
                         </div>
-                        <div className='bottomButton'>
-                            <p style={{ color: "blue", textDecoration: "none" }}>Số lượng tuyển: {jobLists.numOfRecruit} người</p>
-                            <div className='film-button'>
-                                <button >
-                                    <Link to={`detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
-                                </button>
-                            </div>
+                    </div>
+                    <div className='bottomButton'>
+                        <p style={{ color: "blue", textDecoration: "none" }}>Tình trạng tuyển: 0/{jobLists.numOfRecruit} người</p>
+                        <div className='film-button'>
+                            <button >
+                                <Link to={`detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
+                            </button>
                         </div>
                     </div>
                 </div>
