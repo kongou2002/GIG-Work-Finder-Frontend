@@ -1,18 +1,15 @@
 /* eslint-disable no-unreachable */
-import { Button } from '@mui/material';
+import { Button, Rating } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
-import React from 'react'
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import jobOfferApi from '../../api/JobOffer';
-import StarRateIcon from '@mui/icons-material/StarRate';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 function Detail() {
 
   const id = useParams();
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState(2);
   useEffect(() => {
     setLoading(true)
     axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id.id}`).then((res) => {
@@ -37,8 +34,7 @@ function Detail() {
             <h1>{repo.business?.businessName}</h1>
             <h6> địa chỉ: {repo.address}</h6>
             <Box>
-              <StarRateIcon />
-              <h5>start /5 (lượt đánh giá)</h5>
+              <Rating name="read-only" value={value} readOnly />
             </Box>
           </Box>
           <Box>
