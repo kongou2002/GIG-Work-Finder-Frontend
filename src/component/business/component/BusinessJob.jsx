@@ -1,21 +1,22 @@
 import { Skeleton } from '@mui/material';
 import { React, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import jobOfferApi from '../../api/JobOffer';
-import "./style.scss";
+import jobOfferApi from '../../../api/JobOffer';
+// import "./style.scss";
 
-function JobOffer() {
+function JobOffer(props) {
+    const ID = (props)
     const [repo, setRepo] = useState([]);
     const [loading, setLoading] = useState(false);
     /* A hook that is called when the component is mounted. */
-
+    console.log(ID)
     useEffect(() => {
         setLoading(true)
         const fetchJobOffer = async () => {
             const params = {
                 limit: 6,
             };
-            const jobList = await jobOfferApi.getPopular(params);
+            const jobList = await jobOfferApi.getBusiness(ID.id);
             setRepo(jobList);
             setLoading(false)
         }
@@ -42,7 +43,7 @@ function JobOffer() {
                                 <p style={{ color: "blue", textDecoration: "none" }}>Tình trạng tuyển: 0/{jobLists.numOfRecruit} người</p>
                                 <div className='film-button'>
                                     <button >
-                                        <Link to={`detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
+                                        <Link to={`/detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
                                     </button>
                                 </div>
                             </div>

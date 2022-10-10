@@ -3,9 +3,9 @@ import { Button, Rating } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import Moment from 'react-moment';
+import { Link, useParams } from 'react-router-dom';
 function Detail() {
-
   const id = useParams();
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(false);
@@ -38,7 +38,7 @@ function Detail() {
             </Box>
           </Box>
           <Box>
-            <Button>Xem công ty</Button>
+            <Button variant="outlined"><Link to={`/business/${repo?.business?.businessID}`} style={{ color: "Black", textDecoration: "none" }}>Xem công ty</Link></Button>
           </Box>
         </Stack>
         <Stack flexDirection={'row'}>
@@ -46,14 +46,14 @@ function Detail() {
             <ul>
               <li>Công việc: {repo.jobType?.name}</li>
               <li>Ngày làm việc: contact</li>
-              <li>Thời gian: {repo.startTime - repo.endTime}</li>
+              <li>Thời gian: làm từ {repo.startTime} đến {repo.endTime}</li>
               <li>Mức lương: {repo.salary}vnđ/tiếng</li>
             </ul>
           </Box>
           <Box>
             <ul>
               <li>Số lượng tuyển: {repo.numOfRecruit} </li>
-              <li>Thời hạn tuyển: {repo.createdDate} to {repo.offerEndTime}</li>
+              <li>Thời hạn tuyển: <Moment fromNow>{repo.offerEndTime}</Moment></li>
               <li>Hình thức: </li>
             </ul>
           </Box>
