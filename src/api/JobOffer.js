@@ -13,9 +13,9 @@ const jobOfferApi = {
         const url = `/JobOffer/ID/${id}`;
         return axiosClient.get(url);
     },
-    getPopular(params) {
-        const url = '/JobOffer/GetPopular'
-        return axiosClient.get(url, { params });
+    getBusiness(id){
+        const url = `JobOffer/BusinessID/${id}`
+        return axiosClient.get(url);
     },
     add(data) {
         const url = '/jobOffer'

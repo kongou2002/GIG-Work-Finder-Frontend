@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 import "./detailstyle.scss";
 import Moment from 'moment';
 function Detail() {
-
   const id = useParams();
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(false);
