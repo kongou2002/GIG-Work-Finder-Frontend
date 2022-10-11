@@ -4,34 +4,25 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import React, { useState } from 'react';
 import "./style.scss";
+import Login from "../../pages/login";
 // <<<<<<< HEAD
 // =======
 // import { Stack } from "@mui/system";
 // import Logo from '../../asset/image/logo.jpg'
 // import { Button } from "@mui/material";
 // >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b
+
 export default function AuthHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [data, setData] = useState({
         email: '',
         image: '',
     });
-    const {
-        user,
-        isAuthenticated,
-        loginWithRedirect,
-        logout,
-    } = useAuth0();
-    const get = () => {
-        setData(user.email, user.picture)
-    }
+
     console.log()
     const toggle = () => setIsOpen(!isOpen);
 
-    const logoutWithRedirect = () =>
-        logout({
-            returnTo: window.location.origin,
-        });
+    
 // <<<<<<< HEAD
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -60,7 +51,8 @@ export default function AuthHeader() {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
-                    {isAuthenticated && (
+                    <Login />
+                    {/* {isAuthenticated && (
                         <div>
                             <IconButton
                                 size="large"
@@ -90,8 +82,7 @@ export default function AuthHeader() {
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
                                 <MenuItem onClick={handleClose}>Log out</MenuItem>
-                            </Menu>
-=======
+                            </Menu> */}
     {/* return (
         <div className="nav-container, headPage">
             <Stack color="light" light expand="md" >
@@ -213,8 +204,8 @@ export default function AuthHeader() {
                                 </div>
                             )} */}
 {/* >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b */}
-                        </div>
-                    )}
+                        {/* </div> */}
+                    {/* )} */}
                 </Toolbar>
             </AppBar>
         </div>
