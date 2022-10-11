@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import businessApi from '../../api/businessApi';
 import Businessjob from './component/BusinessJob';
 import TabPanel from './component/TabPanel';
+import "./style.scss";
 
 function Business() {
   const id = useParams();
@@ -13,7 +14,7 @@ function Business() {
   const [rating, setRating] = useState(2);
   const [value, setValue] = useState(0);
 
-  const handleTabs =(e,val) =>{
+  const handleTabs = (e, val) => {
     setValue(val)
   }
 
@@ -28,12 +29,12 @@ function Business() {
   }, []);
   console.log(repo)
   return (
-    <div>
+    <div className='around'>
       {loading ? (
         <Skeleton variant="rounded" width={1430} height={400} />
       ) : (
-        <Container >
-          <Stack sx={{ display: 'flex', flex: '1', flexDirection:'row' }}>
+        <Container className='box-bg'>
+          <Stack sx={{ display: 'flex', flex: '1', flexDirection: 'row' }} className='head-business'>
             <Box>
               <CardMedia
                 component="img"
@@ -42,46 +43,44 @@ function Business() {
                 alt="Live from space album cover"
               />
             </Box>
-            <Box>
-              <Typography gutterBottom variant="h5" component="div">
-                {repo.businessName}
-              </Typography>
-              <Typography variant='p' component='div'>
-                Địa chỉ: {repo.address}
-              </Typography>
-                <Rating name="read-only" value={rating} readOnly />
+            <Box className='business-name'>
+              <h1>{repo.businessName}</h1>
+              <p>Địa chỉ: {repo.address}, {repo?.location?.city}, {repo?.location?.province}</p>
+              <Rating name="read-only" value={rating} readOnly />
             </Box>
-            <Box>
-                <Button variant="contained" sx={{bgcolor:'green', color: 'white'}}>Viết đánh giá</Button>
-                <Button variant="contained" sx={{bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
+            <Box className='business-button'>
+              <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
+              <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
             </Box>
           </Stack>
+
           <Stack>
             <Tabs value={value} onChange={handleTabs}>
-                <Tab label='Thông tin' />
-                <Tab label='Tuyển dụng' />
+              <Tab label='Thông tin' />
+              <Tab label='Tuyển dụng' />
             </Tabs>
-            <TabPanel value={value} index = {0}>
-              <Box>
-                <Typography component='h5' sx={{fontWeight: 'bold'}}>
+            <TabPanel value={value} index={0}>
+              <Box className='intro-box'>
+                <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                   Giới thiệu công ty {repo.businessName}
                 </Typography>
                 <Typography component='p'>
-                    {repo?.description}
+                  {repo?.description}
                 </Typography>
-                  <Typography component='h5' sx={{ fontWeight: 'bold' }}>
-                    Quyền lợi khi tham gia cùng chúng tôi:
-                  </Typography>
-                  <Typography component='p'>
-                    {repo?.benefit}
-                  </Typography>
+                <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
+                  Quyền lợi khi tham gia cùng chúng tôi:
+                </Typography>
+                <Typography component='p'>
+                  {repo?.benefit}
+                </Typography>
               </Box>
             </TabPanel>
-            <TabPanel value={value} index = {1}><Businessjob id = {repo.businessID} /></TabPanel>
+            <TabPanel value={value} index={1} className='box-job'><Businessjob id={repo.businessID} className='box-job-info' /></TabPanel>
           </Stack>
         </Container >
-      )}
-    </div>
+      )
+      }
+    </div >
   )
 }
 

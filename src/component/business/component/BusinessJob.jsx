@@ -2,7 +2,7 @@ import { Skeleton } from '@mui/material';
 import { React, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import jobOfferApi from '../../../api/JobOffer';
-// import "./style.scss";
+import "./style.scss";
 
 function JobOffer(props) {
     const ID = (props)
@@ -28,22 +28,22 @@ function JobOffer(props) {
             {loading ? (
                 <Skeleton variant="rounded" width={1430} height={400} />
             ) : (
-                <div className='box-job'>
+                <div className='box-job-busi'>
                     {repo.map((jobLists) => (
-                        <div className='card' key={jobLists.offerID}>
-                            <div className='description-box'>
+                        <div className='card-busi' key={jobLists.offerID}>
+                            <div className='description-box-busi'>
                                 <img src={jobLists.business.businessLogo} alt='' style={{ width: "100px" }} />
-                                <div className='description'>
+                                <div className='description-busi'>
                                     <h1>{jobLists.jobType.name}</h1>
-                                    <p className='salary'>Luơng: {jobLists.salary} VND/giờ</p>
+                                    <p className='salary-busi'>Luơng: {jobLists.salary} VND/giờ</p>
                                     <p>Địa chỉ: {jobLists.address}, {jobLists.location.city}, {jobLists.location.province}</p>
                                 </div>
                             </div>
-                            <div className='bottomButton'>
+                            <div className='bottomButton-busi'>
                                 <p style={{ color: "blue", textDecoration: "none" }}>Tình trạng tuyển: 0/{jobLists.numOfRecruit} người</p>
-                                <div className='film-button'>
+                                <div className='film-button-busi'>
                                     <button >
-                                        <Link to={`/detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
+                                        <Link to={`detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
                                     </button>
                                 </div>
                             </div>

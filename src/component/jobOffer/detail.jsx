@@ -3,7 +3,7 @@ import { Button, Rating } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import "./detailstyle.scss";
 import Moment from 'moment';
 function Detail() {
@@ -44,7 +44,7 @@ function Detail() {
                 </Box>
               </div>
               <Box className='detail-business-button'>
-                <Button>Xem công ty</Button>
+                <Button variant="outlined"><Link to={`/business/${repo?.business?.businessID}`} style={{ color: "white", textDecoration: "none" }}>Xem công ty</Link></Button>
               </Box>
             </Box>
           </Stack>
