@@ -7,11 +7,14 @@ import { Button, Rating } from '@mui/material';
 import Member from '../../asset/image/memberbanner.jpg'
 import Tick from '../../asset/image/tick.png'
 import Store from '../../asset/image/cty.jpg'
+import authorizationApi from '../../api/authorizationAPI';
+
 
 function job() {
   const image = [/* them url hinh anh vao day */];
 
-
+  console.log("Token: ");
+  console.log(JSON.stringify(authorizationApi.TakeToken()));
   return (
     <div className='container-home-page'>
       <div className='search-zone'>

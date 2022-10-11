@@ -8,6 +8,7 @@ import Profile from './pages/user/Profile';
 import Login from './pages/login';
 import firebase from 'firebase';
 import { useEffect } from 'react';
+import authorizationApi from './api/authorizationAPI';
 
 
 const config = {
@@ -26,8 +27,11 @@ function App() {
         return;
       }
       const token = await user.getIdToken();
-      console.log(user.displayName);
-      console.log('this is: ', JSON.stringify(user));
+      // console.log(user.displayName);
+      // console.log('this is: ', JSON.stringify(user));
+      localStorage.setItem('FJobGig:rememberedAccount', JSON.stringify(authorizationApi.TakeToken()));
+      console.log("Token: ");
+      console.log(JSON.stringify(authorizationApi.TakeToken()));
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
     })
     return() => unregisterAuthObserver;
