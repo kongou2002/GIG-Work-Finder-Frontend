@@ -25,3 +25,146 @@
         margin-left: 15px;
     }
 }
+
+.banner-member {
+    background-color: white !important;
+    padding: 20px 30px 30px 30px;
+}
+
+.banner-member-bg {
+    background-color: #9B6565;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.left-col {
+    display: block;
+}
+
+.benefit-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>h1 {
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+}
+
+.benefit {
+    display: flex;
+    align-items: top;
+    margin-left: 130px;
+    margin-top: 15px;
+
+    &>h2 {
+        color: white;
+        font-size: 24px;
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+}
+
+.benefit-final {
+    border-bottom: solid white 3px;
+    padding-bottom: 10px;
+    width: 430px;
+}
+
+.redirect-login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+
+    &>button {
+        background-color: #00B800;
+        color: white !important;
+        font-weight: bold;
+        font-size: 24px;
+        height: 60px;
+        width: 300px;
+        border-radius: 10px;
+    }
+}
+
+.right-col {
+    display: block;
+    justify-content: center;
+    align-items: center;
+
+    &>img {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+}
+
+.banner-recruiter {
+    background-color: white !important;
+    padding: 20px 30px 30px 30px;
+}
+
+
+.banner-recruiter-bg {
+    background-image: url(../../asset/image/cty.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    &>h2 {
+        color: white;
+        font-size: 18px;
+        margin-left: 30px;
+        margin-top: 20px;
+    }
+}
+
+.box-in-recruiter {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-left: 30px;
+    margin-top: 200px;
+    width: 320px;
+    padding: 20px;
+
+    &>h1 {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    &>p {
+        color: white;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+}
+
+.recruiter-button-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.recruiter-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    margin-top: 30px;
+
+    &>button {
+        background-color: #00B800;
+        color: white !important;
+        font-weight: bold;
+        font-size: 24px;
+        height: 120px;
+        width: 260px;
+        border-radius: 10px;
+    }
+}

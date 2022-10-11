@@ -4,6 +4,8 @@ import { Box, Container, Stack } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import "./detailstyle.scss";
+import Moment from 'moment';
 function Detail() {
 
   const id = useParams();
@@ -25,61 +27,69 @@ function Detail() {
   console.log(loading)
   return (
     !loading && (
-      <Container>
-        <Stack flexDirection={'row'}>
-          <Box>
-            <img src={repo.business?.businessLogo} alt='' />
-          </Box>
-          <Box>
-            <h1>{repo.business?.businessName}</h1>
-            <h6> địa chỉ: {repo.address}</h6>
-            <Box>
-              <Rating name="read-only" value={value} readOnly />
+      <Container className='around'>
+        <Stack className='background-detail'>
+          <Stack className='head-detail'> {/*=================div detail phần head==================*/}
+            <Box className='detail-info'>
+              <h1>THÔNG TIN CHI TIẾT</h1>
             </Box>
-          </Box>
-          <Box>
-            <Button>Xem công ty</Button>
-          </Box>
-        </Stack>
-        <Stack flexDirection={'row'}>
-          <Box>
-            <ul>
-              <li>Công việc: {repo.jobType?.name}</li>
-              <li>Ngày làm việc: contact</li>
-              <li>Thời gian: {repo.startTime - repo.endTime}</li>
-              <li>Mức lương: {repo.salary}vnđ/tiếng</li>
-            </ul>
-          </Box>
-          <Box>
-            <ul>
-              <li>Số lượng tuyển: {repo.numOfRecruit} </li>
-              <li>Thời hạn tuyển: {repo.createdDate} to {repo.offerEndTime}</li>
-              <li>Hình thức: </li>
-            </ul>
-          </Box>
-        </Stack>
-        <Stack>
-          <Box>
-            <h1>Mô tả công việc</h1>
-            <p>{repo.jobDescription}</p>
-          </Box>
-          <Box>
-            <h1>Yêu cầu công việc</h1>
-            <p></p>
-          </Box>
-          <Box>
-            <h1>Quyền lợi:</h1>
-            <p>Lương: {repo.salary}/giờ</p>
+            <Box className='detail-info-under'>
+              <div className='logo-img'>
+                <img src={repo?.business?.businessLogo} alt='' style={{ width: "120px" }} />
+              </div>
+              <div className='business-name'>
+                <h1>{repo?.business?.businessName}</h1>
+                <p>Địa chỉ: {repo.address}, {repo?.location?.city}, {repo?.location?.province}</p>
+                <Box>
+                  <Rating name="read-only" value={value} readOnly />
+                </Box>
+              </div>
+              <Box className='detail-business-button'>
+                <Button>Xem công ty</Button>
+              </Box>
+            </Box>
+          </Stack>
 
-          </Box>
+          <Stack className='body-detail'> {/*=================div detail phần body==================*/}
+            <Box className='box-left'>
+              <Box className='left'>
+                <p><p className='bold-p'>Công việc:</p><p className='value-p'>{repo?.jobType?.name}</p></p>
+                <p><p className='bold-p'>Ngày làm:</p><p className='value-p'>Liên hệ</p></p>
+                <p><p className='bold-p'>Thời gian:</p><p className='value-p'>{repo?.startTime?.slice(0, 5)} - {repo?.endTime?.slice(0, 5)}</p></p>
+                <p><p className='bold-p'>Mức lương:</p><p className='value-p'>{repo?.salary} VND/giờ</p></p>
+              </Box>
+              <Box className='left'>
+                <p><p className='bold-p'>Số lượng tuyển:</p><p className='value-p'>{repo?.numOfRecruit} người</p></p>
+                <p><p className='bold-p'>Thời hạn tuyển:</p><p className='value-p'>Từ {repo?.createdDate?.slice(0, 10)} đến {repo?.offerEndTime?.slice(0, 10)}</p></p>
+                <p><p className='bold-p'>Bằng cấp tối thiểu:</p><p className='value-p'>{repo?.degree?.degreeName}</p></p>
+              </Box>
+            </Box>
+            <Box className='apply-button'>
+              <Button>Ứng tuyển</Button>
+            </Box>
+          </Stack>
+
+          <Stack className='description-detail'> {/*=================div detail phần body==================*/}
+            <Box className='description-detail-box'>
+              <h1>Mô tả công việc:</h1>
+              <p>{repo?.jobDescription}</p>
+            </Box>
+            <Box className='description-detail-box'>
+              <h1>Những yêu cầu khác cho công việc:</h1>
+              <p>{repo?.other}</p>
+            </Box>
+            <Box className='description-detail-box'>
+              <h1>Quyền lợi:</h1>
+              <p>{repo?.business?.benefit}</p>
+            </Box>
+          </Stack>
+
+          <Stack className='comment-detail'> {/*=================div detail phần comment==================*/}
+            <p>comment div - chưa có làm qq j hết</p>
+          </Stack>
+
         </Stack>
-        <Stack>
-          {/* {repo.commentEntities?.map((comment)=>(
-            <div>
-            </div>
-          ))} */}
-        </Stack>
-      </Container>
+      </Container >
     )
   )
 }

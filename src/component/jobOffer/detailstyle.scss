@@ -1,0 +1,123 @@
+.around {
+    background-color: #E4E8E6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-detail {
+    background-color: white;
+    width: 1080px;
+    padding: 10px 20px 10px 20px;
+}
+
+.head-detail,
+.body-detail,
+.description-detail {
+    padding: 10px;
+    border-bottom: solid #8D8D8D 3px;
+}
+
+.detail-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>h1 {
+        color: #00B800;
+        font-size: 28px;
+        font-weight: bold;
+    }
+}
+
+.detail-info-under {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.business-name {
+    margin-left: 20px;
+
+    &>h1 {
+        color: black;
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    &>p {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+}
+
+.detail-business-button {
+    margin-left: 300px;
+
+    &>button {
+        background-color: #00B800;
+        color: white !important;
+        margin-left: 10px;
+        height: 40px;
+        width: 120px;
+        border-radius: 5px;
+    }
+
+}
+
+.body-detail {
+    margin-top: 10px;
+}
+
+.box-left {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.left {
+    &>p {
+        display: flex;
+        padding: 5px;
+    }
+}
+
+.bold-p {
+    font-weight: 700;
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+.value-p {
+    font-size: 20px;
+}
+
+.apply-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+
+    &>button {
+        background-color: #00B800;
+        color: white !important;
+        font-weight: bold;
+        font-size: 24px;
+        height: 40px;
+        width: 400px;
+        border-radius: 10px;
+    }
+}
+
+.description-detail-box {
+    margin-bottom: 30px;
+
+    &>h1 {
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    &>p {
+        font-size: 20px;
+    }
+}
