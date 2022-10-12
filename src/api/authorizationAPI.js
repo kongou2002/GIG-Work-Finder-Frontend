@@ -1,18 +1,14 @@
 import axiosClient from "./axiosClient";
 import React, { useState } from 'react'
+import firebase from "firebase";
 
 
 const authorizationApi = {
-    TakeToken(email, role){
-    const [data, setData] = useState({
-        email: email,
-        role: role
-    })
+    
+    TakeToken(data) {
+    // const userEmail = localStorage.getItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser)).email;
     const url = `/Authorization`;
-    const Token = axiosClient.post(url,data);
-    console.log("TakeToken");
-    console.log(Token);
-    return Token;
+    return axiosClient.post(url,data);
     }
     
 }
