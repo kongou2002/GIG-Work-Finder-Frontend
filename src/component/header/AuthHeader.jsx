@@ -1,9 +1,11 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { AccountCircle } from "@mui/icons-material";
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import React, { useState } from 'react';
 import "./style.scss";
+import Logo from './logo 1.jpg'
+import { Link } from "react-router-dom";
 // <<<<<<< HEAD
 // =======
 // import { Stack } from "@mui/system";
@@ -22,9 +24,6 @@ export default function AuthHeader() {
         loginWithRedirect,
         logout,
     } = useAuth0();
-    const get = () => {
-        setData(user.email, user.picture)
-    }
     console.log()
     const toggle = () => setIsOpen(!isOpen);
 
@@ -48,18 +47,13 @@ export default function AuthHeader() {
             
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    <Button><img src={Logo} alt="" /></Button>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
+                    
+                    <Button onClick={() => loginWithRedirect()}>Log In</Button>
+                    
                     {isAuthenticated && (
                         <div>
                             <IconButton
@@ -89,7 +83,7 @@ export default function AuthHeader() {
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleClose}>Log out</MenuItem>
+                                <MenuItem onClick={() => logout({ returnTo: window.location.origin })}>Log out</MenuItem>
                             </Menu>
 =======
     {/* return (

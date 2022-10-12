@@ -1,7 +1,7 @@
 import { Button, CardMedia, Container, Rating, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import businessApi from '../../api/businessApi';
 import Businessjob from './component/BusinessJob';
 import TabPanel from './component/TabPanel';
@@ -53,7 +53,7 @@ function Business() {
             </Box>
             <Box>
                 <Button variant="contained" sx={{bgcolor:'green', color: 'white'}}>Viết đánh giá</Button>
-                <Button variant="contained" sx={{bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
+                <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}><Link to={`/recruiter/${repo.userid}`}>Liên hệ chủ cửa hàng</Link></Button>
             </Box>
           </Stack>
           <Stack>

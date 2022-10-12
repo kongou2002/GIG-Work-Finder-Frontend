@@ -13,12 +13,12 @@ const jobOfferApi = {
         const url = `/JobOffer/ID/${id}`;
         return axiosClient.get(url);
     },
-    getBusiness(id){
+    getBusiness(id) {
         const url = `JobOffer/BusinessID/${id}`
         return axiosClient.get(url);
     },
     add(data) {
-        const url = '/jobOffer'
+        const url = '/JobOffer/CreateJO'
         return axiosClient.post(url, data);
     },
     update(data) {
