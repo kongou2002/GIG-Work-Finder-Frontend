@@ -13,9 +13,6 @@ function JobOffer(props) {
     useEffect(() => {
         setLoading(true)
         const fetchJobOffer = async () => {
-            const params = {
-                limit: 6,
-            };
             const jobList = await jobOfferApi.getBusiness(ID.id);
             setRepo(jobList);
             setLoading(false)
@@ -26,7 +23,7 @@ function JobOffer(props) {
     return (
         <div>
             {loading ? (
-                <Skeleton variant="rounded" width={1430} height={400} />
+                <Skeleton variant="rounded" width={'100%'} height={'100%'} />
             ) : (
                 <div className='box-job-busi'>
                     {repo.map((jobLists) => (
@@ -43,7 +40,7 @@ function JobOffer(props) {
                                 <p style={{ color: "blue", textDecoration: "none" }}>Tình trạng tuyển: 0/{jobLists.numOfRecruit} người</p>
                                 <div className='film-button-busi'>
                                     <button >
-                                        <Link to={`detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
+                                        <Link to={`/detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
                                     </button>
                                 </div>
                             </div>

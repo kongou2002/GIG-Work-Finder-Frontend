@@ -9,6 +9,7 @@ import Login from './pages/login';
 import firebase from 'firebase';
 import { useEffect } from 'react';
 import authorizationApi from './api/authorizationAPI';
+import Business from './component/business/Business';
 
 
 const config = {
@@ -21,8 +22,8 @@ firebase.initializeApp(config);
 function App() {
   //Login using firebase
   useEffect(() => {
-    const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) =>{
-      if (!user){
+    const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
         console.log("This isn't user");
         return;
       }
@@ -34,15 +35,17 @@ function App() {
       console.log(JSON.stringify(authorizationApi.TakeToken()));
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
     })
-    return() => unregisterAuthObserver;
+    return () => unregisterAuthObserver;
   })
   return (
     <div className="App">
-      <AuthHeader/>
+      <AuthHeader />
       <Routes>
-        <Route exact path='/' element={<Job />} />
-        <Route exact path='/profile' element = {<Profile />} />
-        <Route exact path='/detail/:id' element={<Detail />} />
+        <Route path='/' element={<Job />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/detail/:id' element={<Detail />} />
+        <Route path='/business/:id' element={<Business />} />
+
       </Routes>
       <Footer />
     </div>
