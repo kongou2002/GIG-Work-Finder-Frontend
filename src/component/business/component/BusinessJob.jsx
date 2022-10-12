@@ -5,15 +5,15 @@ import jobOfferApi from '../../../api/JobOffer';
 import "./style.scss";
 
 function JobOffer(props) {
-    const ID = (props)
+    const id = (props)
     const [repo, setRepo] = useState([]);
     const [loading, setLoading] = useState(false);
     /* A hook that is called when the component is mounted. */
-    console.log(ID)
+    console.log(id)
     useEffect(() => {
         setLoading(true)
         const fetchJobOffer = async () => {
-            const jobList = await jobOfferApi.getBusiness(ID.id);
+            const jobList = await jobOfferApi.getBusiness(id.id);
             setRepo(jobList);
             setLoading(false)
         }
@@ -23,7 +23,7 @@ function JobOffer(props) {
     return (
         <div>
             {loading ? (
-                <Skeleton variant="rounded" width={'100%'} height={'100%'} />
+                <Skeleton variant="rounded" width={1430} height={400} />
             ) : (
                 <div className='box-job-busi'>
                     {repo.map((jobLists) => (
@@ -40,7 +40,7 @@ function JobOffer(props) {
                                 <p style={{ color: "blue", textDecoration: "none" }}>Tình trạng tuyển: 0/{jobLists.numOfRecruit} người</p>
                                 <div className='film-button-busi'>
                                     <button >
-                                        <Link to={`/detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
+                                        <Link to={`detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
                                     </button>
                                 </div>
                             </div>

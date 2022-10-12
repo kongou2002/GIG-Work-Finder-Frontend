@@ -1,9 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useState } from 'react'
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import Staff from '../../asset/image/staff.jpg';
 import "./style.scss";
-import { SpatialAudioOff } from '@mui/icons-material';
-import Staff from '../../asset/image/staff.jpg'
 
 function Search(props) {
     const [input, setInput] = useState({
@@ -13,7 +11,7 @@ function Search(props) {
         setInput({ [e.target.name]: e.target.value })
     }
     const submitButton = () => {
-        console.log(input.search)
+        
     }
 
     return (

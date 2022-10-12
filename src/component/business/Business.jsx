@@ -1,7 +1,7 @@
 import { Button, CardMedia, Container, Rating, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import businessApi from '../../api/businessApi';
 import Businessjob from './component/BusinessJob';
 import TabPanel from './component/TabPanel';

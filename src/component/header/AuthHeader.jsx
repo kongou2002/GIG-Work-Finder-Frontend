@@ -1,9 +1,11 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { AccountCircle } from "@mui/icons-material";
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import React, { useState } from 'react';
 import "./style.scss";
+import Logo from './logo 1.jpg'
+import { Link } from "react-router-dom";
 import Login from "../../pages/login";
 // <<<<<<< HEAD
 // =======
@@ -39,20 +41,14 @@ export default function AuthHeader() {
             
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    <Button><img src={Logo} alt="" /></Button>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
-                    <Login />
-                    {/* {isAuthenticated && (
+                    
+                    <Button onClick={() => loginWithRedirect()}>Log In</Button>
+                    
+                    {isAuthenticated && (
                         <div>
                             <IconButton
                                 size="large"
@@ -82,7 +78,8 @@ export default function AuthHeader() {
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
                                 <MenuItem onClick={handleClose}>Log out</MenuItem>
-                            </Menu> */}
+                            </Menu>
+=======
     {/* return (
         <div className="nav-container, headPage">
             <Stack color="light" light expand="md" >
