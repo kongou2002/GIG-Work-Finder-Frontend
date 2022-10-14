@@ -7,12 +7,11 @@ import Job from './pages/home/Home';
 import Profile from './pages/user/Profile';
 import Login from './pages/login';
 import firebase from 'firebase';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import authorizationApi from './api/authorizationAPI';
 import Business from './component/business/Business';
 import Recruiter from './component/user/recruiter';
 import CreateJO from './component/jobOffer/component/CreateJO';
-
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -23,6 +22,11 @@ firebase.initializeApp(config);
 
 function App() {
   //Login using firebase
+  const [data, setData] = useState({
+    email: '',
+    role: '',
+    picUrl:''
+  })
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
@@ -32,9 +36,12 @@ function App() {
       const token = await user.getIdToken();
       // console.log(user.displayName);
       // console.log('this is: ', JSON.stringify(user));
-      localStorage.setItem('FJobGig:rememberedAccount', JSON.stringify(authorizationApi.TakeToken()));
-      console.log("Token: ");
-      console.log(JSON.stringify(authorizationApi.TakeToken()));
+      // console.log("Token: ")
+      console.log(user.email)
+      setData(user.email,"Admin",user.photoURL)
+      const FWApp = await authorizationApi.TakeToken(data);
+      
+      localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(FWApp))
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
     })
     return () => unregisterAuthObserver;
