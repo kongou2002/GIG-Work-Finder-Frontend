@@ -4,8 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import React, { useState } from 'react';
 import "./style.scss";
-import Logo from './logo 1.jpg'
-import { Link } from "react-router-dom";
+import logon from '../../pages/login'
 import Login from "../../pages/login";
 // <<<<<<< HEAD
 // =======
@@ -20,7 +19,15 @@ export default function AuthHeader() {
         email: '',
         image: '',
     });
-
+    const {
+        user,
+        isAuthenticated,
+        loginWithRedirect,
+        logout,
+    } = useAuth0();
+    const get = () => {
+        setData(user.email, user.picture)
+    }
     console.log()
     const toggle = () => setIsOpen(!isOpen);
 
@@ -41,13 +48,12 @@ export default function AuthHeader() {
             
             <AppBar position="static">
                 <Toolbar>
-                    <Button><img src={Logo} alt="" /></Button>
+                    {/* <Button><img src={Logo} alt="" /></Button> */}
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
-                    
-                    <Button onClick={() => loginWithRedirect()}>Log In</Button>
-                    
+                    <Login />
+
                     {isAuthenticated && (
                         <div>
                             <IconButton
@@ -79,7 +85,6 @@ export default function AuthHeader() {
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
                                 <MenuItem onClick={handleClose}>Log out</MenuItem>
                             </Menu>
-=======
     {/* return (
         <div className="nav-container, headPage">
             <Stack color="light" light expand="md" >
@@ -201,8 +206,8 @@ export default function AuthHeader() {
                                 </div>
                             )} */}
 {/* >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b */}
-                        {/* </div> */}
-                    {/* )} */}
+                        </div>
+                    )}
                 </Toolbar>
             </AppBar>
         </div>

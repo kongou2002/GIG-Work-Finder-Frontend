@@ -7,7 +7,7 @@ const businessApi ={
     },
     add(data) {
         const url = `/Business/`
-        return axiosClient.get(url);
+        return axiosClient.add(url);
     }
 };
 export default businessApi
