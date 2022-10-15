@@ -36,7 +36,6 @@ export default function AuthHeader() {
     };
     return (
         <div>
-            
             <AppBar position="static">
                 <Toolbar>
                     <IconButton
@@ -52,7 +51,7 @@ export default function AuthHeader() {
                         GIG-worker
                     </Typography>
                     <Login />
-                    {/* {isAuthenticated && (
+                    {/* {isAuthenticated && 
                         <div>
                             <IconButton
                                 size="large"
@@ -82,9 +81,9 @@ export default function AuthHeader() {
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
                                 <MenuItem onClick={handleClose}>Log out</MenuItem>
-                            </Menu> */}
-    {/* return (
-        <div className="nav-container, headPage">
+                            </Menu>
+                        </div>
+            } 
             <Stack color="light" light expand="md" >
                 <div>
                     <div className='logo'>
@@ -202,10 +201,11 @@ export default function AuthHeader() {
                                         </Button>
                                     </div>
                                 </div>
-                            )} */}
-{/* >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b */}
-                        {/* </div> */}
-                    {/* )} */}
+                            )}
+                        </div> */}
+                    {/* </div> */}
+                {/* </div> */}
+                {/* </Stack> */}
                 </Toolbar>
             </AppBar>
         </div>

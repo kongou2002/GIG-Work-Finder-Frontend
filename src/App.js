@@ -9,6 +9,7 @@ import Login from './pages/login';
 import firebase from 'firebase';
 import { useEffect, useState } from 'react';
 import authorizationApi from './api/authorizationAPI';
+import { Global } from '@emotion/react';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -16,6 +17,8 @@ const config = {
 }
 
 firebase.initializeApp(config);
+
+global.isAuthentication = false;
 
 function App() {
   //Login using firebase
@@ -37,7 +40,6 @@ function App() {
       console.log(user.email)
       setData(user.email,"Admin",user.photoURL)
       const FWApp = await authorizationApi.TakeToken(data);
-      
       localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(FWApp))
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
     })
