@@ -9,6 +9,9 @@ import Login from './pages/login';
 import firebase from 'firebase';
 import { useEffect, useState } from 'react';
 import authorizationApi from './api/authorizationAPI';
+import Business from './component/business/Business';
+import Recruiter from './component/user/recruiter';
+import CreateJO from './component/jobOffer/component/CreateJO';
 import { Global } from '@emotion/react';
 
 const config = {
@@ -28,8 +31,8 @@ function App() {
     picUrl:''
   })
   useEffect(() => {
-    const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) =>{
-      if (!user){
+    const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
         console.log("This isn't user");
         return;
       }
@@ -43,15 +46,18 @@ function App() {
       localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(FWApp))
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
     })
-    return() => unregisterAuthObserver;
+    return () => unregisterAuthObserver;
   })
   return (
     <div className="App">
-      <AuthHeader/>
+      <AuthHeader />
       <Routes>
-        <Route exact path='/' element={<Job />} />
-        <Route exact path='/profile' element = {<Profile />} />
-        <Route exact path='/detail/:id' element={<Detail />} />
+        <Route path='/' element={<Job />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/detail/:id' element={<Detail />} />
+        <Route path='/business/:id' element={<Business />} />
+        <Route path='/recruiter/:id' element={<Recruiter />} />
+        <Route path='/createjob' element={<CreateJO />} />
       </Routes>
       <Footer />
     </div>

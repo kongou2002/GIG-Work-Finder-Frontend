@@ -5,18 +5,15 @@ import jobOfferApi from '../../../api/JobOffer';
 import "./style.scss";
 
 function JobOffer(props) {
-    const ID = (props)
+    const id = (props)
     const [repo, setRepo] = useState([]);
     const [loading, setLoading] = useState(false);
     /* A hook that is called when the component is mounted. */
-    console.log(ID)
+    console.log(id)
     useEffect(() => {
         setLoading(true)
         const fetchJobOffer = async () => {
-            const params = {
-                limit: 6,
-            };
-            const jobList = await jobOfferApi.getBusiness(ID.id);
+            const jobList = await jobOfferApi.getBusiness(id.id);
             setRepo(jobList);
             setLoading(false)
         }
@@ -26,7 +23,7 @@ function JobOffer(props) {
     return (
         <div>
             {loading ? (
-                <Skeleton variant="rounded" width={1430} height={400} />
+                <Skeleton variant="rounded" width={'100%'} height={'100%'} />
             ) : (
                 <div className='box-job-busi'>
                     {repo.map((jobLists) => (

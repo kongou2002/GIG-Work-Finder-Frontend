@@ -14,9 +14,7 @@ function Detail() {
   useEffect(() => {
     setLoading(true)
     axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id.id}`).then((res) => {
-      console.log(res)
       const { data } = res
-      console.log(data)
       setRepo(data)
       setLoading(false)
     })

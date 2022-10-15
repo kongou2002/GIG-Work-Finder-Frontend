@@ -1,7 +1,7 @@
 import { Button, CardMedia, Container, Rating, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import businessApi from '../../api/businessApi';
 import Businessjob from './component/BusinessJob';
 import TabPanel from './component/TabPanel';
@@ -31,7 +31,7 @@ function Business() {
   return (
     <div className='around'>
       {loading ? (
-        <Skeleton variant="rounded" width={1430} height={400} />
+        <Skeleton variant="rounded" width={'100%'} height={'100%'} />
       ) : (
         <Container className='box-bg'>
           <Stack sx={{ display: 'flex', flex: '1', flexDirection: 'row' }} className='head-business'>

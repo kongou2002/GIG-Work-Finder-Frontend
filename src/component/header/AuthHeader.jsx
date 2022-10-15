@@ -1,9 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { AccountCircle } from "@mui/icons-material";
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import React, { useState } from 'react';
 import "./style.scss";
+import logon from '../../pages/login'
 import Login from "../../pages/login";
 // <<<<<<< HEAD
 // =======
@@ -18,7 +19,15 @@ export default function AuthHeader() {
         email: '',
         image: '',
     });
-
+    const {
+        user,
+        isAuthenticated,
+        loginWithRedirect,
+        logout,
+    } = useAuth0();
+    const get = () => {
+        setData(user.email, user.picture)
+    }
     console.log()
     const toggle = () => setIsOpen(!isOpen);
 
@@ -38,20 +47,13 @@ export default function AuthHeader() {
         <div>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    {/* <Button><img src={Logo} alt="" /></Button> */}
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
                     <Login />
-                    {/* {isAuthenticated && 
+
+                    {isAuthenticated && (
                         <div>
                             <IconButton
                                 size="large"
@@ -82,8 +84,8 @@ export default function AuthHeader() {
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
                                 <MenuItem onClick={handleClose}>Log out</MenuItem>
                             </Menu>
-                        </div>
-            } 
+    {/* return (
+        <div className="nav-container, headPage">
             <Stack color="light" light expand="md" >
                 <div>
                     <div className='logo'>
@@ -201,11 +203,10 @@ export default function AuthHeader() {
                                         </Button>
                                     </div>
                                 </div>
-                            )}
-                        </div> */}
-                    {/* </div> */}
-                {/* </div> */}
-                {/* </Stack> */}
+                            )} */}
+{/* >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b */}
+                        </div>
+                    )}
                 </Toolbar>
             </AppBar>
         </div>
