@@ -1,11 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { AccountCircle } from "@mui/icons-material";
-import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import React, { useState } from 'react';
 import "./style.scss";
-import logon from '../../pages/login'
-import Login from "../../pages/login";
+import Login from "../authentication/login";
+import Logout from "../authentication/logout";
 // <<<<<<< HEAD
 // =======
 // import { Stack } from "@mui/system";
@@ -52,7 +51,7 @@ export default function AuthHeader() {
                         GIG-worker
                     </Typography>
                     <Login />
-
+                    <Logout />
                     {isAuthenticated && (
                         <div>
                             <IconButton

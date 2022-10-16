@@ -5,7 +5,7 @@ import AuthHeader from './component/header/AuthHeader';
 import Detail from './component/jobOffer/detail';
 import Job from './pages/home/Home';
 import Profile from './pages/user/Profile';
-import Login from './pages/login';
+import Login from './component/authentication/login';
 import firebase from 'firebase';
 import { useEffect, useState } from 'react';
 import authorizationApi from './api/authorizationAPI';
@@ -43,6 +43,8 @@ function App() {
       console.log(user.email)
       setData(user.email,"Admin",user.photoURL)
       const FWApp = await authorizationApi.TakeToken(data);
+      console.log("id token: " );
+      console.log(user.getIdToken());
       localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(FWApp))
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
     })
