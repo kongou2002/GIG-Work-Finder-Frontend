@@ -25,10 +25,18 @@ global.isAuthentication = false;
 
 function App() {
   //Login using firebase
+  const emailUser = '';
+  const roleUser = '';
+  const nameUser = '';
+  const picUrlUser = '';
+  const genderUser = '';
+  const tokenUser = '';
   const [data, setData] = useState({
     email: '',
     role: '',
-    picUrl:''
+    name:'',
+    picUrl:'',
+    token:''
   })
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
@@ -37,19 +45,23 @@ function App() {
         return;
       }
       const token = await user.getIdToken();
-      // console.log(user.displayName);
-      // console.log('this is: ', JSON.stringify(user));
-      // console.log("Token: ")
-      console.log(user.email)
-      setData(user.email,"Admin",user.photoURL)
+      // updateData(user.email,"Admin",user.displayName,user.photoURL,user.gender,user.getIdToken());
+      console.log(user.email);
+      console.log(user.displayName);
+      console.log(user.photoURL);
+      setData(user.email,'Admin',user.displayName,user.photoURL,token);
+      // updateData(user);
+      // updateData(emailUser,roleUser,nameUser,picUrlUser,genderUser,tokenUser);
+      console.log(data);
       const FWApp = await authorizationApi.TakeToken(data);
-      console.log("id token: " );
-      console.log(user.getIdToken());
+      console.log("JWT FWApp: " );
+      console.log(FWApp);
       localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(FWApp))
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
+      localStorage.setItem('isAuthenticated',true);
     })
     return () => unregisterAuthObserver;
-  })
+  },[])
   return (
     <div className="App">
       <AuthHeader />

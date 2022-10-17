@@ -14,11 +14,7 @@ const clearLocalStorage = () => {
     });
 }
 function Logout() {
-  return (
-    <div>
-        <button type="Button" onClick={() => clearLocalStorage()}>Logout</button>
-    </div>
-  )
+        return clearLocalStorage();
 }
 
 export default Logout

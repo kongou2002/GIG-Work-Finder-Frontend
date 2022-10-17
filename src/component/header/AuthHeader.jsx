@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import "./style.scss";
 import Login from "../authentication/login";
 import Logout from "../authentication/logout";
+import Role from "../authentication/role";
 // <<<<<<< HEAD
 // =======
 // import { Stack } from "@mui/system";
@@ -18,15 +19,18 @@ export default function AuthHeader() {
         email: '',
         image: '',
     });
-    const {
-        user,
-        isAuthenticated,
-        loginWithRedirect,
-        logout,
-    } = useAuth0();
-    const get = () => {
-        setData(user.email, user.picture)
-    }
+    const isAuthenticated = localStorage.getItem("isAuthenticated") == null ? false: localStorage.getItem("isAuthenticated");
+    // const [authorization, setAuthorization] = useState({
+    //     isAuthorizated: false,
+    //     user:{
+    //         name:'',
+    //         email:'',
+            
+    //     }
+    //   })
+    // const get = () => {
+    //     setData(user.email, user.picture)
+    // }
     console.log()
     const toggle = () => setIsOpen(!isOpen);
 
@@ -42,6 +46,10 @@ export default function AuthHeader() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const handleLogout = () =>{
+        Logout();
+        window.location.reload();
+    }
     return (
         <div>
             <AppBar position="static">
@@ -50,8 +58,13 @@ export default function AuthHeader() {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
-                    <Login />
-                    <Logout />
+                    {!isAuthenticated && (
+                    <div>
+                        <Login />
+                    </div>
+                    )}
+                    
+                    
                     {isAuthenticated && (
                         <div>
                             <IconButton
@@ -81,7 +94,7 @@ export default function AuthHeader() {
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleClose}>Log out</MenuItem>
+                                <MenuItem onClick={handleLogout}>Log out</MenuItem>
                             </Menu>
     {/* return (
         <div className="nav-container, headPage">
