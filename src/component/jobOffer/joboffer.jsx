@@ -39,7 +39,9 @@ function JobOffer() {
                                 </div>
                             </div>
                             <div className='bottomButton'>
-                                <p style={{ color: "blue", textDecoration: "none" }}>Tình trạng tuyển: 0/{jobLists.numOfRecruit} người</p>
+                                <div>
+                                    <p style={{ color: "blue", textDecoration: "none" }}>Tình trạng tuyển: 0/{jobLists.numOfRecruit} người</p>
+                                </div>
                                 <div className='film-button'>
                                     <button >
                                         <Link to={`detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>

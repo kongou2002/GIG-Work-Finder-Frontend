@@ -1,19 +1,21 @@
 .searchBox {
     //display: flex;
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 60% 40%;
     margin-top: 20px;
 }
 
 .search-area {
-    margin-left: 80px;
+    margin-left: 10%;
+    width: 100%;
 
     &>input {
-        //margin-left: 80px;
         width: 500px;
         height: 40px;
         border: solid black 2px;
         border-radius: 10px;
+        width: 60%;
+        min-width: 30%;
     }
 
     &>button {
@@ -28,19 +30,17 @@
 
     &>p {
         color: black;
-        //margin-left: 80px;
         font-weight: bold;
         margin-bottom: 5px;
     }
 }
 
 .intro {
-    margin-bottom: 20px;
+    margin-bottom: 4%;
 
     &>h1 {
         float: left;
-        //margin-left: 80px;
-        margin-right: 20px;
+        margin-right: 3%;
         color: #00B800;
         font-weight: bold;
         font-size: 50px;
@@ -55,13 +55,25 @@
     }
 }
 
+.home-img-banner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .bg-img-banner {
-    background-color: white;
-    width: 340px;
+    //background-color: white;
     padding: 10px;
     border-radius: 10px;
+    //width: 100%;
+    justify-content: center;
+    align-items: center;
 
     &>img {
         border-radius: 10px;
+        width: 100% !important;
+        min-width: 100px;
+        max-width: 320px;
     }
 }

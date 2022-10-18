@@ -3,36 +3,39 @@
     color: #00B800;
 }
 
-@media only screen and (min-width: 520px) {
+@media only screen and (max-width: 560px) {
 
     /* For phone: */
     .box-job {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 100% !important;
         margin-left: 15px;
         margin-right: 15px;
+        width: 100%;
     }
 }
 
-@media only screen and (min-width: 960px) {
-
-    /* For tablets: */
-    .box-job {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-}
-
-@media only screen and (min-width: 1370px) {
+@media only screen and (min-width: 1040px) {
 
     /* For desktop: */
     .box-job {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 50% 50% !important;
         margin-left: 15px;
         margin-right: 15px;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+
+    /* For desktop: */
+    .box-job {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr !important;
+        margin-left: 15px;
+        margin-right: 15px;
+        width: 100%;
     }
 }
 
@@ -44,6 +47,7 @@
         float: left;
         border-radius: 10px;
         margin-right: 10px;
+        width: 100%;
     }
 }
 
@@ -60,8 +64,11 @@
 
 .card {
     padding: 10px 10px 10px 10px;
-    width: 420px;
-    height: 160px;
+    //width: 420px;
+    width: 95%;
+    height: 95%;
+    max-width: 540px;
+    min-width: 420px;
     background-color: white;
     margin-bottom: 10px;
     border: solid black 2px;
@@ -70,15 +77,19 @@
 
 .salary {
     font-weight: bold;
+    width: 100%;
 }
 
 .bottomButton {
+    margin-top: 3%;
+    width: 100%;
     display: flex;
-    margin-top: 5px;
+
 }
 
 .film-button {
-    margin-left: 90px;
+    //margin-left: 90px;
+    margin-left: 35%;
 
     &>button {
         background-color: #00B800;

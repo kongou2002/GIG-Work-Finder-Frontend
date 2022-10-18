@@ -38,19 +38,19 @@ function App() {
       // updateData(user);
       // updateData(emailUser,roleUser,nameUser,picUrlUser,genderUser,tokenUser);
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
+      localStorage.setItem('isAuthenticated', true);
       console.log("role");
-      if (localStorage.getItem('role') == null){
-        localStorage.setItem('role',"Applicant");
+      if (localStorage.getItem('role') == null) {
+        localStorage.setItem('role', "Applicant");
 
       }
       const fwAppUserData = await authorizationApi.getToken(token, localStorage.getItem('role'));
-      console.log("JWT FWApp: " );
+      console.log("JWT FWApp: ");
       console.log(fwAppUserData);
-      localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(fwAppUserData));
-      localStorage.setItem('isAuthenticated',true);
+      localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
     })
     return () => unregisterAuthObserver;
-  },[])
+  }, [])
   return (
     <div className="App">
       <AuthHeader />
