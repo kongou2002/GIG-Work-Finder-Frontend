@@ -13,14 +13,11 @@ const uiConfig = {
 }
 function Login() {
   return (
-        <div>
-          <Role />
           <div style={{ display: 'inline-block'}}>
           <StyledFirebaseAuth 
           uiConfig={uiConfig} 
           firebaseAuth={firebase.auth()}
         />
-        </div>
         </div>
 
   )

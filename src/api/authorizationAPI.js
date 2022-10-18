@@ -5,11 +5,23 @@ import firebase from "firebase";
 
 const authorizationApi = {
     
-    TakeToken(data) {
-    // const userEmail = localStorage.getItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser)).email;
-    const url = `/Authorization`;
-    return axiosClient.post(url,data);
-    }
+    getToken(googleToken, roleUser) {
+        const user = JSON.parse(localStorage.getItem('firebase:rememberedAccount'));
+        console.log("user in localstored")
+        console.log(user);
+        const data = {
+            email: user.email,
+            role: roleUser,
+            name: user.displayName,
+            picUrl: user.photoURL,
+            token: googleToken
+        }
+        console.log("Data: ")
+        console.log(data);
+        const url = `/Authorization`;
+        return axiosClient.post(url,data);
+        }
+        
     
 }
 

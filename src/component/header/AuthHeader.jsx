@@ -12,26 +12,12 @@ import Role from "../authentication/role";
 // import Logo from '../../asset/image/logo.jpg'
 // import { Button } from "@mui/material";
 // >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b
-
 export default function AuthHeader() {
     const [isOpen, setIsOpen] = useState(false);
-    const [data, setData] = useState({
-        email: '',
-        image: '',
-    });
+    const [role, setRole] = useState(localStorage.getItem('role'));
+    console.log(role);
     const isAuthenticated = localStorage.getItem("isAuthenticated") == null ? false: localStorage.getItem("isAuthenticated");
-    // const [authorization, setAuthorization] = useState({
-    //     isAuthorizated: false,
-    //     user:{
-    //         name:'',
-    //         email:'',
-            
-    //     }
-    //   })
-    // const get = () => {
-    //     setData(user.email, user.picture)
-    // }
-    console.log()
+    const user = localStorage.getItem("firebase:rememberedAccount");
     const toggle = () => setIsOpen(!isOpen);
 
     
@@ -50,6 +36,17 @@ export default function AuthHeader() {
         Logout();
         window.location.reload();
     }
+    const handleButton = (event) =>{
+        const eventRole = event.target.value;
+        localStorage.setItem("role", eventRole);
+        setRole(eventRole);
+    }
+    const handleChangeRole = (event) =>{
+        const roleLocal = localStorage.getItem('role');
+        localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter":"Applicant");
+        setRole(localStorage.getItem('role'));
+        window.location.reload();
+    }
     return (
         <div>
             <AppBar position="static">
@@ -60,6 +57,14 @@ export default function AuthHeader() {
                     </Typography>
                     {!isAuthenticated && (
                     <div>
+                        <div style={{ display: 'inline-block'}}>
+                            <form>
+                            <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{color:"red"}} />
+                            <label for="applicant" style={{paddingRight:'5px'}}>Applicant</label>
+                            <input name="role" id="recruiter" type="radio" onClick={handleButton} value="Recruiter" />
+                            <label for="recruiter">Recruiter</label>
+                            </form>
+                        </div>
                         <Login />
                     </div>
                     )}
@@ -75,6 +80,7 @@ export default function AuthHeader() {
                                 onClick={handleMenu}
                                 color="inherit"
                             >
+                                
                                 <AccountCircle />
                             </IconButton>
                             <Menu
@@ -94,6 +100,7 @@ export default function AuthHeader() {
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={handleChangeRole}>Change to {(role=="Recruiter") ? "Applicant":"Recruiter"}</MenuItem>
                                 <MenuItem onClick={handleLogout}>Log out</MenuItem>
                             </Menu>
     {/* return (

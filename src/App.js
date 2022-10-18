@@ -13,6 +13,7 @@ import Business from './component/business/Business';
 import Recruiter from './component/user/recruiter';
 import CreateJO from './component/jobOffer/component/CreateJO';
 import { Global } from '@emotion/react';
+import { User } from '@auth0/auth0-spa-js';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -25,19 +26,6 @@ global.isAuthentication = false;
 
 function App() {
   //Login using firebase
-  const emailUser = '';
-  const roleUser = '';
-  const nameUser = '';
-  const picUrlUser = '';
-  const genderUser = '';
-  const tokenUser = '';
-  const [data, setData] = useState({
-    email: '',
-    role: '',
-    name:'',
-    picUrl:'',
-    token:''
-  })
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
@@ -46,18 +34,19 @@ function App() {
       }
       const token = await user.getIdToken();
       // updateData(user.email,"Admin",user.displayName,user.photoURL,user.gender,user.getIdToken());
-      console.log(user.email);
-      console.log(user.displayName);
-      console.log(user.photoURL);
-      setData(user.email,'Admin',user.displayName,user.photoURL,token);
+      // console.log(token);
       // updateData(user);
       // updateData(emailUser,roleUser,nameUser,picUrlUser,genderUser,tokenUser);
-      console.log(data);
-      const FWApp = await authorizationApi.TakeToken(data);
-      console.log("JWT FWApp: " );
-      console.log(FWApp);
-      localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(FWApp))
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
+      console.log("role");
+      if (localStorage.getItem('role') == null){
+        localStorage.setItem('role',"Applicant");
+
+      }
+      const fwAppUserData = await authorizationApi.getToken(token, localStorage.getItem('role'));
+      console.log("JWT FWApp: " );
+      console.log(fwAppUserData);
+      localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(fwAppUserData));
       localStorage.setItem('isAuthenticated',true);
     })
     return () => unregisterAuthObserver;
