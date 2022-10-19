@@ -40,7 +40,7 @@ function JobOffer(props) {
                                 <p style={{ color: "blue", textDecoration: "none" }}>Tình trạng tuyển: 0/{jobLists.numOfRecruit} người</p>
                                 <div className='film-button-busi'>
                                     <button >
-                                        <Link to={`detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
+                                        <Link to={`/detail/${jobLists.offerID}`} style={{ color: "white", textDecoration: "none" }}>Xem chi tiết</Link>
                                     </button>
                                 </div>
                             </div>

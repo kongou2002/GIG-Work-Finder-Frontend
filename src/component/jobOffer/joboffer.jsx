@@ -25,7 +25,7 @@ function JobOffer() {
     return (
         <div>
             {loading ? (
-                <Skeleton variant="rounded" width={1430} height={400} />
+                <Skeleton variant="rounded" width={'100%'} height={400} />
             ) : (
                 <div className='box-job'>
                     {repo.map((jobLists) => (

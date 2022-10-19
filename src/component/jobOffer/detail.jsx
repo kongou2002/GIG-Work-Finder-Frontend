@@ -1,5 +1,5 @@
 /* eslint-disable no-unreachable */
-import { Button, Rating } from '@mui/material';
+import { Button, Rating, Skeleton } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -23,8 +23,11 @@ function Detail() {
   console.log(repo)
   console.log(loading)
   return (
-    !loading && (
-      <Container className='around'>
+    <Container className='around'>
+      {loading ? (
+        <Skeleton variant="rounded" width={'100%'} height={400} />
+      ) : (
+
         <Stack className='background-detail'>
           <Stack className='head-detail'> {/*=================div detail phần head==================*/}
             <Box className='detail-info'>
@@ -86,9 +89,10 @@ function Detail() {
           </Stack>
 
         </Stack>
-      </Container >
-    )
+      )}
+    </Container >
   )
+
 }
 
 export default Detail

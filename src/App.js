@@ -45,7 +45,7 @@ function App() {
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
     })
     return () => unregisterAuthObserver;
-  })
+  },[])
   return (
     <div className="App">
       <AuthHeader />
