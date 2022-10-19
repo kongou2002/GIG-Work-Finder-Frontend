@@ -7,8 +7,6 @@ const authorizationApi = {
     
     getToken(googleToken, roleUser) {
         const user = JSON.parse(localStorage.getItem('firebase:rememberedAccount'));
-        console.log("user in localstored")
-        console.log(user);
         const data = {
             email: user.email,
             role: roleUser,
@@ -16,10 +14,9 @@ const authorizationApi = {
             picUrl: user.photoURL,
             token: googleToken
         }
-        console.log("Data: ")
-        console.log(data);
+        const headers = {'Authorization': data.token};
         const url = `/Authorization`;
-        return axiosClient.post(url,data);
+        return axiosClient.post(url,data,headers);
         }
         
     
