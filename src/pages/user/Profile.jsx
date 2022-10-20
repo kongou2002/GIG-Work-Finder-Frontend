@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import TabPanel from '../../component/business/component/TabPanel';
 import applicantApi from '../../api/applicantApi';
+import recruiterApi from '../../api/recruiterApi';
 // import "./style.scss";
 
 function Profile() {
@@ -12,7 +13,7 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(2);
   const [value, setValue] = useState(0);
-  const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
+  const [user] = useState(JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount")));
   const handleTabs = (e, val) => {
     setValue(val)
   }
@@ -20,12 +21,17 @@ function Profile() {
   useEffect(() => {
     setLoading(true)
     const fetchJobOffer = async () => {
-      const userProfile = await applicantApi.getID(user.id);
+      var userProfile;
+      if ("Applicant" == user.role)
+        userProfile = await applicantApi.getID(user.id);
+      else
+        if ("Recruiter" == user.role)
+          userProfile = await recruiterApi.getID(user.id);
       setRepo(userProfile);
       setLoading(false)
     }
     fetchJobOffer();
-  }, []);
+  }, [user]);
   const handleYearsOld = () => {
 
   }
@@ -34,6 +40,12 @@ function Profile() {
       return <Tab label='Quản lý' />
     }
     return '';
+  }
+  const handleUpdateButton = (userRole) => {
+    if ("Recruiter" == (userRole) || "Applicant" == userRole) {
+      return <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Cập nhật thông tin</Button>
+    }
+    return <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ</Button>;
   }
   console.log(repo)
   return (
@@ -60,7 +72,8 @@ function Profile() {
             </Box>
             <Box className='business-button'>
               <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
-              <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
+              {handleUpdateButton(user.role)}
+
             </Box>
           </Stack>
 
