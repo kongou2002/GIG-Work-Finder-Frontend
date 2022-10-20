@@ -10,7 +10,7 @@ import Store from '../../asset/image/cty.jpg'
 import authorizationApi from '../../api/authorizationAPI';
 
 
-function job() {
+function GuestHomePage() {
   const image = [/* them url hinh anh vao day */];
   return (
     <div className='container-home-page'>
@@ -87,4 +87,4 @@ function job() {
     </div >
   )
 }
-export default job
+export default GuestHomePage
