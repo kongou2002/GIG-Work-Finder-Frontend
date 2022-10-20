@@ -10,7 +10,7 @@ import firebase from 'firebase';
 import { useEffect, useState } from 'react';
 import authorizationApi from './api/authorizationAPI';
 import Business from './component/business/Business';
-import Recruiter from './component/user/recruiter';
+// import Recruiter from './component/user/recruiter';
 import CreateJO from './component/jobOffer/component/CreateJO';
 import { Global } from '@emotion/react';
 import { User } from '@auth0/auth0-spa-js';
@@ -38,16 +38,18 @@ function App() {
       // updateData(user);
       // updateData(emailUser,roleUser,nameUser,picUrlUser,genderUser,tokenUser);
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
-      localStorage.setItem('isAuthenticated', true);
+      localStorage.setItem('isAuthenticated',true);
       console.log("role");
       if (localStorage.getItem('role') == null) {
         localStorage.setItem('role', "Applicant");
 
       }
       const fwAppUserData = await authorizationApi.getToken(token, localStorage.getItem('role'));
-      console.log("JWT FWApp: ");
+      localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(fwAppUserData));
+      console.log("JWT FWApp: " );
       console.log(fwAppUserData);
-      localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
+      localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(fwAppUserData));
+      localStorage.setItem('isAuthenticated',true);
     })
     return () => unregisterAuthObserver;
   }, [])
@@ -59,7 +61,7 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/business/:id' element={<Business />} />
-        <Route path='/recruiter/:id' element={<Recruiter />} />
+        {/* <Route path='/recruiter/:id' element={<Recruiter />} /> */}
         <Route path='/createjob' element={<CreateJO />} />
       </Routes>
       <Footer />

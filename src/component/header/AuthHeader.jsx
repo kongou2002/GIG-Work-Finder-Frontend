@@ -1,11 +1,11 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { AccountCircle } from "@mui/icons-material";
-import { AppBar, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import { AppBar, Avatar, Button, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import { Stack } from "@mui/system";
 import React, { useState } from 'react';
-import "./style.scss";
+import { Link } from "react-router-dom";
+import Profile from "../../pages/user/Profile";
 import Login from "../authentication/login";
 import Logout from "../authentication/logout";
-import Role from "../authentication/role";
+import "./style.scss";
 // <<<<<<< HEAD
 // =======
 // import { Stack } from "@mui/system";
@@ -13,11 +13,15 @@ import Role from "../authentication/role";
 // import { Button } from "@mui/material";
 // >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b
 export default function AuthHeader() {
+
     const [isOpen, setIsOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [role, setRole] = useState(localStorage.getItem('role'));
     console.log(role);
     const isAuthenticated = localStorage.getItem("isAuthenticated") == null ? false : localStorage.getItem("isAuthenticated");
-    const user = localStorage.getItem("firebase:rememberedAccount");
+    const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
+    console.log("User: ");
+    console.log(user);
     const toggle = () => setIsOpen(!isOpen);
 
 
@@ -47,6 +51,9 @@ export default function AuthHeader() {
         setRole(localStorage.getItem('role'));
         window.location.reload();
     }
+    const handleShowProfile = (event) => {
+        return <Profile />
+    }
     return (
         <div>
             <AppBar position="static">
@@ -55,6 +62,7 @@ export default function AuthHeader() {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
+                    <Button></Button>
                     {!isAuthenticated && (
                         <div>
                             <div style={{ display: 'inline-block' }}>
@@ -72,17 +80,15 @@ export default function AuthHeader() {
 
                     {isAuthenticated && (
                         <div>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleMenu}
-                                color="inherit"
-                            >
+                            <Stack flexDirection={'row'} sx={{ alignItems: 'center' }}>
 
-                                <AccountCircle />
-                            </IconButton>
+                                <Button onClick={handleMenu}>
+                                    <div style={{ color: "White" }}> {user?.name}</div>
+                                    <Avatar alt="Remy Sharp" src={user?.picUrl} sx={{ ml: '20px' }} />
+                                </Button>
+
+                            </Stack>
+
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorEl}
@@ -98,7 +104,11 @@ export default function AuthHeader() {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+
+                                <Link to={'/profile'} style={{ textDecoration: "none", color: 'black' }}>
+                                    <MenuItem>Profile</MenuItem>
+                                </Link>
+
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
                                 <MenuItem onClick={handleChangeRole}>Change to {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
                                 <MenuItem onClick={handleLogout}>Log out</MenuItem>
