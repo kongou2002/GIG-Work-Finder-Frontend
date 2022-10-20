@@ -16,12 +16,12 @@ export default function AuthHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [role, setRole] = useState(localStorage.getItem('role'));
     console.log(role);
-    const isAuthenticated = localStorage.getItem("isAuthenticated") == null ? false: localStorage.getItem("isAuthenticated");
+    const isAuthenticated = localStorage.getItem("isAuthenticated") == null ? false : localStorage.getItem("isAuthenticated");
     const user = localStorage.getItem("firebase:rememberedAccount");
     const toggle = () => setIsOpen(!isOpen);
 
-    
-// <<<<<<< HEAD
+
+    // <<<<<<< HEAD
     const [anchorEl, setAnchorEl] = React.useState(null);
 
 
@@ -32,44 +32,44 @@ export default function AuthHeader() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const handleLogout = () =>{
+    const handleLogout = () => {
         Logout();
         window.location.reload();
     }
-    const handleButton = (event) =>{
+    const handleButton = (event) => {
         const eventRole = event.target.value;
         localStorage.setItem("role", eventRole);
         setRole(eventRole);
     }
-    const handleChangeRole = (event) =>{
+    const handleChangeRole = (event) => {
         const roleLocal = localStorage.getItem('role');
-        localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter":"Applicant");
+        localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter" : "Applicant");
         setRole(localStorage.getItem('role'));
         window.location.reload();
     }
     return (
         <div>
             <AppBar position="static">
-                <Toolbar sx={{bgcolor:'#021C1E'}}>
-                    {/* <Button><img src={Logo} alt="" /></Button> */}
+                <Toolbar sx={{ bgcolor: '#021C1E' }}>
+                    {/* <Button><img src="logo 1.jpg" alt="" /></Button> */}
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
                     {!isAuthenticated && (
-                    <div>
-                        <div style={{ display: 'inline-block'}}>
-                            <form>
-                            <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{color:"red"}} />
-                            <label for="applicant" style={{paddingRight:'5px'}}>Applicant</label>
-                            <input name="role" id="recruiter" type="radio" onClick={handleButton} value="Recruiter" />
-                            <label for="recruiter">Recruiter</label>
-                            </form>
+                        <div>
+                            <div style={{ display: 'inline-block' }}>
+                                <form>
+                                    <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{ color: "red" }} />
+                                    <label for="applicant" style={{ paddingRight: '5px' }}>Applicant</label>
+                                    <input name="role" id="recruiter" type="radio" onClick={handleButton} value="Recruiter" />
+                                    <label for="recruiter">Recruiter</label>
+                                </form>
+                            </div>
+                            <Login />
                         </div>
-                        <Login />
-                    </div>
                     )}
-                    
-                    
+
+
                     {isAuthenticated && (
                         <div>
                             <IconButton
@@ -80,7 +80,7 @@ export default function AuthHeader() {
                                 onClick={handleMenu}
                                 color="inherit"
                             >
-                                
+
                                 <AccountCircle />
                             </IconButton>
                             <Menu
@@ -100,10 +100,10 @@ export default function AuthHeader() {
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleChangeRole}>Change to {(role=="Recruiter") ? "Applicant":"Recruiter"}</MenuItem>
+                                <MenuItem onClick={handleChangeRole}>Change to {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
                                 <MenuItem onClick={handleLogout}>Log out</MenuItem>
                             </Menu>
-    {/* return (
+                            {/* return (
         <div className="nav-container, headPage">
             <Stack color="light" light expand="md" >
                 <div>
@@ -223,7 +223,7 @@ export default function AuthHeader() {
                                     </div>
                                 </div>
                             )} */}
-{/* >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b */}
+                            {/* >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b */}
                         </div>
                     )}
                 </Toolbar>

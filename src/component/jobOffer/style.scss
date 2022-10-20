@@ -9,9 +9,14 @@
     .box-job {
         display: grid;
         grid-template-columns: 100% !important;
+        //margin: auto 0px;
         margin-left: 15px;
         margin-right: 15px;
         width: 100%;
+
+        &>.card {
+            margin: 0px auto !important;
+        }
     }
 }
 
