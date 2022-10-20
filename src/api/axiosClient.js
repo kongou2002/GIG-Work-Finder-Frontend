@@ -2,6 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create({
     baseURL: 'https://gig-worker-backend.azurewebsites.net',
+    // baseURL: 'http://localhost:8080/',
     headers: {
         'Contend-Type': 'application/json'
     }

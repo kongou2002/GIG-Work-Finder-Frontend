@@ -5,13 +5,15 @@ import AuthHeader from './component/header/AuthHeader';
 import Detail from './component/jobOffer/detail';
 import Job from './pages/home/Home';
 import Profile from './pages/user/Profile';
-import Login from './pages/login';
+import Login from './component/authentication/login';
 import firebase from 'firebase';
 import { useEffect, useState } from 'react';
 import authorizationApi from './api/authorizationAPI';
 import Business from './component/business/Business';
 import Recruiter from './component/user/recruiter';
 import CreateJO from './component/jobOffer/component/CreateJO';
+import { Global } from '@emotion/react';
+import { User } from '@auth0/auth0-spa-js';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -20,13 +22,10 @@ const config = {
 
 firebase.initializeApp(config);
 
+global.isAuthentication = false;
+
 function App() {
   //Login using firebase
-  const [data, setData] = useState({
-    email: '',
-    role: '',
-    picUrl:''
-  })
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
@@ -34,18 +33,24 @@ function App() {
         return;
       }
       const token = await user.getIdToken();
-      // console.log(user.displayName);
-      // console.log('this is: ', JSON.stringify(user));
-      // console.log("Token: ")
-      console.log(user.email)
-      setData(user.email,"Admin",user.photoURL)
-      const FWApp = await authorizationApi.TakeToken(data);
-      
-      localStorage.setItem("FWApp-gig:rememberedAccount",JSON.stringify(FWApp))
+      // updateData(user.email,"Admin",user.displayName,user.photoURL,user.gender,user.getIdToken());
+      // console.log(token);
+      // updateData(user);
+      // updateData(emailUser,roleUser,nameUser,picUrlUser,genderUser,tokenUser);
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
+      localStorage.setItem('isAuthenticated', true);
+      console.log("role");
+      if (localStorage.getItem('role') == null) {
+        localStorage.setItem('role', "Applicant");
+
+      }
+      const fwAppUserData = await authorizationApi.getToken(token, localStorage.getItem('role'));
+      console.log("JWT FWApp: ");
+      console.log(fwAppUserData);
+      localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
     })
     return () => unregisterAuthObserver;
-  },[])
+  }, [])
   return (
     <div className="App">
       <AuthHeader />

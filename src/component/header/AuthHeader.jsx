@@ -1,34 +1,23 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { AccountCircle } from "@mui/icons-material";
-import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import React, { useState } from 'react';
 import "./style.scss";
-import logon from '../../pages/login'
-import Login from "../../pages/login";
+import Login from "../authentication/login";
+import Logout from "../authentication/logout";
+import Role from "../authentication/role";
 // <<<<<<< HEAD
 // =======
 // import { Stack } from "@mui/system";
 // import Logo from '../../asset/image/logo.jpg'
 // import { Button } from "@mui/material";
 // >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b
-
 export default function AuthHeader() {
     const [isOpen, setIsOpen] = useState(false);
-    const [data, setData] = useState({
-        email: '',
-        image: '',
-    });
-    const {
-        user,
-        isAuthenticated,
-        loginWithRedirect,
-        logout,
-    } = useAuth0();
-    const get = () => {
-        setData(user.email, user.picture)
-    }
-    console.log()
+    const [role, setRole] = useState(localStorage.getItem('role'));
+    console.log(role);
+    const isAuthenticated = localStorage.getItem("isAuthenticated") == null ? false: localStorage.getItem("isAuthenticated");
+    const user = localStorage.getItem("firebase:rememberedAccount");
     const toggle = () => setIsOpen(!isOpen);
 
     
@@ -43,17 +32,44 @@ export default function AuthHeader() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const handleLogout = () =>{
+        Logout();
+        window.location.reload();
+    }
+    const handleButton = (event) =>{
+        const eventRole = event.target.value;
+        localStorage.setItem("role", eventRole);
+        setRole(eventRole);
+    }
+    const handleChangeRole = (event) =>{
+        const roleLocal = localStorage.getItem('role');
+        localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter":"Applicant");
+        setRole(localStorage.getItem('role'));
+        window.location.reload();
+    }
     return (
         <div>
-            
             <AppBar position="static">
                 <Toolbar sx={{bgcolor:'#021C1E'}}>
                     {/* <Button><img src={Logo} alt="" /></Button> */}
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
-                    <Login />
-
+                    {!isAuthenticated && (
+                    <div>
+                        <div style={{ display: 'inline-block'}}>
+                            <form>
+                            <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{color:"red"}} />
+                            <label for="applicant" style={{paddingRight:'5px'}}>Applicant</label>
+                            <input name="role" id="recruiter" type="radio" onClick={handleButton} value="Recruiter" />
+                            <label for="recruiter">Recruiter</label>
+                            </form>
+                        </div>
+                        <Login />
+                    </div>
+                    )}
+                    
+                    
                     {isAuthenticated && (
                         <div>
                             <IconButton
@@ -64,6 +80,7 @@ export default function AuthHeader() {
                                 onClick={handleMenu}
                                 color="inherit"
                             >
+                                
                                 <AccountCircle />
                             </IconButton>
                             <Menu
@@ -83,7 +100,8 @@ export default function AuthHeader() {
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleClose}>Log out</MenuItem>
+                                <MenuItem onClick={handleChangeRole}>Change to {(role=="Recruiter") ? "Applicant":"Recruiter"}</MenuItem>
+                                <MenuItem onClick={handleLogout}>Log out</MenuItem>
                             </Menu>
     {/* return (
         <div className="nav-container, headPage">
