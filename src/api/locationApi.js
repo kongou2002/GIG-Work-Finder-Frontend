@@ -6,7 +6,7 @@ const locationApi = {
         return axiosClient.get(url);
     },
     getProvince(province) {
-        const url = `/Location/City/${ province}`
+        const url = `/Location/City/${province}`
         return axiosClient.get(url);
     }
 };

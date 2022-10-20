@@ -57,7 +57,7 @@ export default function AuthHeader() {
     return (
         <div>
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar sx={{bgcolor:'#021C1E'}}>
                     {/* <Button><img src={Logo} alt="" /></Button> */}
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
