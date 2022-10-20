@@ -1,31 +1,41 @@
+import { SettingsApplicationsTwoTone } from '@mui/icons-material';
 import { Button, CardMedia, Container, Rating, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import TabPanel from '../../component/business/component/TabPanel';
+import applicantApi from '../../api/applicantApi';
 // import "./style.scss";
 
 function Profile() {
-  const id = useParams();
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(2);
   const [value, setValue] = useState(0);
-
+  const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
   const handleTabs = (e, val) => {
     setValue(val)
   }
 
   useEffect(() => {
-    // setLoading(true)
-    // const fetchJobOffer = async () => {
-    //   const jobList = await businessApi.getID(id.id);
-    //   setRepo(jobList);
-    //   setLoading(false)
-    // }
-    // fetchJobOffer();
+    setLoading(true)
+    const fetchJobOffer = async () => {
+      const userProfile = await applicantApi.getID(user.id);
+      setRepo(userProfile);
+      setLoading(false)
+    }
+    fetchJobOffer();
   }, []);
-  // console.log(repo)
+  const handleYearsOld = () => {
+
+  }
+  const handleDashboard = (userRole) => {
+    if ("Recruiter" == (userRole)) {
+      return <Tab label='Quản lý' />
+    }
+    return '';
+  }
+  console.log(repo)
   return (
     <div className='around'>
       {loading ? (
@@ -37,15 +47,15 @@ function Profile() {
               <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                image={repo.businessLogo}
+                image={user.picUrl}
                 alt="Live from space album cover"
               />
             </Box>
             <Box className='business-name'>
-              <h1>{repo.businessName}</h1>
-              <p>Địa chỉ: 
-                {/* {repo.address}, {repo?.location?.city}, {repo?.location?.province} */}
-                </p>
+              <h1>{repo.lastName} {repo.firstName}</h1>
+              <p>Địa chỉ:
+                {repo.address}, {repo?.location?.city}, {repo?.location?.province}
+              </p>
               <Rating name="read-only" value={rating} readOnly />
             </Box>
             <Box className='business-button'>
@@ -57,7 +67,8 @@ function Profile() {
           <Stack>
             <Tabs value={value} onChange={handleTabs}>
               <Tab label='Thông tin' />
-              <Tab label='Tuyển dụng' />
+              {handleDashboard(user.role)}
+              <Tab label='Đánh giá' />
             </Tabs>
             <TabPanel value={value} index={0}>
               <Box className='intro-box'>
@@ -71,19 +82,31 @@ function Profile() {
                   Thông tin tài khoản:
                 </Typography>
                 <Typography component='li'>
-                  Họ và tên: 
-                  Tuổi:
-                  Ngày sinh:
-                  Giới tính:
-                  Địa chỉ:
+                  Họ và tên: {repo?.lastName} {repo?.firstName}
+                </Typography>
+                <Typography component='li'>
+                  Tuổi: {handleYearsOld}
+                </Typography>
+                <Typography component='li'>
+                  Ngày sinh: {repo?.dob}
+                </Typography>
+                <Typography component='li'>
+                  Giới tính: {repo?.gender}
+                </Typography>
+                <Typography component='li'>
+                  Địa chỉ: {repo?.location?.city}, {repo?.location?.province}
+                </Typography>
+                <Typography component='li'>
                   Trạng thái:
                 </Typography>
                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                   Liên lạc:
                 </Typography>
                 <Typography component='li'>
-                  Số điện thoại:
-                  Email:
+                  Số điện thoại: {repo?.phone}
+                </Typography>
+                <Typography component='li'>
+                  Email: {repo?.email}
                 </Typography>
                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                   Trạng thái tài khoản:
@@ -95,7 +118,10 @@ function Profile() {
             </TabPanel>
             <TabPanel value={value} index={1} className='box-job'>
               {/* <Businessjob id={repo.businessID} className='box-job-info' /> */}
-              </TabPanel>
+            </TabPanel>
+            <TabPanel value={value} index={2} className='box-job'>
+              {/* <Businessjob id={repo.businessID} className='box-job-info' /> */}
+            </TabPanel>
           </Stack>
         </Container >
       )

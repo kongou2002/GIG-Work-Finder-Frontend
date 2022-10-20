@@ -1,7 +1,7 @@
 import { AppBar, Avatar, Button, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { useState } from 'react';
-import  {Link}  from "react-router-dom";
+import { Link } from "react-router-dom";
 import Profile from "../../pages/user/Profile";
 import Login from "../authentication/login";
 import Logout from "../authentication/logout";
@@ -13,19 +13,19 @@ import "./style.scss";
 // import { Button } from "@mui/material";
 // >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b
 export default function AuthHeader() {
-    
+
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [role, setRole] = useState(localStorage.getItem('role'));
     console.log(role);
-    const isAuthenticated = localStorage.getItem("isAuthenticated") == null ? false: localStorage.getItem("isAuthenticated");
+    const isAuthenticated = localStorage.getItem("isAuthenticated") == null ? false : localStorage.getItem("isAuthenticated");
     const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
     console.log("User: ");
     console.log(user);
     const toggle = () => setIsOpen(!isOpen);
 
-    
-// <<<<<<< HEAD
+
+    // <<<<<<< HEAD
     const [anchorEl, setAnchorEl] = React.useState(null);
 
 
@@ -36,59 +36,59 @@ export default function AuthHeader() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const handleLogout = () =>{
+    const handleLogout = () => {
         Logout();
         window.location.reload();
     }
-    const handleButton = (event) =>{
+    const handleButton = (event) => {
         const eventRole = event.target.value;
         localStorage.setItem("role", eventRole);
         setRole(eventRole);
     }
-    const handleChangeRole = (event) =>{
+    const handleChangeRole = (event) => {
         const roleLocal = localStorage.getItem('role');
-        localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter":"Applicant");
+        localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter" : "Applicant");
         setRole(localStorage.getItem('role'));
         window.location.reload();
     }
-    const handleShowProfile = (event) =>{
-       return <Profile />
+    const handleShowProfile = (event) => {
+        return <Profile />
     }
     return (
         <div>
             <AppBar position="static">
-                <Toolbar sx={{bgcolor:'#021C1E'}}>
+                <Toolbar sx={{ bgcolor: '#021C1E' }}>
                     {/* <Button><img src={Logo} alt="" /></Button> */}
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
                     <Button></Button>
                     {!isAuthenticated && (
-                    <div>
-                        <div style={{ display: 'inline-block'}}>
-                            <form>
-                            <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{color:"red"}} />
-                            <label for="applicant" style={{paddingRight:'5px'}}>Applicant</label>
-                            <input name="role" id="recruiter" type="radio" onClick={handleButton} value="Recruiter" />
-                            <label for="recruiter">Recruiter</label>
-                            </form>
+                        <div>
+                            <div style={{ display: 'inline-block' }}>
+                                <form>
+                                    <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{ color: "red" }} />
+                                    <label for="applicant" style={{ paddingRight: '5px' }}>Applicant</label>
+                                    <input name="role" id="recruiter" type="radio" onClick={handleButton} value="Recruiter" />
+                                    <label for="recruiter">Recruiter</label>
+                                </form>
+                            </div>
+                            <Login />
                         </div>
-                        <Login />
-                    </div>
                     )}
-                    
-                    
+
+
                     {isAuthenticated && (
                         <div>
-                            <Stack flexDirection={'row'} sx={{alignItems:'center'}}>
-                                
-                                <Button onClick ={handleMenu}>
-                                    <div style={{color: "White"}}> {user?.name}</div>
-                                <Avatar alt="Remy Sharp" src={user?.picUrl} sx={{ml:'20px'}}/>   
+                            <Stack flexDirection={'row'} sx={{ alignItems: 'center' }}>
+
+                                <Button onClick={handleMenu}>
+                                    <div style={{ color: "White" }}> {user?.name}</div>
+                                    <Avatar alt="Remy Sharp" src={user?.picUrl} sx={{ ml: '20px' }} />
                                 </Button>
-                                
-                                </Stack>
-                                
+
+                            </Stack>
+
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorEl}
@@ -104,16 +104,16 @@ export default function AuthHeader() {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                
-                                <Link to={'/profile'} style={{textDecoration: "none", color: 'black'}}>
-                                <MenuItem>Profile</MenuItem>
+
+                                <Link to={'/profile'} style={{ textDecoration: "none", color: 'black' }}>
+                                    <MenuItem>Profile</MenuItem>
                                 </Link>
-                                
+
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleChangeRole}>Change to {(role=="Recruiter") ? "Applicant":"Recruiter"}</MenuItem>
+                                <MenuItem onClick={handleChangeRole}>Change to {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
                                 <MenuItem onClick={handleLogout}>Log out</MenuItem>
                             </Menu>
-    {/* return (
+                            {/* return (
         <div className="nav-container, headPage">
             <Stack color="light" light expand="md" >
                 <div>
@@ -233,7 +233,7 @@ export default function AuthHeader() {
                                     </div>
                                 </div>
                             )} */}
-{/* >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b */}
+                            {/* >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b */}
                         </div>
                     )}
                 </Toolbar>
