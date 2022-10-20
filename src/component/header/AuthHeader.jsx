@@ -1,13 +1,11 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { AccountCircle } from "@mui/icons-material";
-import { AppBar, Avatar, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import { AppBar, Avatar, Button, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import { Stack } from "@mui/system";
 import React, { useState } from 'react';
-import "./style.scss";
+import  {Link}  from "react-router-dom";
+import Profile from "../../pages/user/Profile";
 import Login from "../authentication/login";
 import Logout from "../authentication/logout";
-import Role from "../authentication/role";
-import { Stack } from "@mui/system";
-import { useEffect } from "react";
+import "./style.scss";
 // <<<<<<< HEAD
 // =======
 // import { Stack } from "@mui/system";
@@ -52,6 +50,9 @@ export default function AuthHeader() {
         localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter":"Applicant");
         setRole(localStorage.getItem('role'));
         window.location.reload();
+    }
+    const handleShowProfile = (event) =>{
+       return <Profile />
     }
     return (
         <div>
@@ -103,7 +104,11 @@ export default function AuthHeader() {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                
+                                <Link to={'/profile'} style={{textDecoration: "none", color: 'black'}}>
+                                <MenuItem>Profile</MenuItem>
+                                </Link>
+                                
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
                                 <MenuItem onClick={handleChangeRole}>Change to {(role=="Recruiter") ? "Applicant":"Recruiter"}</MenuItem>
                                 <MenuItem onClick={handleLogout}>Log out</MenuItem>

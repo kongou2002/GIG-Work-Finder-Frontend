@@ -2,7 +2,6 @@ import React from 'react';
 import firebase from 'firebase';
 import  StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { Padding } from '@mui/icons-material';
-import Role from './role';
 
 const uiConfig = {
     signInFlow: 'popup',
