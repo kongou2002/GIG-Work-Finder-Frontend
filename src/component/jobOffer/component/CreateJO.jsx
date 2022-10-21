@@ -9,31 +9,17 @@ function CreateJO() {
     const [select, setSelect] = useState()
     const [repo, setRepo] = useState()
     const [loading, setLoading] = useState()
-    const [fectch, setFectch] = useState('')
+    const [city, setCity] = useState()
+    const [fectch, setFectch] = useState([])
     const [data, setData] = useState({
-        jobname: '',
-        jobtype: '',
-        location: '',
-        business: '',
-        numofrecruit: '',
-        offerendtime: '',
-        salary: '',
-        age: '',
-        jobdescription: '',
-        orther: '',
-        strattime: '',
-        endtime: '',
-        address: ''
+
     })
     useEffect(() => {
         setLoading(true)
-        console.log(1);
         axios.get(`https://gig-worker-backend.azurewebsites.net/Location/City?province=${select}`)
             .then((res) => {
-                console.log(2);
                 const { data } = res;
                 setFectch(data);
-                console.log('fecth');
                 console.log(fectch);
                 console.log(data);
                 setLoading(false)
@@ -48,14 +34,17 @@ function CreateJO() {
         }
         fetchData();
     }, []);
-    console.log(JSON.stringify(select))
     const inputsHandler = (e) => {
         setSelect(e.target.value)
         setData({ ...data, [e.target.name]: e.target.value })
     }
-    console.log(select)
-    console.log(fetch)
-    // console.log(data)
+    const selectLocation = (e) => {
+        setCity(e.target.value)
+        setData({ ...data, [e.target.name]: e.target.value })
+    }
+    // console.log(select)
+    // console.log(fetch)
+    console.log(data)
     const handleSubmit = (e) => {
         try {
             e.preventDefault()
@@ -96,12 +85,11 @@ function CreateJO() {
                 <TextField
                     select
                     label="provivince City"
-                    value={fetch?.locationid}
-                    onChange={inputsHandler}
-                    name='provivince'>
-                    {provivince.map((option) => (
-                        <MenuItem key={fetch?.locationid} value={fetch?.locationid}>
-                            {fectch?.city}
+                    onChange={selectLocation}
+                    name='provivince city'>
+                    {fectch?.map((option) => (
+                        <MenuItem key={option?.locationID} value={option?.locationID}>
+                            {option?.city}
                         </MenuItem>
                     ))}
                 </TextField>
