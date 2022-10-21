@@ -12,7 +12,7 @@ function CreateJO() {
     const [city, setCity] = useState()
     const [fectch, setFectch] = useState([])
     const [data, setData] = useState({
-
+        id: id,
     })
     useEffect(() => {
         setLoading(true)
@@ -34,6 +34,7 @@ function CreateJO() {
         }
         fetchData();
     }, []);
+    console.log(repo)
     const inputsHandler = (e) => {
         setSelect(e.target.value)
         setData({ ...data, [e.target.name]: e.target.value })
@@ -110,6 +111,39 @@ function CreateJO() {
                     {fectch?.map((option) => (
                         <MenuItem key={option?.locationID} value={option?.locationID}>
                             {option?.city}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                    select
+                    label="Chọn địa chỉ doanh nghiệp"
+                    onChange={selectLocation}
+                    name='businessAddresses'>
+                    {repo?.businessAddresses?.map((option) => (
+                        <MenuItem key={option?.businessID} value={option?.businessID}>
+                            {option?.address}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                    select
+                    label="Chọn bằng cấp"
+                    onChange={selectLocation}
+                    name='degreeNames'>
+                    {repo?.degreeNames?.map((option) => (
+                        <MenuItem key={option?.degreeID} value={option?.degreeID}>
+                            {option?.degreeName}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                    select
+                    label="Chọn tên công việc"
+                    onChange={selectLocation}
+                    name='jobNames'>
+                    {repo?.jobNames?.map((option) => (
+                        <MenuItem key={option?.typeID} value={option?.typeID}>
+                            {option?.name}
                         </MenuItem>
                     ))}
                 </TextField>
