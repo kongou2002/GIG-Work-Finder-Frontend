@@ -16,7 +16,7 @@ function footer(props) {
                     </ul>
                 </Box>
                 <Box className='condition'>
-                    <h3>Điều khoảng chung</h3>
+                    <h3>Điều khoản chung</h3>
                     <ul>
                         <li>Quy định bảo mật</li>
                         <li>Quy chế hoạt động</li>
@@ -33,7 +33,7 @@ function footer(props) {
                 </Box>
             </Box>
             <Box className='footer-bot'>
-                <p>Coppyright © 2022</p>
+                <p>Copyright © 2022</p>
                 <p>GIG-Worker</p>
             </Box>
         </Stack>
