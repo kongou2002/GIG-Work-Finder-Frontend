@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import TabPanel from '../../component/business/component/TabPanel';
 import applicantApi from '../../api/applicantApi';
 import recruiterApi from '../../api/recruiterApi';
+import UserCreatePage from './UserCreatePage';
 // import "./style.scss";
 
 function Profile() {
@@ -43,7 +44,11 @@ function Profile() {
   }
   const handleUpdateButton = (userRole) => {
     if ("Recruiter" == (userRole) || "Applicant" == userRole) {
-      return <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Cập nhật thông tin</Button>
+      return (
+        <Link to={'/userProfile'}>
+          <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Cập nhật thông tin</Button>
+        </Link>
+      )
     }
     return <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ</Button>;
   }
@@ -95,7 +100,7 @@ function Profile() {
                   Thông tin tài khoản:
                 </Typography>
                 <Typography component='li'>
-                  Họ và tên: {repo?.lastName} {repo?.firstName}
+                  Họ và tên: {repo.firstName == null ? '<Chưa cập nhật>' : repo.lastName + " " + repo.firstName};
                 </Typography>
                 <Typography component='li'>
                   Tuổi: {handleYearsOld}

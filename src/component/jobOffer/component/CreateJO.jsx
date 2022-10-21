@@ -27,16 +27,18 @@ function CreateJO() {
     })
     useEffect(() => {
         setLoading(true)
-        axios.post(`https://gig-worker-backend.azurewebsites.net/Location/City`,{
-            province: select
-        })
-        .then((res) => {
-            const { data } = res
-            setFectch(data)
-            setLoading(false)
-        })
+        console.log(1);
+        axios.get(`https://gig-worker-backend.azurewebsites.net/Location/City?province=${select}`)
+            .then((res) => {
+                console.log(2);
+                const { data } = res;
+                setFectch(data);
+                console.log('fecth');
+                console.log(fectch);
+                console.log(data);
+                setLoading(false)
+            })
     }, [select])
-    console.log(fectch)
     useEffect(() => {
         setLoading(true)
         const fetchData = async () => {
@@ -53,7 +55,7 @@ function CreateJO() {
     }
     console.log(select)
     console.log(fetch)
-    console.log(data)
+    // console.log(data)
     const handleSubmit = (e) => {
         try {
             e.preventDefault()
@@ -86,14 +88,14 @@ function CreateJO() {
                     onChange={inputsHandler}
                     name='provivince'>
                     {provivince.map((option) => (
-                        <MenuItem key={option} value={option}>
+                        <MenuItem key={option} value={option} >
                             {option}
                         </MenuItem>
                     ))}
                 </TextField>
                 <TextField
                     select
-                    label="provivince"
+                    label="provivince City"
                     value={fetch?.locationid}
                     onChange={inputsHandler}
                     name='provivince'>
@@ -103,7 +105,7 @@ function CreateJO() {
                         </MenuItem>
                     ))}
                 </TextField>
-                <TextField  />
+                <TextField />
 
 
                 <Button type='submit'>submit</Button>
