@@ -62,22 +62,33 @@
 }
 
 .button-row {
-    display: gird;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .button-1st,
 .button-2nd,
 .button-3rd {
-    background-color: #00B800;
-    color: white !important;
-    font-weight: bold;
-    font-size: 24px;
-    height: 80px;
-    min-width: 40%;
-    max-width: 80%;
+    background-color: white !important;
+    border: solid black 2px;
     border-radius: 10px;
-    justify-content: center !important;
-    align-items: center !important;
+    margin-left: 1%;
+    margin-right: 1%;
+    max-width: 20%;
+    height: 180px;
+    padding: 10px;
+
+    &>h1 {
+        color: #00B800;
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    &>p {
+        margin-top: 10px;
+    }
 
 }

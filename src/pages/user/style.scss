@@ -1,0 +1,82 @@
+.around {
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-bg {
+    background-color: white !important;
+}
+
+.head-business {
+    margin-top: 20px;
+}
+
+.business-name {
+    margin-left: 40px;
+    margin-top: 20px;
+
+    &>h1 {
+        color: black;
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        width: 660px;
+    }
+
+    &>p {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+}
+
+.business-button {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-left: 140px;
+
+    &>button {
+        background-color: #00B800;
+        color: white !important;
+        margin-left: 10px;
+        height: 60px;
+        width: 150px;
+        border-radius: 5px;
+    }
+}
+
+.intro-box {
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+.bold-title {
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.box-job {
+    display: gird;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 20px;
+}
+
+.box-job-info {
+    width: 50%;
+    height: 50%;
+}
+
+
+/*các field cần có:
+                1. First Name/Last Name: input text
+                2. Phone: input text
+                3. Gender: select
+                4. Email: fix cứng 
+                5. Description: input text*/
+
+
+// <TextField label="Họ:" variant="standard" onChange={inputsHandler} name='lastname' />
+// <TextField label="Tên:" variant="standard" onChange={inputsHandler} name='firstname' />
+// <TextField label="Số điện thoại:" variant="standard" onChange={inputsHandler} name='phone' />
+// <TextField label="Mô tả bản thân:" variant="standard" onChange={inputsHandler} name='description' />

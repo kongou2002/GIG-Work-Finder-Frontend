@@ -66,13 +66,33 @@ function CreateJO() {
                 noValidate
                 autoComplete="off"
             >
+                {/*các field cần có:
+                1. Job type: select
+                2. Location: select (city, province) - đã có
+                3. Degree: select
+                4. Business: select (chưa có business thì input text)
+                5. Num of Recruit: input text (bắt buộc)
+                6. offer end time: input text (bắt buộc DD/MM/YYYY)
+                7. Salary: input text
+                8. Age: input text
+                9. Job description: input text
+                10. Other: input text
+                11. Start time: input text (vd 08:00)
+                12. End time: input text
+                13. Address: input text */}
+                <TextField label="Số lượng cần tuyển:" variant="standard" onChange={inputsHandler} name='numofrecruiter' />
+                <TextField label="Thời hạn kết thúc đăng tuyển:" variant="standard" onChange={inputsHandler} name='offerendtime' />
+                <TextField label="Lương (theo giờ):" variant="standard" onChange={inputsHandler} name='salary' />
+                <TextField label="Độ tuổi tối thiểu:" variant="standard" onChange={inputsHandler} name='age' />
+                <TextField label="Mô tả công việc:" variant="standard" onChange={inputsHandler} name='jobdescription' />
+                <TextField label="Yêu cầu khác:" variant="standard" onChange={inputsHandler} name='other' />
+                <TextField label="Thời gian bắt đầu làm việc:" variant="standard" onChange={inputsHandler} name='starttime' />
+                <TextField label="Thời gian kết thúc công việc:" variant="standard" onChange={inputsHandler} name='endtime' />
+                <TextField label="Địa chỉ:" variant="standard" onChange={inputsHandler} name='address' />
 
-                <TextField label="Name" variant="standard" onChange={inputsHandler} name='jobname' />
-                <TextField label="Phone" variant="standard" onChange={inputsHandler} name='jobtype' />
-                <TextField label="Email" variant="standard" onChange={inputsHandler} name='location' />
                 <TextField
                     select
-                    label="provivince"
+                    label="Chọn Tỉnh"
                     // value={select}
                     onChange={inputsHandler}
                     name='provivince'>
@@ -84,7 +104,7 @@ function CreateJO() {
                 </TextField>
                 <TextField
                     select
-                    label="provivince City"
+                    label="Chọn Thành phố/Quận/Huyện"
                     onChange={selectLocation}
                     name='provivince city'>
                     {fectch?.map((option) => (
@@ -93,8 +113,6 @@ function CreateJO() {
                         </MenuItem>
                     ))}
                 </TextField>
-                <TextField />
-
 
                 <Button type='submit'>submit</Button>
             </Box>

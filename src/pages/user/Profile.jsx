@@ -7,7 +7,7 @@ import TabPanel from '../../component/business/component/TabPanel';
 import applicantApi from '../../api/applicantApi';
 import recruiterApi from '../../api/recruiterApi';
 import UserCreatePage from './UserCreatePage';
-// import "./style.scss";
+//import "./style.scss";
 
 function Profile() {
   const [repo, setRepo] = useState({});
