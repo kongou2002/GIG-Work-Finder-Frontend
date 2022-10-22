@@ -12,7 +12,7 @@ function CreateJO() {
     const [city, setCity] = useState()
     const [fectch, setFectch] = useState([])
     const [data, setData] = useState({
-        id: id,
+        accountID: id,
     })
     useEffect(() => {
         setLoading(true)
@@ -81,14 +81,14 @@ function CreateJO() {
                 11. Start time: input text (vd 08:00)
                 12. End time: input text
                 13. Address: input text */}
-                <TextField label="Số lượng cần tuyển:" variant="standard" onChange={inputsHandler} name='numofrecruiter' />
-                <TextField label="Thời hạn kết thúc đăng tuyển:" variant="standard" onChange={inputsHandler} name='offerendtime' />
+                <TextField label="Số lượng cần tuyển:" variant="standard" onChange={inputsHandler} name='numOfRecruit' />
+                <TextField label="Thời hạn kết thúc đăng tuyển:" variant="standard" onChange={inputsHandler} name='offerEndTime' />
                 <TextField label="Lương (theo giờ):" variant="standard" onChange={inputsHandler} name='salary' />
                 <TextField label="Độ tuổi tối thiểu:" variant="standard" onChange={inputsHandler} name='age' />
-                <TextField label="Mô tả công việc:" variant="standard" onChange={inputsHandler} name='jobdescription' />
+                <TextField label="Mô tả công việc:" variant="standard" onChange={inputsHandler} name='jobDescription' />
                 <TextField label="Yêu cầu khác:" variant="standard" onChange={inputsHandler} name='other' />
-                <TextField label="Thời gian bắt đầu làm việc:" variant="standard" onChange={inputsHandler} name='starttime' />
-                <TextField label="Thời gian kết thúc công việc:" variant="standard" onChange={inputsHandler} name='endtime' />
+                <TextField label="Thời gian bắt đầu làm việc:" variant="standard" onChange={inputsHandler} name='startTime' />
+                <TextField label="Thời gian kết thúc công việc:" variant="standard" onChange={inputsHandler} name='endTime' />
                 <TextField label="Địa chỉ:" variant="standard" onChange={inputsHandler} name='address' />
 
                 <TextField
@@ -96,7 +96,7 @@ function CreateJO() {
                     label="Chọn Tỉnh"
                     // value={select}
                     onChange={inputsHandler}
-                    name='provivince'>
+                    name='province'>
                     {provivince.map((option) => (
                         <MenuItem key={option} value={option} >
                             {option}
@@ -107,7 +107,7 @@ function CreateJO() {
                     select
                     label="Chọn Thành phố/Quận/Huyện"
                     onChange={selectLocation}
-                    name='provivince city'>
+                    name='location'>
                     {fectch?.map((option) => (
                         <MenuItem key={option?.locationID} value={option?.locationID}>
                             {option?.city}
@@ -118,7 +118,7 @@ function CreateJO() {
                     select
                     label="Chọn địa chỉ doanh nghiệp"
                     onChange={selectLocation}
-                    name='businessAddresses'>
+                    name='business'>
                     {repo?.businessAddresses?.map((option) => (
                         <MenuItem key={option?.businessID} value={option?.businessID}>
                             {option?.address}
@@ -129,7 +129,7 @@ function CreateJO() {
                     select
                     label="Chọn bằng cấp"
                     onChange={selectLocation}
-                    name='degreeNames'>
+                    name='degree'>
                     {repo?.degreeNames?.map((option) => (
                         <MenuItem key={option?.degreeID} value={option?.degreeID}>
                             {option?.degreeName}
@@ -140,7 +140,7 @@ function CreateJO() {
                     select
                     label="Chọn tên công việc"
                     onChange={selectLocation}
-                    name='jobNames'>
+                    name='jobType'>
                     {repo?.jobNames?.map((option) => (
                         <MenuItem key={option?.typeID} value={option?.typeID}>
                             {option?.name}
