@@ -14,7 +14,8 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(2);
   const [value, setValue] = useState(0);
-  const [user] = useState(JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount")));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount")));
+  const [role] = useState(localStorage.getItem("role"));
   const handleTabs = (e, val) => {
     setValue(val)
   }
@@ -22,6 +23,7 @@ function Profile() {
   useEffect(() => {
     setLoading(true)
     const fetchJobOffer = async () => {
+      setUser(JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount")));
       var userProfile;
       if ("Applicant" == user.role)
         userProfile = await applicantApi.getID(user.id);
@@ -32,7 +34,10 @@ function Profile() {
       setLoading(false)
     }
     fetchJobOffer();
-  }, [user]);
+  }, [role]);
+  console.log('User');
+  console.log(user);
+  console.log(role);
   const handleYearsOld = () => {
 
   }
@@ -85,7 +90,7 @@ function Profile() {
           <Stack>
             <Tabs value={value} onChange={handleTabs}>
               <Tab label='Thông tin' />
-              {handleDashboard(user.role)}
+              {handleDashboard(role)}
               <Tab label='Đánh giá' />
             </Tabs>
             <TabPanel value={value} index={0}>

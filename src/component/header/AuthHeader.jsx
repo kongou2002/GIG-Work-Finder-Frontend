@@ -1,7 +1,7 @@
 import { AppBar, Avatar, Button, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Profile from "../../pages/user/Profile";
 import Login from "../authentication/login";
 import Logout from "../authentication/logout";
@@ -23,6 +23,7 @@ export default function AuthHeader() {
     console.log("User: ");
     console.log(user);
     const toggle = () => setIsOpen(!isOpen);
+    const nav = useNavigate();
 
 
     // <<<<<<< HEAD
@@ -38,7 +39,7 @@ export default function AuthHeader() {
     };
     const handleLogout = () => {
         Logout();
-        window.location.reload();
+        nav('/');
     }
     const handleButton = (event) => {
         const eventRole = event.target.value;
@@ -49,8 +50,10 @@ export default function AuthHeader() {
         const roleLocal = localStorage.getItem('role');
         localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter" : "Applicant");
         setRole(localStorage.getItem('role'));
+        localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter" : "Applicant");
         window.location.reload();
     }
+
     const handleShowProfile = (event) => {
         return <Profile />
     }
