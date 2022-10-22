@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import jobOfferApi from '../../../api/JobOffer';
 const provivince = ["Thành phố Cần Thơ", "Thành phố Đà Nẵng", "Thành phố Hà Nội", "Thành phố Hải Phòng", "Thành phố Hồ Chí Minh", "Tỉnh An Giang", "Tỉnh Bà Rịa - Vũng Tàu", "Tỉnh Bắc Giang", "Tỉnh Bắc Kạn", "Tỉnh Bạc Liêu", "Tỉnh Bắc Ninh", "Tỉnh Bến Tre", "Tỉnh Bình Định", "Tỉnh Bình Dương", "Tỉnh Bình Phước", "Tỉnh Bình Thuận", "Tỉnh Cà Mau", "Tỉnh Cao Bằng", "Tỉnh Đắk Lắk", "Tỉnh Đắk Nông", "Tỉnh Điện Biên", "Tỉnh Đồng Nai", "Tỉnh Đồng Tháp", "Tỉnh Gia Lai", "Tỉnh Hà Giang", "Tỉnh Hà Nam", "Tỉnh Hà Tĩnh", "Tỉnh Hải Dương", "Tỉnh Hậu Giang", "Tỉnh Hoà Bình", "Tỉnh Hưng Yên", "Tỉnh Khánh Hòa", "Tỉnh Kiên Giang", "Tỉnh Kon Tum", "Tỉnh Lai Châu", "Tỉnh Lâm Đồng", "Tỉnh Lạng Sơn", "Tỉnh Lào Cai", "Tỉnh Long An", "Tỉnh Nam Định", "Tỉnh Nghệ An", "Tỉnh Ninh Bình", "Tỉnh Ninh Thuận", "Tỉnh Phú Thọ", "Tỉnh Phú Yên", "Tỉnh Quảng Bình", "Tỉnh Quảng Nam", "Tỉnh Quảng Ngãi", "Tỉnh Quảng Ninh", "Tỉnh Quảng Trị", "Tỉnh Sóc Trăng", "Tỉnh Sơn La", "Tỉnh Tây Ninh", "Tỉnh Thái Bình", "Tỉnh Thái Nguyên", "Tỉnh Thanh Hóa", "Tỉnh Thừa Thiên Huế", "Tỉnh Tiền Giang", "Tỉnh Trà Vinh", "Tỉnh Tuyên Quang", "Tỉnh Vĩnh Long", "Tỉnh Vĩnh Phúc", "Tỉnh Yên Bái"]
 function CreateJO() {
-    const id = 2
+    const accountID = 27
     const [select, setSelect] = useState()
     const [repo, setRepo] = useState()
     const [loading, setLoading] = useState()
@@ -28,7 +28,7 @@ function CreateJO() {
     useEffect(() => {
         setLoading(true)
         const fetchData = async () => {
-            const joblocation = await jobOfferApi.getJobType(id);
+            const joblocation = await jobOfferApi.getJobType(accountID);
             setRepo(joblocation);
             setLoading(false)
         }
@@ -80,14 +80,14 @@ function CreateJO() {
                 11. Start time: input text (vd 08:00)
                 12. End time: input text
                 13. Address: input text */}
-                <TextField label="Số lượng cần tuyển:" variant="standard" onChange={inputsHandler} name='numofrecruiter' />
-                <TextField label="Thời hạn kết thúc đăng tuyển:" variant="standard" onChange={inputsHandler} name='offerendtime' />
+                <TextField label="Số lượng cần tuyển:" variant="standard" onChange={inputsHandler} name='numOfRecruiter' />
+                <TextField label="Thời hạn kết thúc đăng tuyển:" variant="standard" onChange={inputsHandler} name='offerEndTime' />
                 <TextField label="Lương (theo giờ):" variant="standard" onChange={inputsHandler} name='salary' />
                 <TextField label="Độ tuổi tối thiểu:" variant="standard" onChange={inputsHandler} name='age' />
-                <TextField label="Mô tả công việc:" variant="standard" onChange={inputsHandler} name='jobdescription' />
+                <TextField label="Mô tả công việc:" variant="standard" onChange={inputsHandler} name='jobDescription' />
                 <TextField label="Yêu cầu khác:" variant="standard" onChange={inputsHandler} name='other' />
-                <TextField label="Thời gian bắt đầu làm việc:" variant="standard" onChange={inputsHandler} name='starttime' />
-                <TextField label="Thời gian kết thúc công việc:" variant="standard" onChange={inputsHandler} name='endtime' />
+                <TextField label="Thời gian bắt đầu làm việc:" variant="standard" onChange={inputsHandler} name='startTime' />
+                <TextField label="Thời gian kết thúc công việc:" variant="standard" onChange={inputsHandler} name='endTime' />
                 <TextField label="Địa chỉ:" variant="standard" onChange={inputsHandler} name='address' />
 
                 <TextField
