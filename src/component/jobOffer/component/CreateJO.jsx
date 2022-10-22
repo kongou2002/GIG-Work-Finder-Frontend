@@ -12,7 +12,7 @@ function CreateJO() {
     const [city, setCity] = useState()
     const [fectch, setFectch] = useState([])
     const [data, setData] = useState({
-
+        accountID: id,
     })
     useEffect(() => {
         setLoading(true)
@@ -34,6 +34,7 @@ function CreateJO() {
         }
         fetchData();
     }, []);
+    console.log(repo)
     const inputsHandler = (e) => {
         setSelect(e.target.value)
         setData({ ...data, [e.target.name]: e.target.value })
@@ -80,7 +81,7 @@ function CreateJO() {
                 11. Start time: input text (vd 08:00)
                 12. End time: input text
                 13. Address: input text */}
-                <TextField label="Số lượng cần tuyển:" variant="standard" onChange={inputsHandler} name='numOfRecruiter' />
+                <TextField label="Số lượng cần tuyển:" variant="standard" onChange={inputsHandler} name='numOfRecruit' />
                 <TextField label="Thời hạn kết thúc đăng tuyển:" variant="standard" onChange={inputsHandler} name='offerEndTime' />
                 <TextField label="Lương (theo giờ):" variant="standard" onChange={inputsHandler} name='salary' />
                 <TextField label="Độ tuổi tối thiểu:" variant="standard" onChange={inputsHandler} name='age' />
@@ -95,7 +96,7 @@ function CreateJO() {
                     label="Chọn Tỉnh"
                     // value={select}
                     onChange={inputsHandler}
-                    name='provivince'>
+                    name='province'>
                     {provivince.map((option) => (
                         <MenuItem key={option} value={option} >
                             {option}
@@ -106,10 +107,43 @@ function CreateJO() {
                     select
                     label="Chọn Thành phố/Quận/Huyện"
                     onChange={selectLocation}
-                    name='provivince city'>
+                    name='location'>
                     {fectch?.map((option) => (
                         <MenuItem key={option?.locationID} value={option?.locationID}>
                             {option?.city}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                    select
+                    label="Chọn địa chỉ doanh nghiệp"
+                    onChange={selectLocation}
+                    name='business'>
+                    {repo?.businessAddresses?.map((option) => (
+                        <MenuItem key={option?.businessID} value={option?.businessID}>
+                            {option?.address}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                    select
+                    label="Chọn bằng cấp"
+                    onChange={selectLocation}
+                    name='degree'>
+                    {repo?.degreeNames?.map((option) => (
+                        <MenuItem key={option?.degreeID} value={option?.degreeID}>
+                            {option?.degreeName}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                    select
+                    label="Chọn tên công việc"
+                    onChange={selectLocation}
+                    name='jobType'>
+                    {repo?.jobNames?.map((option) => (
+                        <MenuItem key={option?.typeID} value={option?.typeID}>
+                            {option?.name}
                         </MenuItem>
                     ))}
                 </TextField>
