@@ -40,6 +40,7 @@ export default function AuthHeader() {
     const handleLogout = () => {
         Logout();
         nav('/');
+        window.location.reload();
     }
     const handleButton = (event) => {
         const eventRole = event.target.value;
@@ -50,6 +51,7 @@ export default function AuthHeader() {
         const roleLocal = localStorage.getItem('role');
         localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter" : "Applicant");
         setRole(localStorage.getItem('role'));
+        nav('/');
         window.location.reload();
     }
 

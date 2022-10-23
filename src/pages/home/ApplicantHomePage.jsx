@@ -20,7 +20,7 @@ function ApplicantHomePage() {
             <br></br>
             <div className='job-zone'>
                 <div class='job-zone-list-box-title'>
-                    <h1>Khám phá các công việc đang "HOT", phổ biến trên thị trường: "Đây là trang applicant" </h1>
+                    <h1>Khám phá các công việc đang "HOT", phổ biến trên thị trường: </h1>
                     <div className='job-zone-list-box'>
                         <JobOffer />
                     </div>

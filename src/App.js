@@ -14,7 +14,7 @@ import Business from './component/business/Business';
 import CreateJO from './component/jobOffer/component/CreateJO';
 import { Global } from '@emotion/react';
 import { User } from '@auth0/auth0-spa-js';
-import UserCreatePage from './pages/user/UserCreatePage';
+import UserUpdatePage from '../src/pages/user/UserUpdatePage';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -64,7 +64,7 @@ function App() {
         <Route path='/business/:id' element={<Business />} />
         {/* <Route path='/recruiter/:id' element={<Recruiter />} /> */}
         <Route path='/createjob' element={<CreateJO />} />
-        <Route path='/userProfile' element={<UserCreatePage />} />
+        <Route path='/userProfile' element={<UserUpdatePage />} />
       </Routes>
       <Footer />
     </div>
