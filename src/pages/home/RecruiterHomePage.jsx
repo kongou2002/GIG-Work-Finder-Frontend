@@ -1,6 +1,7 @@
 import { Diversity1Sharp } from '@mui/icons-material'
 import React from 'react'
 import { Button, Image } from 'react-bootstrap'
+import { Link, useParams } from 'react-router-dom';
 import './recruiterStyle.scss'
 
 function RecruiterHomePage() {
@@ -12,7 +13,9 @@ function RecruiterHomePage() {
             <div className='banner-row'>
                 <div className='write-job'>
                     <h1>Tuyển dụng dễ dàng, tiện dụng và nhanh chóng. Tiếp cận các nhân sự ưu tú và hết mình với công việc</h1>
-                    <Button onClick={handlePostJob}>Đăng việc làm</Button>
+                    <Button onClick={handlePostJob}>
+                        <Link to={`createjob`} style={{ color: "white", textDecoration: "none" }}>Đăng việc làm</Link>
+                    </Button>
                 </div>
                 <div className='banner-img'>
                     <img
