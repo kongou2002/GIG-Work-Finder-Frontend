@@ -1,0 +1,35 @@
+.intro-create-job {
+    margin-top: 2%;
+    margin-bottom: 3%;
+
+    &>h1 {
+        color: #00b000;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    &>h3 {
+        font-size: 18px;
+    }
+}
+
+.form-create-job {
+    &>h4 {
+        margin-top: 20px;
+    }
+
+    &>p {
+        font-style: italic;
+        color: red;
+    }
+}
+
+.submit-button {
+    color: white !important;
+    //border: solid black 2px;
+    background-color: #00b000 !important;
+    width: 200px;
+    margin-top: 40px !important;
+    margin-left: 25% !important;
+    margin-bottom: 5% !important;
+}

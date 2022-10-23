@@ -17,7 +17,7 @@ const jobOfferApi = {
         const url = `JobOffer/BusinessID/${id}`
         return axiosClient.get(url);
     },
-    getJobType(id){
+    getJobType(id) {
         const url = `JobOffer/CreateJO/${id}`
         return axiosClient.get(url);
     },
