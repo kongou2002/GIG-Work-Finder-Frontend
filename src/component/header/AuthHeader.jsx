@@ -50,7 +50,6 @@ export default function AuthHeader() {
         const roleLocal = localStorage.getItem('role');
         localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter" : "Applicant");
         setRole(localStorage.getItem('role'));
-        localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter" : "Applicant");
         window.location.reload();
     }
 

@@ -7,10 +7,18 @@ const provivince = ["Thành phố Cần Thơ", "Thành phố Đà Nẵng", "Thà
 function CreateJO() {
     const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
     const [select, setSelect] = useState()
+    const [selectProvince, setSelectProvince] = useState()
+    const [selectCity, setSelectCity] = useState()
+    const [selectLocationOfCompany, setSelectLocationOfCompany] = useState();
+    const [selectCertification, setSelectCertification] = useState();
+    const [selectJob, setSelectJob] = useState();
     const [repo, setRepo] = useState()
     const [loading, setLoading] = useState()
     const [city, setCity] = useState()
     const [fectch, setFectch] = useState([])
+
+    //----------------Data form ----------------
+
     const [data, setData] = useState({
         accountID: user.id,
     })
@@ -36,11 +44,13 @@ function CreateJO() {
     }, []);
     console.log(repo)
     const inputsHandler = (e) => {
-        setSelect(e.target.value)
         setData({ ...data, [e.target.name]: e.target.value })
     }
     const selectLocation = (e) => {
-        setCity(e.target.value)
+        setSelect(e.target.value)
+        setData({ ...data, [e.target.name]: e.target.value })
+    }
+    const inputsHandleLocation = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
     // console.log(select)
@@ -95,7 +105,7 @@ function CreateJO() {
                     select
                     label="Chọn Tỉnh"
                     // value={select}
-                    onChange={inputsHandler}
+                    onChange={selectLocation}
                     name='province'>
                     {provivince.map((option) => (
                         <MenuItem key={option} value={option} >
@@ -106,7 +116,7 @@ function CreateJO() {
                 <TextField
                     select
                     label="Chọn Thành phố/Quận/Huyện"
-                    onChange={selectLocation}
+                    onChange={inputsHandleLocation}
                     name='location'>
                     {fectch?.map((option) => (
                         <MenuItem key={option?.locationID} value={option?.locationID}>
