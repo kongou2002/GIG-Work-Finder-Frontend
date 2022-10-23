@@ -3,8 +3,15 @@ import { useState } from 'react';
 import JobOffer from '../../component/jobOffer/joboffer';
 import Search from '../../component/search/Search';
 import "./style.scss";
+import { Button, Rating } from '@mui/material';
+import Member from '../../asset/image/memberbanner.jpg'
+import Tick from '../../asset/image/tick.png'
+import Store from '../../asset/image/cty.jpg'
+import authorizationApi from '../../api/authorizationAPI';
+
 
 function ApplicantHomePage() {
+    const image = [/* them url hinh anh vao day */];
     return (
         <div className='container-home-page'>
             <div className='search-zone'>
@@ -22,5 +29,4 @@ function ApplicantHomePage() {
         </div>
     )
 }
-
 export default ApplicantHomePage
