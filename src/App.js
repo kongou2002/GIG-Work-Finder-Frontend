@@ -11,8 +11,9 @@ import HomeBaseOnRole from './pages/home/HomeBaseOnRole';
 import Profile from './pages/user/Profile';
 // import Recruiter from './component/user/recruiter';
 import CreateJO from './component/jobOffer/component/CreateJO';
-import UserCreatePage from './pages/user/UserCreatePage';
-import CreateBusiness from './component/business/BusinessForm';
+import { Global } from '@emotion/react';
+import { User } from '@auth0/auth0-spa-js';
+import UserUpdatePage from '../src/pages/user/UserUpdatePage';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -63,7 +64,7 @@ function App() {
         <Route path='/business/:id' element={<Business />} />
         {/* <Route path='/recruiter/:id' element={<Recruiter />} /> */}
         <Route path='/createjob' element={<CreateJO />} />
-        <Route path='/userProfile' element={<UserCreatePage />} />
+        <Route path='/userProfile' element={<UserUpdatePage />} />
       </Routes>
       <Footer />
     </div>

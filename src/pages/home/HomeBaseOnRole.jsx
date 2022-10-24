@@ -3,12 +3,12 @@ import ApplicantHomePage from './ApplicantHomePage';
 import GuestHomePage from './GuestHomePage';
 import RecruiterHomePage from './RecruiterHomePage';
 function HomeBaseOnRole() {
-    const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
-    if (user == null)
+    const role = localStorage.getItem("role");
+    if (role == null)
         return <GuestHomePage />
-    if (user.role == "Recruiter")
+    if (role == "Recruiter")
         return <RecruiterHomePage />
-    if (user.role == "Applicant")
+    if (role == "Applicant")
         return <ApplicantHomePage />
 }
 

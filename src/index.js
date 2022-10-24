@@ -8,9 +8,15 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <Auth0Provider
+      domain="dev-4tip-3rk.us.auth0.com"
+      clientId="zivH0H4fHUslDMUIXXtmdn3zR4uVK8KO"
+      redirectUri={window.location.origin}
+    >
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+      {/* </Auth0Provider> */}
   </BrowserRouter>
 );
 

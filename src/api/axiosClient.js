@@ -1,9 +1,10 @@
 import axios from "axios";
 const axiosClient = axios.create({
-    baseURL: 'https://gig-worker-backend.azurewebsites.net',
-    // baseURL: 'http://localhost:8080/',
+    // baseURL: 'https://gig-worker-backend.azurewebsites.net',
+    baseURL: 'http://localhost:8080/',
     headers: {
         'Contend-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('FWApp-gig:rememberedAccount')?.token,
     }
 });
 
