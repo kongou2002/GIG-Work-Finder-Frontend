@@ -1,8 +1,7 @@
-import { Diversity1Sharp } from '@mui/icons-material'
-import React from 'react'
-import { Button, Image } from 'react-bootstrap'
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import './recruiterStyle.scss'
+import React from 'react';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import './recruiterStyle.scss';
 
 function RecruiterHomePage() {
     const nav = useNavigate()

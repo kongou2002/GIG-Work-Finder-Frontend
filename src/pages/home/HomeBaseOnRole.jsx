@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import ApplicantHomePage from './ApplicantHomePage';
 import GuestHomePage from './GuestHomePage';
 import RecruiterHomePage from './RecruiterHomePage';

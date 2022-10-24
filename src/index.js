@@ -1,3 +1,4 @@
+import { Auth0Provider } from '@auth0/auth0-react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -16,7 +17,7 @@ root.render(
       <React.StrictMode>
         <App />
       </React.StrictMode>
-      {/* </Auth0Provider> */}
+    </Auth0Provider>
   </BrowserRouter>
 );
 

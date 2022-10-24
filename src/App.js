@@ -10,10 +10,9 @@ import Detail from './component/jobOffer/detail';
 import HomeBaseOnRole from './pages/home/HomeBaseOnRole';
 import Profile from './pages/user/Profile';
 // import Recruiter from './component/user/recruiter';
-import CreateJO from './component/jobOffer/component/CreateJO';
-import { Global } from '@emotion/react';
-import { User } from '@auth0/auth0-spa-js';
 import UserUpdatePage from '../src/pages/user/UserUpdatePage';
+import CreateJO from './component/jobOffer/component/CreateJO';
+import Createbusines from './component/business/BusinessForm';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -57,7 +56,7 @@ function App() {
     <div className="App">
       <AuthHeader />
       <Routes>
-        <Route path='/createbusiness' element={<CreateBusiness />} />
+        <Route path='/createbusiness' element={<Createbusines />} />
         <Route path='/' element={<HomeBaseOnRole />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/detail/:id' element={<Detail />} />

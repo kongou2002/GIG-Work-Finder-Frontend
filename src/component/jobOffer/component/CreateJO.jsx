@@ -1,6 +1,6 @@
-import { Button, MenuItem, TextField } from '@mui/material';
+import { Autocomplete, Button, MenuItem, TextField } from '@mui/material';
 import { Box, Container } from '@mui/system';
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import jobOfferApi from '../../../api/JobOffer';
 import "./style.scss";
@@ -10,18 +10,9 @@ const provivince = ["Thành phố Cần Thơ", "Thành phố Đà Nẵng", "Thà
 function CreateJO() {
     const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
     const [select, setSelect] = useState()
-    const [selectProvince, setSelectProvince] = useState()
-    const [selectCity, setSelectCity] = useState()
-    const [selectLocationOfCompany, setSelectLocationOfCompany] = useState();
-    const [selectCertification, setSelectCertification] = useState();
-    const [selectJob, setSelectJob] = useState();
     const [repo, setRepo] = useState()
     const [loading, setLoading] = useState()
-    const [city, setCity] = useState()
     const [fectch, setFectch] = useState([])
-
-    //----------------Data form ----------------
-
     const [data, setData] = useState({
         accountID: user?.id,
     })
@@ -36,6 +27,7 @@ function CreateJO() {
                 setLoading(false)
             })
     }, [select])
+    console.log(fetch)
     useEffect(() => {
         setLoading(true)
         const fetchData = async () => {
@@ -51,9 +43,6 @@ function CreateJO() {
     }
     const selectLocation = (e) => {
         setSelect(e.target.value)
-        setData({ ...data, [e.target.name]: e.target.value })
-    }
-    const inputsHandleLocation = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
     // console.log(select)
@@ -107,7 +96,7 @@ function CreateJO() {
                 <TextField
                     select
                     label="Chọn loại công việc"
-                    onChange={selectLocation}
+                    onChange={inputsHandler}
                     name='jobType'>
                     {repo?.jobNames?.map((option) => (
                         <MenuItem key={option?.typeID} value={option?.typeID}>
@@ -118,7 +107,7 @@ function CreateJO() {
                 <TextField
                     select
                     label="Chọn bằng cấp"
-                    onChange={selectLocation}
+                    onChange={inputsHandler}
                     name='degree'>
                     {repo?.degreeNames?.map((option) => (
                         <MenuItem key={option?.degreeID} value={option?.degreeID}>
@@ -133,7 +122,7 @@ function CreateJO() {
                 <TextField
                     select
                     label="Chọn địa chỉ doanh nghiệp"
-                    onChange={selectLocation}
+                    onChange={inputsHandler}
                     name='business'>
                     {repo?.businessAddresses?.map((option) => (
                         <MenuItem key={option?.businessID} value={option?.businessID}>
@@ -145,7 +134,7 @@ function CreateJO() {
                     select
                     label="Chọn Tỉnh"
                     // value={select}
-                    onChange={inputsHandler}
+                    onChange={selectLocation}
                     name='province'>
                     {provivince.map((option) => (
                         <MenuItem key={option} value={option} >
@@ -156,7 +145,7 @@ function CreateJO() {
                 <TextField
                     select
                     label="Chọn Thành phố/Quận/Huyện"
-                    onChange={selectLocation}
+                    onChange={inputsHandler}
                     name='location'>
                     {fectch?.map((option) => (
                         <MenuItem key={option?.locationID} value={option?.locationID}>
@@ -164,10 +153,18 @@ function CreateJO() {
                         </MenuItem>
                     ))}
                 </TextField>
+                {/* <Autocomplete
+                    disablePortal
+                    options={fectch}
+                    sx={{ width: 300 }}
+                    name='location'
+                    value={fetch?.locationID}
+                    renderInput={(params) => <TextField {...params} label="Chọn Thành phố/Quận/Huyện" />}
+                /> */}
 
                 <h4>Thông tin chi tiết về công việc:</h4>
-                <TextField label="Số lượng cần tuyển:" variant="standard" onChange={inputsHandler} name='numOfRecruit' />
-                <TextField label="Thời hạn kết thúc đăng tuyển:" variant="standard" onChange={inputsHandler} name='offerEndTime' />
+                <TextField required label="Số lượng cần tuyển:" variant="standard" onChange={inputsHandler} name='numOfRecruit' />
+                <TextField required label="Thời hạn kết thúc đăng tuyển:" variant="standard" onChange={inputsHandler} name='offerEndTime' />
                 <TextField label="Lương (theo giờ):" variant="standard" onChange={inputsHandler} name='salary' />
                 <TextField label="Độ tuổi tối thiểu:" variant="standard" onChange={inputsHandler} name='age' />
                 <TextField label="Thời gian bắt đầu làm việc:" variant="standard" onChange={inputsHandler} name='startTime' />
