@@ -1,13 +1,10 @@
+import { Button } from '@mui/material';
 import React from 'react';
-import { useState } from 'react';
+import Member from '../../asset/image/memberbanner.jpg';
+import Tick from '../../asset/image/tick.png';
 import JobOffer from '../../component/jobOffer/joboffer';
 import Search from '../../component/search/Search';
 import "./style.scss";
-import { Button, Rating } from '@mui/material';
-import Member from '../../asset/image/memberbanner.jpg'
-import Tick from '../../asset/image/tick.png'
-import Store from '../../asset/image/cty.jpg'
-import authorizationApi from '../../api/authorizationAPI';
 
 
 function GuestHomePage() {
