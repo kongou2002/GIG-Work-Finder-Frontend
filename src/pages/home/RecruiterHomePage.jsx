@@ -3,6 +3,7 @@ import React from 'react'
 import { Button, Image } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import './recruiterStyle.scss'
+import img from '../../asset/image/recruiter-banner.jpg'
 
 function RecruiterHomePage() {
     const nav = useNavigate()
@@ -22,7 +23,7 @@ function RecruiterHomePage() {
                 </div>
                 <div className='banner-img'>
                     <img
-                        src='https://cdn.5280.com/2020/05/Jason_Hatfield_CNM_Independence_Monument-960x718.jpg'
+                        src={img}
                         alt=''>
                     </img>
                 </div>

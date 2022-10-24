@@ -66,7 +66,7 @@ export default function AuthHeader() {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
                     </Typography>
-                    <Button></Button>
+                    <Button><Link to={'#'}>Việc làm</Link></Button>
                     {!isAuthenticated && (
                         <div>
                             <div style={{ display: 'inline-block' }}>

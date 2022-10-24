@@ -10,6 +10,9 @@ import firebase from 'firebase';
 import { useEffect, useState } from 'react';
 import authorizationApi from './api/authorizationAPI';
 import Business from './component/business/Business';
+import BusinessManagement from './pages/recruiterManage/businessManage';
+import ApplicantManagement from './pages/recruiterManage/applicantManage';
+import JobOfferManagement from './pages/recruiterManage/jobOfferManage';
 // import Recruiter from './component/user/recruiter';
 import CreateJO from './component/jobOffer/component/CreateJO';
 import { Global } from '@emotion/react';
@@ -62,6 +65,9 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/business/:id' element={<Business />} />
+        <Route path='/businessManage' element={<BusinessManagement />} />
+        <Route path='/applicantManage' element={<ApplicantManagement />} />
+        <Route path='/jobofferManage' element={<JobOfferManagement />} />
         {/* <Route path='/recruiter/:id' element={<Recruiter />} /> */}
         <Route path='/createjob' element={<CreateJO />} />
         <Route path='/userProfile' element={<UserUpdatePage />} />
