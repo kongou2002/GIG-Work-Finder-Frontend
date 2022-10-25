@@ -7,11 +7,9 @@ import TabPanel from '../../component/business/component/TabPanel';
 //import "./style.scss";
 
 function BusinessManagement() {
-    // const id = useParams();
     const id = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
     const [repo, setRepo] = useState({});
     const [loading, setLoading] = useState(false);
-    const [rating, setRating] = useState(2);
     const [value, setValue] = useState(0);
 
     const handleTabs = (e, val) => {
