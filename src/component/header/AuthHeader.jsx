@@ -25,7 +25,7 @@ export default function AuthHeader() {
     console.log(user);
     const toggle = () => setIsOpen(!isOpen);
     const nav = useNavigate();
-    const Logo = 'logo 1.jpg';//url cuar logo owr day
+    const Logo = 'logo1.jpg';//url cuar logo owr day
 
     // <<<<<<< HEAD
     const [anchorEl, setAnchorEl] = React.useState(null);

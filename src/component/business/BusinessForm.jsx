@@ -41,9 +41,9 @@ function BusinessForm() {
     const handlesubmit = (event) => {
         event.preventDefault()
         try {
-            axios.post("http://localhost:8080/Business/CreateBu", {
+            axios.post("http://localhost:8080/Business/CreateBu",
                 data
-            })
+            )
                 .then(res => {
                     console.log(res.data)
                 })
