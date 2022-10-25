@@ -6,7 +6,7 @@ const businessApi = {
         return axiosClient.get(url);
     },
     add(data) {
-        const url = `/Business/`
+        const url = `/Business/CreateBu`
         return axiosClient.add(url);
     },
     getUID(id) {
