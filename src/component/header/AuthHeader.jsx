@@ -116,15 +116,38 @@ export default function AuthHeader() {
                                             </Link>
                                             {isAuthenticated && role == 'Recruiter' && (
                                                 <div>
-                                                    <Link
-                                                        tag={Link}
-                                                        to="/external-api"
-                                                        exact
-                                                        activeClassName="router-link-exact-active"
-                                                    >
-                                                        External API
-                                                    </Link>
+                                                    <div>
+                                                        <Link
+                                                            tag={Link}
+                                                            to="/external-api"
+                                                            exact
+                                                            activeClassName="router-link-exact-active"
+                                                        >
+                                                            Quản lý cửa hàng
+                                                        </Link>
+                                                    </div>
+                                                    <div>
+                                                        <Link
+                                                            tag={Link}
+                                                            to="/external-api"
+                                                            exact
+                                                            activeClassName="router-link-exact-active"
+                                                        >
+                                                            Quản lý bài đăng
+                                                        </Link>
+                                                    </div>
+                                                    <div>
+                                                        <Link
+                                                            tag={Link}
+                                                            to="/external-api"
+                                                            exact
+                                                            activeClassName="router-link-exact-active"
+                                                        >
+                                                            Quản lý nhân sự
+                                                        </Link>
+                                                    </div>
                                                 </div>
+
                                             )}
                                         </div>
                                     </div>
