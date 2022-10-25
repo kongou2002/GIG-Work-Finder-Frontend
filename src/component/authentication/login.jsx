@@ -18,7 +18,6 @@ function Login() {
         firebaseAuth={firebase.auth()}
       />
     </div>
-
   )
 }
 

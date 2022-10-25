@@ -1,3 +1,4 @@
+import { ForkRight } from "@mui/icons-material";
 import { AppBar, Avatar, Button, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { useState } from 'react';
@@ -24,7 +25,7 @@ export default function AuthHeader() {
     console.log(user);
     const toggle = () => setIsOpen(!isOpen);
     const nav = useNavigate();
-
+    const Logo = 'logo1.jpg';//url cuar logo owr day
 
     // <<<<<<< HEAD
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -63,12 +64,125 @@ export default function AuthHeader() {
             <AppBar position="static">
                 <Toolbar sx={{ bgcolor: '#021C1E' }}>
                     {/* <Button><img src="logo 1.jpg" alt="" /></Button> */}
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
-                    </Typography>
-                    <Button><Link to={'#'}>Việc làm</Link></Button>
+                    </Typography> */}
+                    {/* Button base on role view */}
+                    <div className="nav-container, headPage">
+                        <Stack color="light" light expand="md" >
+                            <div>
+                                <div className='logo'>
+                                    <img src={Logo} alt='' style={{ width: "100px", height: "60px" }} />
+                                </div>
+                                <div onClick={toggle} />
+                                <div isOpen={isOpen} navbar>
+                                    <div className="mr-auto" navbar>
+                                        <div>
+                                            <Link
+                                                className='headContent'
+                                                tag={Link}
+                                                to="/"
+                                                exact
+                                                activeClassName="router-link-exact-active"
+                                            >
+                                                Việc Làm
+                                            </Link>
+                                            <Link
+                                                className='headContent'
+                                                tag={Link}
+                                                to="/company"
+                                                exact
+                                                activeClassName="router-link-exact-active"
+                                            >
+                                                Công Ty
+                                            </Link>
+                                            <Link
+                                                className='headContent'
+                                                tag={Link}
+                                                to="/news"
+                                                exact
+                                                activeClassName="router-link-exact-active"
+                                            >
+                                                Tin Tức
+                                            </Link>
+                                            <Link
+                                                className='headContent'
+                                                tag={Link}
+                                                to="/support"
+                                                exact
+                                                activeClassName="router-link-exact-active"
+                                            >
+                                                Hỗ Trợ
+                                            </Link>
+                                            {isAuthenticated && role == 'Recruiter' && (
+                                                <div>
+                                                    <div>
+                                                        <Link
+                                                            tag={Link}
+                                                            to="/external-api"
+                                                            exact
+                                                            activeClassName="router-link-exact-active"
+                                                        >
+                                                            Quản lý cửa hàng
+                                                        </Link>
+                                                    </div>
+                                                    <div>
+                                                        <Link
+                                                            tag={Link}
+                                                            to="/external-api"
+                                                            exact
+                                                            activeClassName="router-link-exact-active"
+                                                        >
+                                                            Quản lý bài đăng
+                                                        </Link>
+                                                    </div>
+                                                    <div>
+                                                        <Link
+                                                            tag={Link}
+                                                            to="/external-api"
+                                                            exact
+                                                            activeClassName="router-link-exact-active"
+                                                        >
+                                                            Quản lý nhân sự
+                                                        </Link>
+                                                    </div>
+                                                </div>
+
+                                            )}
+                                            {isAuthenticated && role == 'Applicant' && (
+                                                <div>
+                                                    <div>
+                                                        <Link
+                                                            tag={Link}
+                                                            to="/external-api"
+                                                            exact
+                                                            activeClassName="router-link-exact-active"
+                                                        >
+                                                            Quản lý công việc
+                                                        </Link>
+                                                    </div>
+                                                    <div>
+                                                        <Link
+                                                            tag={Link}
+                                                            to="/external-api"
+                                                            exact
+                                                            activeClassName="router-link-exact-active"
+                                                        >
+                                                            Thời khóa biểu
+                                                        </Link>
+                                                    </div>
+                                                </div>
+
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Stack>
+                    </div>
+                    {/* Account Authentication show below */}
                     {!isAuthenticated && (
-                        <div>
+                        <div style={{ flex: "right" }}>
                             <div style={{ display: 'inline-block' }}>
                                 <form>
                                     <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{ color: "red" }} />
@@ -83,7 +197,7 @@ export default function AuthHeader() {
 
 
                     {isAuthenticated && (
-                        <div>
+                        <div style={{ float: "right" }}>
                             <Stack flexDirection={'row'} sx={{ alignItems: 'center' }}>
 
                                 <Button onClick={handleMenu}>
@@ -117,131 +231,10 @@ export default function AuthHeader() {
                                 <MenuItem onClick={handleChangeRole}>Change to {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
                                 <MenuItem onClick={handleLogout}>Log out</MenuItem>
                             </Menu>
-                            {/* return (
-        <div className="nav-container, headPage">
-            <Stack color="light" light expand="md" >
-                <div>
-                    <div className='logo'>
-                        <img src={Logo} alt='' style={{ width: "100px", height: "60px" }} />
-                    </div>
-                    <div onClick={toggle} />
-                    <div isOpen={isOpen} navbar>
-                        <div className="mr-auto" navbar>
-                            <div>
-                                <RouterNavLink
-                                    className='headContent'
-                                    tag={RouterNavLink}
-                                    to="/"
-                                    exact
-                                    activeClassName="router-link-exact-active"
-                                >
-                                    Việc Làm
-                                </RouterNavLink>
-                                <RouterNavLink
-                                    className='headContent'
-                                    tag={RouterNavLink}
-                                    to="/company"
-                                    exact
-                                    activeClassName="router-link-exact-active"
-                                >
-                                    Công Ty
-                                </RouterNavLink>
-                                <RouterNavLink
-                                    className='headContent'
-                                    tag={RouterNavLink}
-                                    to="/news"
-                                    exact
-                                    activeClassName="router-link-exact-active"
-                                >
-                                    Tin Tức
-                                </RouterNavLink>
-                                <RouterNavLink
-                                    className='headContent'
-                                    tag={RouterNavLink}
-                                    to="/support"
-                                    exact
-                                    activeClassName="router-link-exact-active"
-                                >
-                                    Hỗ Trợ
-                                </RouterNavLink>
-                                {isAuthenticated &&(
-                                    <div>
-                                        <RouterNavLink
-                                            tag={RouterNavLink}
-                                            to="/external-api"
-                                            exact
-                                            activeClassName="router-link-exact-active"
-                                        >
-                                            External API
-                                        </RouterNavLink>
-                                    </div>
-                                )}
-                            </div>
-                            {isAuthenticated && (
-                                <div>
-                                    <RouterNavLink
-                                        tag={RouterNavLink}
-                                        to="/external-api"
-                                        exact
-                                        activeClassName="router-link-exact-active"
-                                    >
-                                        External API
-                                    </RouterNavLink>
-                                </div>
-                            )}
-                        </div>
-
-                        <div className='log-in-out'>
-                            <div className="d-none d-md-block" navbar>
-                                {isAuthenticated && (
-                                    <div nav inNavbar>
-                                        <div nav caret id="profileDropDown">
-                                            <img
-                                                src={user.picture}
-                                                alt="Profile"
-                                                className="nav-user-profile rounded-circle"
-                                                width="50"
-                                            />
-                                        </div>
-                                        <div>
-                                            <div header>{user.name}</div>
-                                            <RouterNavLink
-                                                tag={RouterNavLink}
-                                                to="/profile"
-                                                className="dropdown-profile"
-                                                activeClassName="router-link-exact-active"
-                                            >
-                                                Profile
-                                            </RouterNavLink>
-                                            <RouterNavLink
-                                                id="qsLogoutBtn"
-                                                onClick={() => logoutWithRedirect()}
-                                            >
-                                                Logout
-                                            </RouterNavLink>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                            {!isAuthenticated && (
-                                <div className="d-md-none" navbar>
-                                    <div className='btn-login'>
-                                        <Button
-                                            id="qsLoginBtn"
-                                            color="primary"
-                                            block
-                                            onClick={() => loginWithRedirect({})}
-                                        >
-                                            Đăng nhập
-                                        </Button>
-                                    </div>
-                                </div>
-                            )} */}
-                            {/* >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b */}
                         </div>
                     )}
                 </Toolbar>
             </AppBar>
-        </div>
-    );
+        </div >
+    );//end of return
 };

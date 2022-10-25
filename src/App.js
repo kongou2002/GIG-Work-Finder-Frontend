@@ -13,6 +13,7 @@ import Profile from './pages/user/Profile';
 import ApplicantManagement from './pages/recruiterManage/applicantManage';
 import BusinessManagement from './pages/recruiterManage/businessManage';
 import JobOfferManagement from './pages/recruiterManage/jobOfferManage';
+import Profile from './pages/user/Profile';
 // import Recruiter from './component/user/recruiter';
 import UserUpdatePage from '../src/pages/user/UserUpdatePage';
 import Createbusines from './component/business/BusinessForm';
@@ -53,6 +54,7 @@ function App() {
       console.log(fwAppUserData);
       localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
       localStorage.setItem('isAuthenticated', true);
+
     })
     return () => unregisterAuthObserver;
   }, [])
