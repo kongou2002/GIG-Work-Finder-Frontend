@@ -149,6 +149,31 @@ export default function AuthHeader() {
                                                 </div>
 
                                             )}
+                                            {isAuthenticated && role == 'Applicant' && (
+                                                <div>
+                                                    <div>
+                                                        <Link
+                                                            tag={Link}
+                                                            to="/external-api"
+                                                            exact
+                                                            activeClassName="router-link-exact-active"
+                                                        >
+                                                            Quản lý công việc
+                                                        </Link>
+                                                    </div>
+                                                    <div>
+                                                        <Link
+                                                            tag={Link}
+                                                            to="/external-api"
+                                                            exact
+                                                            activeClassName="router-link-exact-active"
+                                                        >
+                                                            Thời khóa biểu
+                                                        </Link>
+                                                    </div>
+                                                </div>
+
+                                            )}
                                         </div>
                                     </div>
                                 </div>

@@ -52,6 +52,7 @@ function App() {
       console.log(fwAppUserData);
       localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
       localStorage.setItem('isAuthenticated', true);
+
     })
     return () => unregisterAuthObserver;
   }, [])
