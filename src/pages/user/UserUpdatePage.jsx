@@ -18,13 +18,14 @@ function UserUpdatePage() {
     const handleSubmit = (event) => {
         event.preventDefault(event)
         console.log(data)
-        // try {
-        //     axios.post("https://gig-worker-backend.azurewebsites.net/JobOffer/CreateJO",
-        //         data
-        //     )
-        //         .then(res => {
-        //             console.log(res.data)
-        //         })
+        //         try {
+        //             // axios.post("https://gig-worker-backend.azurewebsites.net/JobOffer/CreateJO",
+        //             axios.post("https://localhost:8080/")
+        //             data
+        //             )
+        //                 .then(res => {
+        //                 console.log(res.data)
+        //             })
         // } catch (error) {
         //     alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
         // }
