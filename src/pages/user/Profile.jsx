@@ -2,7 +2,7 @@ import { SettingsApplicationsTwoTone } from '@mui/icons-material';
 import { Button, CardMedia, Container, Rating, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import TabPanel from '../../component/business/component/TabPanel';
 import applicantApi from '../../api/applicantApi';
 import recruiterApi from '../../api/recruiterApi';
@@ -10,6 +10,7 @@ import UserCreatePage from './UserUpdatePage';
 //import "./style.scss";
 
 function Profile() {
+  const nav = useNavigate();
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(2);
@@ -54,12 +55,13 @@ function Profile() {
   const handleUpdateButton = (userRole) => {
     if ("Recruiter" == (userRole) || "Applicant" == userRole) {
       return (
-        <Link to={'/userProfile'}>
-          <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Cập nhật thông tin</Button>
-        </Link>
+
+        <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }} onClick={() => { nav('/userProfile') }}>Cập nhật thông tin</Button>
       )
     }
-    return <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ</Button>;
+    return (
+      <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }} onClick={() => { nav('*link here') }}>Liên hệ</Button>
+    )
   }
   console.log(repo)
   return (
@@ -130,9 +132,6 @@ function Profile() {
                     : repo?.location?.province == undefined ? repo?.location?.city : repo?.location?.city + ", " + repo?.location?.province}
                   {/* {handlePrintUserData(repo?.location?.city)} {handlePrintUserData(repo?.location?.province)}
               </Typography> */}
-                <Typography component='li'>
-                  Trạng thái:
-                </Typography>
                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                   Liên lạc:
                 </Typography>
