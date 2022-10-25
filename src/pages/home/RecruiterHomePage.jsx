@@ -30,7 +30,7 @@ function RecruiterHomePage() {
             </div>
             <div className='button-row'>
                 <div className='button-1st'>
-                    <h1>Thêm công ty của bạn vào danh sách quản lý</h1>
+                    <h1><Link to="/createbusiness" style={{ textDecoration: 'none', color: '#00b000' }} >Thêm công ty của bạn vào danh sách quản lý</Link></h1>
                     <p>Quản lý các công ty, cửa hàng của bạn một cách dễ dàng và trực quang. Mọi thông tin về công ty sẽ được tiếp cận rộng rãi với mọi người.</p>
                 </div>
                 <div className='button-2nd'>

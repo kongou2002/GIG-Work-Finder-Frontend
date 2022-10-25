@@ -8,6 +8,7 @@ import Footer from './component/footer';
 import AuthHeader from './component/header/AuthHeader';
 import Detail from './component/jobOffer/detail';
 import HomeBaseOnRole from './pages/home/HomeBaseOnRole';
+
 import ApplicantManagement from './pages/recruiterManage/applicantManage';
 import BusinessManagement from './pages/recruiterManage/businessManage';
 import JobOfferManagement from './pages/recruiterManage/jobOfferManage';

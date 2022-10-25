@@ -1,0 +1,52 @@
+.intro-head {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &>h1 {
+        color: #00b000 !important;
+        font-size: 24px !important;
+        font-weight: bold;
+    }
+
+    &>h4 {
+        font-size: 18px;
+    }
+
+}
+
+.create-info-bus {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.descrip-bus {
+    margin-bottom: 40px;
+}
+
+.add-img {
+    display: flex !important;
+    //justify-content: center;
+    margin-top: 20px;
+}
+
+.input-img {
+    margin-left: 4%;
+}
+
+.add-business-button {
+    &>Button {
+        background-color: #00b000 !important;
+        color: white;
+        width: 200px;
+        margin-right: 10%;
+    }
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.test-align {
+    margin-left: 10%;
+}

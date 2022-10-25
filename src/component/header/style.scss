@@ -67,3 +67,23 @@
     margin-left: 20px;
     text-decoration: none;
 }
+
+.all-button-link {
+    display: flex;
+}
+
+.link-button {
+    display: flex;
+}
+
+.manage-recruiter-button,
+.manage-applicant-button {
+    display: flex;
+}
+
+.profile-dashboard {
+    // display: flex !important;
+    // justify-content: right !important;
+    // text-align: center;
+    margin-left: 25%;
+}
