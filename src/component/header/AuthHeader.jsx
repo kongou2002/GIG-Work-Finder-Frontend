@@ -70,14 +70,14 @@ export default function AuthHeader() {
                     {/* Button base on role view */}
                     <div className="nav-container, headPage">
                         <Stack color="light" light expand="md" >
-                            <div>
+                            <div className="link-button">
                                 <div className='logo'>
                                     <img src={Logo} alt='' style={{ width: "100px", height: "60px" }} />
                                 </div>
                                 <div onClick={toggle} />
                                 <div isOpen={isOpen} navbar>
                                     <div className="mr-auto" navbar>
-                                        <div>
+                                        <div className="all-button-link">
                                             <Link
                                                 className='headContent'
                                                 tag={Link}
@@ -115,11 +115,12 @@ export default function AuthHeader() {
                                                 Hỗ Trợ
                                             </Link>
                                             {isAuthenticated && role == 'Recruiter' && (
-                                                <div>
+                                                <div className="manage-recruiter-button">
                                                     <div>
                                                         <Link
+                                                            className='headContent'
                                                             tag={Link}
-                                                            to="/external-api"
+                                                            to="/businessManage"
                                                             exact
                                                             activeClassName="router-link-exact-active"
                                                         >
@@ -128,8 +129,9 @@ export default function AuthHeader() {
                                                     </div>
                                                     <div>
                                                         <Link
+                                                            className='headContent'
                                                             tag={Link}
-                                                            to="/external-api"
+                                                            to="/jobofferManage"
                                                             exact
                                                             activeClassName="router-link-exact-active"
                                                         >
@@ -138,8 +140,9 @@ export default function AuthHeader() {
                                                     </div>
                                                     <div>
                                                         <Link
+                                                            className='headContent'
                                                             tag={Link}
-                                                            to="/external-api"
+                                                            to="/applicantManage"
                                                             exact
                                                             activeClassName="router-link-exact-active"
                                                         >
@@ -150,9 +153,10 @@ export default function AuthHeader() {
 
                                             )}
                                             {isAuthenticated && role == 'Applicant' && (
-                                                <div>
+                                                <div className="manage-applicant-button">
                                                     <div>
                                                         <Link
+                                                            className='headContent'
                                                             tag={Link}
                                                             to="/external-api"
                                                             exact
@@ -163,6 +167,7 @@ export default function AuthHeader() {
                                                     </div>
                                                     <div>
                                                         <Link
+                                                            className='headContent'
                                                             tag={Link}
                                                             to="/external-api"
                                                             exact
@@ -197,7 +202,7 @@ export default function AuthHeader() {
 
 
                     {isAuthenticated && (
-                        <div style={{ float: "right" }}>
+                        <div className="profile-dashboard" style={{ float: "right" }}>
                             <Stack flexDirection={'row'} sx={{ alignItems: 'center' }}>
 
                                 <Button onClick={handleMenu}>

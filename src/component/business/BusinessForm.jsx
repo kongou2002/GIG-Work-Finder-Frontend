@@ -56,45 +56,70 @@ function BusinessForm() {
     return (
         <Container>
             <Box
+                className='test-align'
                 component={'form'}
                 sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    '& .MuiTextField-root': { m: 1, width: '50ch' },
                 }}
                 onSubmit={handlesubmit}
                 noValidate
                 autoComplete="off">
-                <h1>Dễ dàng quản lý cửa hàng của bạn cùng GIG-Woker</h1>
-                <h4>Thêm cửa hàng của bạn vào danh sách:</h4>
-                <TextField variant='filled' name='businessName' label='Tên cửa hàng' onChange={inputhandler} />
-                <TextField variant='filled' name='address' label='Địa chỉ' onChange={inputhandler} />
-                <TextField
-                    select
-                    label="Chọn Tỉnh"
-                    // value={select}
-                    onChange={handleselect}
-                    name='province'>
-                    {provivince.map((option) => (
-                        <MenuItem key={option} value={option} >
-                            {option}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <TextField
-                    select
-                    label="Chọn Thành phố/Quận/Huyện"
-                    onChange={inputhandler}
-                    name='locationID'>
-                    {city?.map((option) => (
-                        <MenuItem key={option?.locationID} value={option?.locationID}>
-                            {option?.city}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <TextField variant='filled' name='description' label='Mô tả cửa hàng' onChange={inputhandler} />
-                <TextField variant='filled' name='benefit' label='Quyền lợi' onChange={inputhandler} />
-                <input type="file" onChange={onImageChange} className="filetype" />
-                <img src={image} alt="preview image" />
-                <Button type='submit'>Thêm</Button>
+
+                <div className='intro-head'>
+                    <h1>Dễ dàng quản lý cửa hàng của bạn cùng GIG-Woker</h1>
+                    <h4>Thêm cửa hàng của bạn vào danh sách:</h4>
+                </div>
+
+                <div className='create-info-bus'>
+                    <h2>Thông tin cửa hàng của bạn:</h2>
+                    <TextField variant='filled' name='businessName' label='Tên cửa hàng' onChange={inputhandler} />
+                    <TextField variant='filled' name='address' label='Địa chỉ' onChange={inputhandler} />
+                    <TextField
+                        select
+                        label="Chọn Tỉnh"
+                        // value={select}
+                        onChange={handleselect}
+                        name='province'>
+                        {provivince.map((option) => (
+                            <MenuItem key={option} value={option} >
+                                {option}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <TextField
+                        select
+                        label="Chọn Thành phố/Quận/Huyện"
+                        onChange={inputhandler}
+                        name='locationID'>
+                        {city?.map((option) => (
+                            <MenuItem key={option?.locationID} value={option?.locationID}>
+                                {option?.city}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </div>
+
+                <div className='descrip-bus'>
+                    <h2>Một vài mô tả về cửa hàng của bạn:</h2>
+                    <TextField variant='filled' name='description' label='Mô tả cửa hàng' onChange={inputhandler} />
+                    <TextField variant='filled' name='benefit' label='Quyền lợi' onChange={inputhandler} />
+                </div>
+
+                <h2>Thêm hình ảnh/logo cửa hàng của bạn:</h2>
+                <div className='add-img'>
+                    <div>
+                        <img src={image} style={{
+                            height: 150,
+                            width: 150
+                        }} alt="preview image" />
+                    </div>
+                    <div className='input-img'>
+                        <input type="file" onChange={onImageChange} className="filetype" />
+                    </div>
+                </div>
+                <div className='add-business-button'>
+                    <Button type='submit'>Thêm</Button>
+                </div>
             </Box>
         </Container>
     )
