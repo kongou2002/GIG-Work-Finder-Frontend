@@ -4,7 +4,7 @@
 }
 
 .logo {
-    margin-left: 60px;
+    margin-left: 2%;
     margin-top: 5px;
     margin-bottom: 5px;
     float: left;
@@ -18,11 +18,6 @@
 .mr-auto {
     margin-top: 25px;
     float: left;
-}
-
-.log-in-out {
-    margin-top: 20px;
-    float: right;
 }
 
 #qsLoginBtn {
@@ -52,9 +47,8 @@
     margin-left: 10px;
 }
 
-.login {
-    color: #50E65D;
-    text-decoration: none;
+.login-gg-area {
+    margin-left: 40% !important;
 }
 
 .headPage {
@@ -64,6 +58,37 @@
 .headContent {
     color: #CAC4C4;
     font-weight: bold;
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    text-align: center;
     text-decoration: none;
+    width: max-content;
+}
+
+.all-button-link {
+    display: flex;
+    margin-top: 25px;
+    margin-left: 20px;
+    // float: left;
+}
+
+.link-button {
+    display: flex;
+}
+
+.manage-recruiter-button,
+.manage-applicant-button {
+    display: flex;
+}
+
+.profile-dashboard {
+    // display: flex !important;
+    //justify-content: right !important;
+    // text-align: center;
+    margin-left: 20%;
+}
+
+.button-of-link {
+    //width: fit-content;
 }

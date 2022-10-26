@@ -1,3 +1,4 @@
+import { ForkRight } from "@mui/icons-material";
 import { AppBar, Avatar, Button, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { useState } from 'react';
@@ -24,7 +25,7 @@ export default function AuthHeader() {
     console.log(user);
     const toggle = () => setIsOpen(!isOpen);
     const nav = useNavigate();
-
+    const Logo = 'logo 1.svg';//url cuar logo owr day
 
     // <<<<<<< HEAD
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -63,12 +64,128 @@ export default function AuthHeader() {
             <AppBar position="static">
                 <Toolbar sx={{ bgcolor: '#021C1E' }}>
                     {/* <Button><img src="logo 1.jpg" alt="" /></Button> */}
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         GIG-worker
-                    </Typography>
-                    <Button><Link to={'#'}>Việc làm</Link></Button>
+                    </Typography> */}
+                    {/* Button base on role view */}
+                    <div className="nav-container, headPage">
+                        <Stack color="light" light expand="md" >
+                            <div className="link-button">
+                                <div className='logo'>
+                                    <img src={Logo} alt='' style={{ width: "100px", height: "60px" }} />
+                                </div>
+                                <div onClick={toggle} />
+                                <div className="button-of-link" isOpen={isOpen} navbar>
+                                    <div className="all-button-link">
+                                        <Link
+                                            className='headContent'
+                                            tag={Link}
+                                            to="/"
+                                            exact
+                                            activeClassName="router-link-exact-active"
+                                        >
+                                            Việc Làm
+                                        </Link>
+                                        <Link
+                                            className='headContent'
+                                            tag={Link}
+                                            to="/company"
+                                            exact
+                                            activeClassName="router-link-exact-active"
+                                        >
+                                            Công Ty
+                                        </Link>
+                                        <Link
+                                            className='headContent'
+                                            tag={Link}
+                                            to="/news"
+                                            exact
+                                            activeClassName="router-link-exact-active"
+                                        >
+                                            Tin Tức
+                                        </Link>
+                                        <Link
+                                            className='headContent'
+                                            tag={Link}
+                                            to="/support"
+                                            exact
+                                            activeClassName="router-link-exact-active"
+                                        >
+                                            Hỗ Trợ
+                                        </Link>
+                                        {isAuthenticated && role == 'Recruiter' && (
+                                            <div className="manage-recruiter-button">
+                                                <div>
+                                                    <Link
+                                                        className='headContent'
+                                                        tag={Link}
+                                                        to="/businessManage"
+                                                        exact
+                                                        activeClassName="router-link-exact-active"
+                                                    >
+                                                        Quản lý cửa hàng
+                                                    </Link>
+                                                </div>
+                                                <div>
+                                                    <Link
+                                                        className='headContent'
+                                                        tag={Link}
+                                                        to="/jobofferManage"
+                                                        exact
+                                                        activeClassName="router-link-exact-active"
+                                                    >
+                                                        Quản lý bài đăng
+                                                    </Link>
+                                                </div>
+                                                <div>
+                                                    <Link
+                                                        className='headContent'
+                                                        tag={Link}
+                                                        to="/applicantManage"
+                                                        exact
+                                                        activeClassName="router-link-exact-active"
+                                                    >
+                                                        Quản lý nhân sự
+                                                    </Link>
+                                                </div>
+                                            </div>
+
+                                        )}
+                                        {isAuthenticated && role == 'Applicant' && (
+                                            <div className="manage-applicant-button">
+                                                <div>
+                                                    <Link
+                                                        className='headContent'
+                                                        tag={Link}
+                                                        to="/external-api"
+                                                        exact
+                                                        activeClassName="router-link-exact-active"
+                                                    >
+                                                        Quản lý công việc
+                                                    </Link>
+                                                </div>
+                                                <div>
+                                                    <Link
+                                                        className='headContent'
+                                                        tag={Link}
+                                                        to="/external-api"
+                                                        exact
+                                                        activeClassName="router-link-exact-active"
+                                                    >
+                                                        Thời khóa biểu
+                                                    </Link>
+                                                </div>
+                                            </div>
+
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </Stack>
+                    </div>
+                    {/* Account Authentication show below */}
                     {!isAuthenticated && (
-                        <div>
+                        <div className="login-gg-area" style={{ float: "right" }}>
                             <div style={{ display: 'inline-block' }}>
                                 <form>
                                     <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{ color: "red" }} />
@@ -83,7 +200,7 @@ export default function AuthHeader() {
 
 
                     {isAuthenticated && (
-                        <div>
+                        <div className="profile-dashboard" style={{ float: "right" }}>
                             <Stack flexDirection={'row'} sx={{ alignItems: 'center' }}>
 
                                 <Button onClick={handleMenu}>
@@ -121,6 +238,6 @@ export default function AuthHeader() {
                     )}
                 </Toolbar>
             </AppBar>
-        </div>
-    );
+        </div >
+    );//end of return
 };

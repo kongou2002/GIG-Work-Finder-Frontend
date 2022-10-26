@@ -51,9 +51,9 @@ function CreateJO() {
     const handleSubmit = (event) => {
         event.preventDefault(event)
         try {
-            axios.post("https://gig-worker-backend.azurewebsites.net/JobOffer/CreateJO", {
+            axios.post("https://gig-worker-backend.azurewebsites.net/JobOffer/CreateJO",
                 data
-            })
+            )
                 .then(res => {
                     console.log(res.data)
                 })

@@ -9,13 +9,13 @@ import AuthHeader from './component/header/AuthHeader';
 import Detail from './component/jobOffer/detail';
 import HomeBaseOnRole from './pages/home/HomeBaseOnRole';
 import ApplicantManagement from './pages/recruiterManage/applicantManage';
-import BusinessManagement from './pages/recruiterManage/businessManage';
 import JobOfferManagement from './pages/recruiterManage/jobOfferManage';
-import Profile from './pages/user/Profile';
 // import Recruiter from './component/user/recruiter';
 import UserUpdatePage from '../src/pages/user/UserUpdatePage';
-import Createbusines from './component/business/BusinessForm';
 import CreateJO from './component/jobOffer/component/CreateJO';
+import Createbusines from './component/business/BusinessForm';
+import Profile from './pages/user/Profile';
+import BusinessManagement from './pages/recruiterManage/businessManage';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -41,17 +41,15 @@ function App() {
       // updateData(emailUser,roleUser,nameUser,picUrlUser,genderUser,tokenUser);
       localStorage.setItem('firebase:rememberedAccount', JSON.stringify(firebase.auth().currentUser));
       localStorage.setItem('isAuthenticated', true);
-      console.log("role");
       if (localStorage.getItem('role') == null) {
         localStorage.setItem('role', "Applicant");
 
       }
       const fwAppUserData = await authorizationApi.getToken(token, localStorage.getItem('role'));
       localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
-      console.log("JWT FWApp: ");
-      console.log(fwAppUserData);
       localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
       localStorage.setItem('isAuthenticated', true);
+
     })
     return () => unregisterAuthObserver;
   }, [])
