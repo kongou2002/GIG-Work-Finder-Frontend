@@ -22,6 +22,7 @@ function Detail() {
   }, []);
   console.log(repo)
   console.log(loading)
+
   return (
     <Container className='around'>
       {loading ? (
@@ -45,7 +46,7 @@ function Detail() {
                 </Box>
               </div>
               <Box className='detail-business-button'>
-                <Button variant="outlined"><Link to={`/business/${repo?.business?.businessID}`} style={{ color: "white", textDecoration: "none" }}>Xem công ty</Link></Button>
+                {repo?.business?.businessID != undefined ? <Button variant="outlined"><Link to={`/business/${repo?.business?.businessID}`} style={{ color: "white", textDecoration: "none" }}>Xem công ty</Link></Button> : <Button disabled >Xem công ty</Button>}
               </Box>
             </Box>
           </Stack>

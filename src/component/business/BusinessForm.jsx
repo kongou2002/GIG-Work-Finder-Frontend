@@ -16,6 +16,7 @@ function BusinessForm() {
     const [city, setCity] = useState()
     const [loading, setLoading] = useState()
     const [select, setSelect] = useState()
+    const [file, setFile] = useState()
     const [image, setImage] = useState(null)
     useEffect(() => {
         setLoading(true)
@@ -35,18 +36,30 @@ function BusinessForm() {
         setData({ ...data, [event.target.name]: event.target.value })
     }
     const onImageChange = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            setImage(URL.createObjectURL(event.target.files[0]));
-        }
+        setImage(URL.createObjectURL(event.target.files[0]));
+        setFile(event.target.files[0])
     }
+    console.log(file)
     const handlesubmit = (event) => {
+        const formData = new FormData();
+        formData.append("businessLogo", file);
+        let details = {
+            businessName: data.businessName,
+            address: data.address,
+            province: data.province,
+            location: data.location,
+            description: data.description,
+            benefit: data.benefit
+        }
+        for (let key in details) {
+            formData.append(key, details[key]);
+        }
+        console.log(data)
         event.preventDefault()
         try {
-            axios.post("http://localhost:8080/Business/CreateBu",
-                data
-            )
+            axios.post("https://gig-worker-backend.azurewebsites.net/Business/CreateBu", formData)
                 .then(res => {
-                    console.log(res.data)
+                    console.log()
                 })
         } catch (error) {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
@@ -62,6 +75,7 @@ function BusinessForm() {
                     '& .MuiTextField-root': { m: 1, width: '50ch' },
                 }}
                 onSubmit={handlesubmit}
+                encType="multipart/form-data"
                 noValidate
                 autoComplete="off">
 

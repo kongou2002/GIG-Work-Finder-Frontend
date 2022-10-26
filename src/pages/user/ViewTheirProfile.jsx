@@ -1,12 +1,10 @@
-import { SettingsApplicationsTwoTone } from '@mui/icons-material';
 import { Button, CardMedia, Container, Rating, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import TabPanel from '../../component/business/component/TabPanel';
+import { useNavigate } from 'react-router-dom';
 import applicantApi from '../../api/applicantApi';
 import recruiterApi from '../../api/recruiterApi';
-import UserCreatePage from './UserUpdatePage';
+import TabPanel from '../../component/business/component/TabPanel';
 //import "./style.scss";
 
 function Profile() {
