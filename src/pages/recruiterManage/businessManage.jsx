@@ -1,13 +1,12 @@
-import { Button, CardMedia, Container, Rating, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { Container, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import businessApi from '../../api/businessApi';
+import React, { useState } from 'react';
 import TabPanel from '../../component/business/component/TabPanel';
+import Userbusiness from '../../component/business/component/Userbusiness';
 //import "./style.scss";
 
 function BusinessManagement() {
-    const id = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
+    const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
     const [repo, setRepo] = useState({});
     const [loading, setLoading] = useState(false);
     const [value, setValue] = useState(0);
@@ -15,17 +14,6 @@ function BusinessManagement() {
     const handleTabs = (e, val) => {
         setValue(val)
     }
-
-    useEffect(() => {
-        setLoading(true)
-        const fetchJobOffer = async () => {
-            const jobList = await businessApi.getUID(id?.id);
-            setRepo(jobList);
-            setLoading(false)
-        }
-        fetchJobOffer();
-    }, []);
-    console.log(repo)
     return (
         <div className='around'>
             {loading ? (
@@ -42,6 +30,7 @@ function BusinessManagement() {
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                                     Danh sách các công ty và cửa hàng đang quản lý:
                                 </Typography>
+                                <Userbusiness id={user?.id} />
                             </Box>
                         </TabPanel>
                         <TabPanel value={value} index={1}>

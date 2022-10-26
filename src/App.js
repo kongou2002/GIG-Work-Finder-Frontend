@@ -8,19 +8,14 @@ import Footer from './component/footer';
 import AuthHeader from './component/header/AuthHeader';
 import Detail from './component/jobOffer/detail';
 import HomeBaseOnRole from './pages/home/HomeBaseOnRole';
-import Profile from './pages/user/Profile';
-import Login from './component/authentication/login';
-import firebase from 'firebase';
-import { useEffect, useState } from 'react';
-import authorizationApi from './api/authorizationAPI';
-import Business from './component/business/Business';
-import BusinessManagement from './pages/recruiterManage/businessManage';
 import ApplicantManagement from './pages/recruiterManage/applicantManage';
+import BusinessManagement from './pages/recruiterManage/businessManage';
 import JobOfferManagement from './pages/recruiterManage/jobOfferManage';
+import Profile from './pages/user/Profile';
 // import Recruiter from './component/user/recruiter';
 import UserUpdatePage from '../src/pages/user/UserUpdatePage';
-import CreateJO from './component/jobOffer/component/CreateJO';
 import Createbusines from './component/business/BusinessForm';
+import CreateJO from './component/jobOffer/component/CreateJO';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
