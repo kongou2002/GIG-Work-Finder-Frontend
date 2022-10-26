@@ -28,10 +28,10 @@ function Profile() {
       setUser(JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount")));
       var userProfile;
       if ("Applicant" == user?.role)
-        userProfile = await applicantApi.getID(user.id);
+        userProfile = await applicantApi.getID(user?.id);
       else
         if ("Recruiter" == user?.role)
-          userProfile = await recruiterApi.getID(user.id);
+          userProfile = await recruiterApi.getID(user?.id);
       setRepo(userProfile);
       setLoading(false)
     }

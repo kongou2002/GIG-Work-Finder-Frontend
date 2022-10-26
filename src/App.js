@@ -12,11 +12,12 @@ import HomeBaseOnRole from './pages/home/HomeBaseOnRole';
 import ApplicantManagement from './pages/recruiterManage/applicantManage';
 import BusinessManagement from './pages/recruiterManage/businessManage';
 import JobOfferManagement from './pages/recruiterManage/jobOfferManage';
-import Profile from './pages/user/Profile';
+import Profile from './pages/user/ViewTheirProfile';
 // import Recruiter from './component/user/recruiter';
 import UserUpdatePage from '../src/pages/user/UserUpdatePage';
 import Createbusines from './component/business/BusinessForm';
 import CreateJO from './component/jobOffer/component/CreateJO';
+import ViewOtherProfile from './pages/user/ViewOtherProfile';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -61,6 +62,7 @@ function App() {
         <Route path='/createbusiness' element={<Createbusines />} />
         <Route path='/' element={<HomeBaseOnRole />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/profile/:role/:id' element={<ViewOtherProfile />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/business/:id' element={<Business />} />
         <Route path='/businessManage' element={<BusinessManagement />} />

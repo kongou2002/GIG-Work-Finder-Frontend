@@ -39,13 +39,13 @@ function Business() {
               <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                image={repo.businessLogo}
+                image={repo?.businessLogo}
                 alt="Live from space album cover"
               />
             </Box>
             <Box className='business-name'>
-              <h1>{repo.businessName}</h1>
-              <p>Địa chỉ: {repo.address}, {repo?.location?.city}, {repo?.location?.province}</p>
+              <h1>{repo?.businessName}</h1>
+              <p>Địa chỉ: {repo?.address}, {repo?.location?.city}, {repo?.location?.province}</p>
               <Rating name="read-only" value={rating} readOnly />
             </Box>
             <Box className='business-button'>
@@ -62,7 +62,7 @@ function Business() {
             <TabPanel value={value} index={0}>
               <Box className='intro-box'>
                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
-                  Giới thiệu công ty {repo.businessName}
+                  Giới thiệu công ty {repo?.businessName}
                 </Typography>
                 <Typography component='p'>
                   {repo?.description}
@@ -75,7 +75,7 @@ function Business() {
                 </Typography>
               </Box>
             </TabPanel>
-            <TabPanel value={value} index={1} className='box-job'><Businessjob id={repo.businessID} className='box-job-info' /></TabPanel>
+            <TabPanel value={value} index={1} className='box-job'><Businessjob id={repo?.businessID} className='box-job-info' /></TabPanel>
           </Stack>
         </Container >
       )
