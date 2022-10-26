@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import authorizationApi from './api/authorizationAPI';
 import './App.css';
 import Business from './component/business/Business';
@@ -28,6 +28,7 @@ firebase.initializeApp(config);
 global.isAuthentication = false;
 
 function App() {
+  const nav = useNavigate();
   //Login using firebase
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {

@@ -81,10 +81,13 @@ function Profile() {
               <h1>
                 {repo?.firstName == undefined ? handleNullText : repo?.lastName + " " + repo?.firstName}
               </h1>
-              <p>Địa chỉ:
-                {repo?.location?.city == undefined ? handleNullText
+              {role == 'Applicant' && (
+                <p>Địa chỉ: {repo?.location?.city == undefined ? handleNullText
                   : repo?.location?.province == undefined ? repo?.location?.city : repo?.location?.city + ", " + repo?.location?.province}
-              </p>
+                </p>)}
+              {role == 'Recruiter' && (
+                <p style={{ fontStyle: 'italic', color: 'gray' }}> Recruiter
+                </p>)}
               <Rating name="read-only" value={rating} readOnly />
             </Box>
             <Box className='business-button'>
@@ -115,12 +118,16 @@ function Profile() {
                 <Typography component='li'>
                   Họ và tên: {repo?.firstName == undefined ? handleNullText : repo?.lastName + " " + repo?.firstName}
                 </Typography>
-                <Typography component='li'>
-                  Tuổi: {handlePrintUserData(handleYearsOld(repo?.dob))}
-                </Typography>
-                <Typography component='li'>
-                  Ngày sinh: {handlePrintUserData(repo?.dob)}
-                </Typography>
+                {role == 'Applicant' &&
+                  <div>
+                    (<Typography component='li'>
+                      Tuổi: {handlePrintUserData(handleYearsOld(repo?.dob))}
+                    </Typography>
+                    <Typography component='li'>
+                      Ngày sinh: {handlePrintUserData(repo?.dob)}
+                    </Typography>
+                  </div>
+                }
                 <Typography component='li'>
                   Giới tính: {handlePrintUserData(repo?.gender)}
                 </Typography>
