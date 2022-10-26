@@ -22,7 +22,7 @@ function BusinessManagement() {
                 <Container className='box-bg'>
                     <Stack>
                         <Box className='intro-box'>
-                            <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
+                            <Typography component='h5' sx={{ fontWeight: 'bold', fontSize: '20px' }} className='bold-title'>
                                 Danh sách các công ty và cửa hàng đang quản lý:
                             </Typography>
                             <Userbusiness id={user?.id} />

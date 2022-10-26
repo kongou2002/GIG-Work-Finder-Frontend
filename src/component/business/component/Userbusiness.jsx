@@ -23,19 +23,19 @@ function Userbusiness(props) {
     return (
         <Container>
             <Stack>
-                <Box>
-                    {repo.map(data => (
-                        <Box>
-                            <Typography>
-                                {data.businessName}
-                                {data.address}
-                                {data.benefit}
-                                {data.description}
-                                {data.businessName}
-                                <img src={data.businessLogo} />
-                            </Typography>
-                            <Button variant='contained' ><Link to={`/business/${data.businessID}`}>Xem công ty</Link></Button>
-
+                <Box className='box-job-are'>
+                    {repo?.map(data => (
+                        <Box className='box-job-of-user'>
+                            <Box className='img-logo'>
+                                <img src={data?.businessLogo} style={{ width: '100px', height: '100px' }} />
+                            </Box>
+                            <Box className='info-bus'>
+                                <h1>{data?.businessName}</h1>
+                                <p>Địa chỉ: {data?.address}, {data?.location?.city}, {data?.location?.province}</p>
+                            </Box>
+                            <Box>
+                                <Button variant='contained' ><Link to={`/business/${data.businessID}`}>Xem công ty</Link></Button>
+                            </Box>
                         </Box>
                     ))}
                 </Box>
