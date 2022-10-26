@@ -15,6 +15,8 @@ import Profile from './pages/user/ViewTheirProfile';
 import UserUpdatePage from '../src/pages/user/UserUpdatePage';
 import CreateJO from './component/jobOffer/component/CreateJO';
 import ViewOtherProfile from './pages/user/ViewOtherProfile';
+import Createbusines from './component/business/BusinessForm';
+import BusinessManagement from './pages/recruiterManage/businessManage';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
