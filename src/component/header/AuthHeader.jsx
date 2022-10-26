@@ -3,7 +3,7 @@ import { AppBar, Avatar, Button, Menu, MenuItem, Toolbar, Typography } from "@mu
 import { Stack } from "@mui/system";
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import Profile from "../../pages/user/Profile";
+import Profile from "../../pages/user/ViewTheirProfile";
 import Login from "../authentication/login";
 import Logout from "../authentication/logout";
 import "./style.scss";
@@ -25,7 +25,7 @@ export default function AuthHeader() {
     console.log(user);
     const toggle = () => setIsOpen(!isOpen);
     const nav = useNavigate();
-    const Logo = 'logo 1.svg';//url cuar logo owr day
+    const Logo = require('../../asset/image/logo.jpg');//url cuar logo owr day
 
     // <<<<<<< HEAD
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -71,9 +71,11 @@ export default function AuthHeader() {
                     <div className="nav-container, headPage">
                         <Stack color="light" light expand="md" >
                             <div className="link-button">
-                                <div className='logo'>
-                                    <img src={Logo} alt='' style={{ width: "100px", height: "60px" }} />
-                                </div>
+                                <Link to={'/'}>
+                                    <div className='logo'>
+                                        <img src={Logo} alt='' style={{ width: "100px", height: "60px" }} />
+                                    </div>
+                                </Link>
                                 <div onClick={toggle} />
                                 <div className="button-of-link" isOpen={isOpen} navbar>
                                     <div className="all-button-link">
