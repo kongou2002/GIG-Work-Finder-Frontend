@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import businessApi from '../../api/businessApi';
+import jobOfferApi from '../../api/JobOffer';
 //import Businessjob from './component/BusinessJob';
 import TabPanel from '../../component/business/component/TabPanel';
 //import "./style.scss";
@@ -22,12 +23,13 @@ function JobOfferManagement() {
     // useEffect(() => {
     //     setLoading(true)
     //     const fetchJobOffer = async () => {
-    //         const jobList = await businessApi.getID(id?.id);
+    //         const jobList = await jobOfferApi.getAllJO(id?.id);
     //         setRepo(jobList);
     //         setLoading(false)
     //     }
     //     fetchJobOffer();
     // }, []);
+
     console.log(repo)
     return (
         <div className='around'>
