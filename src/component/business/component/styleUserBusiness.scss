@@ -18,5 +18,26 @@
 .info-bus {
     margin-left: 5%;
     margin-right: 5%;
-    width: 400px;
+    padding-top: 20px;
+    width: 720px;
+
+    &>h1 {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    &>p {
+        font-size: 20px;
+    }
+}
+
+.button-bus-detail {
+    padding-top: 40px;
+
+    &>Button {
+        background-color: #00b000;
+        color: white !important;
+        text-decoration: none !important;
+    }
+
 }

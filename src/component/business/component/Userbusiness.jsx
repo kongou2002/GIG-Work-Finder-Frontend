@@ -30,10 +30,10 @@ function Userbusiness(props) {
                                 <img src={data?.businessLogo} style={{ width: '100px', height: '100px' }} />
                             </Box>
                             <Box className='info-bus'>
-                                <h1>{data?.businessName}</h1>
+                                <h1>Tên cửa hàng: {data?.businessName}</h1>
                                 <p>Địa chỉ: {data?.address}, {data?.location?.city}, {data?.location?.province}</p>
                             </Box>
-                            <Box>
+                            <Box className='button-bus-detail'>
                                 <Button variant='contained' ><Link to={`/business/${data.businessID}`}>Xem công ty</Link></Button>
                             </Box>
                         </Box>
