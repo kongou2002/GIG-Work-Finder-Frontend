@@ -25,7 +25,7 @@ function footer(props) {
                     </ul>
                 </Box>
                 <Box className='HR'>
-                    <h3>Liên hệ tuyển dụng tại</h3>
+                    <h3>Liên hệ CSKH tại:</h3>
                     <ul>
                         <li>Hồ Chí Minh:(+84)555 666 777 </li>
                         <li>Email: gigworker@gmail.com</li>

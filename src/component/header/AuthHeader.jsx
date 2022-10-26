@@ -185,7 +185,7 @@ export default function AuthHeader() {
                     </div>
                     {/* Account Authentication show below */}
                     {!isAuthenticated && (
-                        <div style={{ flex: "right" }}>
+                        <div className="login-gg-area" style={{ float: "right" }}>
                             <div style={{ display: 'inline-block' }}>
                                 <form>
                                     <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{ color: "red" }} />

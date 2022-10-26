@@ -34,7 +34,7 @@ function RecruiterHomePage() {
                     <p>Quản lý các công ty, cửa hàng của bạn một cách dễ dàng và trực quang. Mọi thông tin về công ty sẽ được tiếp cận rộng rãi với mọi người.</p>
                 </div>
                 <div className='button-2nd'>
-                    <h1>Danh sách các đơn ứng tuyển cần duyệt</h1>
+                    <h1><Link to="/jobofferManage" style={{ textDecoration: 'none', color: '#00b000' }} >Danh sách các đơn ứng tuyển cần duyệt</Link></h1>
                     <p>
                         Các đơn ứng tuyển của thành viên GIG-Woker đang đợi bạn duyệt để ứng tuyển theo yêu cầu của bạn.
                     </p>

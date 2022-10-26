@@ -80,3 +80,40 @@
 // <TextField label="Tên:" variant="standard" onChange={inputsHandler} name='firstname' />
 // <TextField label="Số điện thoại:" variant="standard" onChange={inputsHandler} name='phone' />
 // <TextField label="Mô tả bản thân:" variant="standard" onChange={inputsHandler} name='description' />
+
+
+//CSS của update page=========================================================
+.intro-update {
+    color: #00B800;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: #D9D9D9 solid 3px;
+}
+
+.all-update-profile-button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    margin-right: 20%;
+}
+
+.update-button {
+    background-color: #00B800 !important;
+    color: white !important;
+    border-radius: 10px !important;
+    width: 100px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+.cancel-button {
+    color: black !important;
+    border: black solid 2px !important;
+    border-radius: 10px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}

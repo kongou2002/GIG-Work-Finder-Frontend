@@ -37,20 +37,28 @@ function JobOfferManagement() {
                 <Container className='box-bg'>
                     <Stack>
                         <Tabs value={value} onChange={handleTabs}>
+                            <Tab label='Tất cả bài đăng tuyển của bạn' />
                             <Tab label='Bài viết đang đăng tuyển' />
-                            <Tab label='Bài đăng tuyển đã xóa' />
+                            <Tab label='Bài đăng tuyển đã hết hạn' />
                         </Tabs>
                         <TabPanel value={value} index={0}>
                             <Box className='intro-box'>
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
-                                    Danh sách các bài viết đang đăng tuyển:
+                                    Danh sách tất cả các bài viết:
                                 </Typography>
                             </Box>
                         </TabPanel>
                         <TabPanel value={value} index={1}>
                             <Box className='intro-box'>
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
-                                    Danh sách các bài đăng tuyển đã xóa:
+                                    Danh sách các bài viết đang đăng tuyển :
+                                </Typography>
+                            </Box>
+                        </TabPanel>
+                        <TabPanel value={value} index={2}>
+                            <Box className='intro-box'>
+                                <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
+                                    Danh sách các bài đăng tuyển đã hết hạn:
                                 </Typography>
                             </Box>
                         </TabPanel>
