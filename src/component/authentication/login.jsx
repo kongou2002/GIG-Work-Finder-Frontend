@@ -5,7 +5,7 @@ import { Padding } from '@mui/icons-material';
 
 const uiConfig = {
   signInFlow: 'popup',
-  signInSuccessUrl: '/',
+  signInSuccessUrl: '/userProfile',
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
   ]
