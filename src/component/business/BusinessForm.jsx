@@ -60,9 +60,12 @@ function BusinessForm() {
         console.log(data)
 
         try {
-            axios.post("https://gig-worker-backend.azurewebsites.net/Business/CreateBu",
-                formData
-            )
+            axios.post("http://localhost:8080/Business/CreateBu",
+                formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
                 .then(res => {
                     console.log()
                 })
