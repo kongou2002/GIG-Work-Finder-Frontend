@@ -10,6 +10,8 @@ import Detail from './component/jobOffer/detail';
 import HomeBaseOnRole from './pages/home/HomeBaseOnRole';
 import ApplicantManagement from './pages/recruiterManage/applicantManage';
 import JobOfferManagement from './pages/recruiterManage/jobOfferManage';
+import BusinessManagement from './pages/recruiterManage/businessManage';
+import Createbusines from './component/business/BusinessForm';
 import Profile from './pages/user/ViewTheirProfile';
 // import Recruiter from './component/user/recruiter';
 import UserUpdatePage from '../src/pages/user/UserUpdatePage';
