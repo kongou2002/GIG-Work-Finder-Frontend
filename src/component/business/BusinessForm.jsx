@@ -41,13 +41,16 @@ function BusinessForm() {
     }
     console.log(file)
     const handlesubmit = (event) => {
+        event.preventDefault()
         const formData = new FormData();
         formData.append("businessLogo", file);
+
         let details = {
+            accountID: data.accountID,
             businessName: data.businessName,
             address: data.address,
             province: data.province,
-            location: data.location,
+            locationID: data.locationID,
             description: data.description,
             benefit: data.benefit
         }
@@ -55,9 +58,11 @@ function BusinessForm() {
             formData.append(key, details[key]);
         }
         console.log(data)
-        event.preventDefault()
+
         try {
-            axios.post("https://gig-worker-backend.azurewebsites.net/Business/CreateBu", formData)
+            axios.post("https://gig-worker-backend.azurewebsites.net/Business/CreateBu",
+                formData
+            )
                 .then(res => {
                     console.log()
                 })

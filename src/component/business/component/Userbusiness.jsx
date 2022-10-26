@@ -24,7 +24,7 @@ function Userbusiness(props) {
             Userbusiness
             <Stack>
                 <Box>
-                    {repo.map(data => (
+                    {repo?.map(data => (
                         <Box>
                             <Typography>
                                 {data.businessName}
