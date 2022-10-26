@@ -21,25 +21,12 @@ function BusinessManagement() {
             ) : (
                 <Container className='box-bg'>
                     <Stack>
-                        <Tabs value={value} onChange={handleTabs}>
-                            <Tab label='Cửa hàng đang quản lý' />
-                            <Tab label='Cửa hàng đã ngưng hoạt động' />
-                        </Tabs>
-                        <TabPanel value={value} index={0}>
-                            <Box className='intro-box'>
-                                <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
-                                    Danh sách các công ty và cửa hàng đang quản lý:
-                                </Typography>
-                                <Userbusiness id={user?.id} />
-                            </Box>
-                        </TabPanel>
-                        <TabPanel value={value} index={1}>
-                            <Box className='intro-box'>
-                                <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
-                                    Danh sách các công ty và cửa hàng đã ngưng hoạt động:
-                                </Typography>
-                            </Box>
-                        </TabPanel>
+                        <Box className='intro-box'>
+                            <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
+                                Danh sách các công ty và cửa hàng đang quản lý:
+                            </Typography>
+                            <Userbusiness id={user?.id} />
+                        </Box>
                     </Stack>
                 </Container >
             )

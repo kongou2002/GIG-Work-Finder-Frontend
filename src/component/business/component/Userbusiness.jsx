@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import businessApi from '../../../api/businessApi';
+import "./styleUserBusiness.scss";
 function Userbusiness(props) {
     const userid = (props)
     const [loading, setLoading] = useState(false)
@@ -21,10 +22,9 @@ function Userbusiness(props) {
     console.log(repo)
     return (
         <Container>
-            Userbusiness
             <Stack>
                 <Box>
-                    {repo?.map(data => (
+                    {repo.map(data => (
                         <Box>
                             <Typography>
                                 {data.businessName}

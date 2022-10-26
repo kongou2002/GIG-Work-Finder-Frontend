@@ -4,19 +4,19 @@ import { Route, Routes } from 'react-router-dom';
 import authorizationApi from './api/authorizationAPI';
 import './App.css';
 import Business from './component/business/Business';
+import Createbusines from './component/business/BusinessForm';
 import Footer from './component/footer';
 import AuthHeader from './component/header/AuthHeader';
 import Detail from './component/jobOffer/detail';
 import HomeBaseOnRole from './pages/home/HomeBaseOnRole';
 import ApplicantManagement from './pages/recruiterManage/applicantManage';
+import BusinessManagement from './pages/recruiterManage/businessManage';
 import JobOfferManagement from './pages/recruiterManage/jobOfferManage';
 import Profile from './pages/user/ViewTheirProfile';
 // import Recruiter from './component/user/recruiter';
 import UserUpdatePage from '../src/pages/user/UserUpdatePage';
 import CreateJO from './component/jobOffer/component/CreateJO';
 import ViewOtherProfile from './pages/user/ViewOtherProfile';
-import Createbusines from './component/business/BusinessForm';
-import BusinessManagement from './pages/recruiterManage/businessManage';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',

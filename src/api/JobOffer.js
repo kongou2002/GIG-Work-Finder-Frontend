@@ -32,6 +32,6 @@ const jobOfferApi = {
     remove(id) {
         const url = `/jobOffer/${id}`;
         return axiosClient.delete(url);
-    }
+    },
 };
 export default jobOfferApi;
