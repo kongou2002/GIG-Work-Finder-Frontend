@@ -34,7 +34,7 @@ function Userbusiness(props) {
                                 <p>Địa chỉ: {data?.address}, {data?.location?.city}, {data?.location?.province}</p>
                             </Box>
                             <Box className='button-bus-detail'>
-                                <Button variant='contained' ><Link to={`/business/${data.businessID}`}>Xem công ty</Link></Button>
+                                <Button variant='contained' ><Link to={`/business/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem công ty</Link></Button>
                             </Box>
                         </Box>
                     ))}
