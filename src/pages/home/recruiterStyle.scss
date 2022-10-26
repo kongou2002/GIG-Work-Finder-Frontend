@@ -33,7 +33,7 @@
         align-items: center;
     }
 
-    &>button {
+    &>Button {
         background-color: #00B800;
         color: white !important;
         font-weight: bold;
@@ -44,6 +44,7 @@
         border-radius: 10px;
         margin-top: 5%;
         margin-left: 25%;
+        //display: flex !important;
         justify-content: center !important;
         align-items: center !important;
     }
@@ -95,3 +96,8 @@
     }
 
 }
+
+//================================
+// .button-1st:hover {
+//     background-color: red;
+// }

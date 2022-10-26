@@ -25,7 +25,7 @@ export default function AuthHeader() {
     console.log(user);
     const toggle = () => setIsOpen(!isOpen);
     const nav = useNavigate();
-    const Logo = 'logo 1.jpg';//url cuar logo owr day
+    const Logo = 'logo 1.svg';//url cuar logo owr day
 
     // <<<<<<< HEAD
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -70,63 +70,114 @@ export default function AuthHeader() {
                     {/* Button base on role view */}
                     <div className="nav-container, headPage">
                         <Stack color="light" light expand="md" >
-                            <div>
+                            <div className="link-button">
                                 <div className='logo'>
                                     <img src={Logo} alt='' style={{ width: "100px", height: "60px" }} />
                                 </div>
                                 <div onClick={toggle} />
-                                <div isOpen={isOpen} navbar>
-                                    <div className="mr-auto" navbar>
-                                        <div>
-                                            <Link
-                                                className='headContent'
-                                                tag={Link}
-                                                to="/"
-                                                exact
-                                                activeClassName="router-link-exact-active"
-                                            >
-                                                Việc Làm
-                                            </Link>
-                                            <Link
-                                                className='headContent'
-                                                tag={Link}
-                                                to="/company"
-                                                exact
-                                                activeClassName="router-link-exact-active"
-                                            >
-                                                Công Ty
-                                            </Link>
-                                            <Link
-                                                className='headContent'
-                                                tag={Link}
-                                                to="/news"
-                                                exact
-                                                activeClassName="router-link-exact-active"
-                                            >
-                                                Tin Tức
-                                            </Link>
-                                            <Link
-                                                className='headContent'
-                                                tag={Link}
-                                                to="/support"
-                                                exact
-                                                activeClassName="router-link-exact-active"
-                                            >
-                                                Hỗ Trợ
-                                            </Link>
-                                            {isAuthenticated && role == 'Recruiter' && (
+                                <div className="button-of-link" isOpen={isOpen} navbar>
+                                    <div className="all-button-link">
+                                        <Link
+                                            className='headContent'
+                                            tag={Link}
+                                            to="/"
+                                            exact
+                                            activeClassName="router-link-exact-active"
+                                        >
+                                            Việc Làm
+                                        </Link>
+                                        <Link
+                                            className='headContent'
+                                            tag={Link}
+                                            to="/company"
+                                            exact
+                                            activeClassName="router-link-exact-active"
+                                        >
+                                            Công Ty
+                                        </Link>
+                                        <Link
+                                            className='headContent'
+                                            tag={Link}
+                                            to="/news"
+                                            exact
+                                            activeClassName="router-link-exact-active"
+                                        >
+                                            Tin Tức
+                                        </Link>
+                                        <Link
+                                            className='headContent'
+                                            tag={Link}
+                                            to="/support"
+                                            exact
+                                            activeClassName="router-link-exact-active"
+                                        >
+                                            Hỗ Trợ
+                                        </Link>
+                                        {isAuthenticated && role == 'Recruiter' && (
+                                            <div className="manage-recruiter-button">
                                                 <div>
                                                     <Link
+                                                        className='headContent'
+                                                        tag={Link}
+                                                        to="/businessManage"
+                                                        exact
+                                                        activeClassName="router-link-exact-active"
+                                                    >
+                                                        Quản lý cửa hàng
+                                                    </Link>
+                                                </div>
+                                                <div>
+                                                    <Link
+                                                        className='headContent'
+                                                        tag={Link}
+                                                        to="/jobofferManage"
+                                                        exact
+                                                        activeClassName="router-link-exact-active"
+                                                    >
+                                                        Quản lý bài đăng
+                                                    </Link>
+                                                </div>
+                                                <div>
+                                                    <Link
+                                                        className='headContent'
+                                                        tag={Link}
+                                                        to="/applicantManage"
+                                                        exact
+                                                        activeClassName="router-link-exact-active"
+                                                    >
+                                                        Quản lý nhân sự
+                                                    </Link>
+                                                </div>
+                                            </div>
+
+                                        )}
+                                        {isAuthenticated && role == 'Applicant' && (
+                                            <div className="manage-applicant-button">
+                                                <div>
+                                                    <Link
+                                                        className='headContent'
                                                         tag={Link}
                                                         to="/external-api"
                                                         exact
                                                         activeClassName="router-link-exact-active"
                                                     >
-                                                        External API
+                                                        Quản lý công việc
                                                     </Link>
                                                 </div>
-                                            )}
-                                        </div>
+                                                <div>
+                                                    <Link
+                                                        className='headContent'
+                                                        tag={Link}
+                                                        to="/external-api"
+                                                        exact
+                                                        activeClassName="router-link-exact-active"
+                                                    >
+                                                        Thời khóa biểu
+                                                    </Link>
+                                                </div>
+                                            </div>
+
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +185,7 @@ export default function AuthHeader() {
                     </div>
                     {/* Account Authentication show below */}
                     {!isAuthenticated && (
-                        <div style={{ flex: "right" }}>
+                        <div className="login-gg-area" style={{ float: "right" }}>
                             <div style={{ display: 'inline-block' }}>
                                 <form>
                                     <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{ color: "red" }} />
@@ -149,7 +200,7 @@ export default function AuthHeader() {
 
 
                     {isAuthenticated && (
-                        <div style={{ float: "right" }}>
+                        <div className="profile-dashboard" style={{ float: "right" }}>
                             <Stack flexDirection={'row'} sx={{ alignItems: 'center' }}>
 
                                 <Button onClick={handleMenu}>
