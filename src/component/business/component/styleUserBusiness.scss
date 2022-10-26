@@ -1,4 +1,4 @@
-.box-job {
+.box-job-of-user {
     display: flex;
     box-shadow:
         0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -9,4 +9,14 @@
     //0 12.5px 10px rgba(0, 0, 0, 0.06),
     //0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     // 0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.img-logo {
+    //margin-top: 4%;
+}
+
+.info-bus {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 400px;
 }
