@@ -7,6 +7,7 @@ import { Link, useParams } from 'react-router-dom';
 import "./detailstyle.scss";
 import Moment from 'moment';
 function Detail() {
+  const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
   const id = useParams();
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(false);
@@ -46,7 +47,7 @@ function Detail() {
                 </Box>
               </div>
               <Box className='detail-business-button'>
-                {repo?.business?.businessID != undefined ? <Button variant="outlined"><Link to={`/business/${repo?.business?.businessID}`} style={{ color: "white", textDecoration: "none" }}>Xem công ty</Link></Button> : <Button disabled >Xem công ty</Button>}
+                {repo?.business?.businessID != undefined ? <Button variant="outlined"><Link to={`/business/${repo?.business?.businessID}`} style={{ color: "white", textDecoration: "none" }}>Xem công ty</Link></Button> : <Button disabled ></Button>}
               </Box>
             </Box>
           </Stack>
@@ -65,9 +66,11 @@ function Detail() {
                 <p><p className='bold-p'>Bằng cấp tối thiểu:</p><p className='value-p'>{repo?.degree?.degreeName}</p></p>
               </Box>
             </Box>
-            <Box className='apply-button'>
+            {user.role == 'Applicant' ? <Box className='apply-button'>
               <Button>Ứng tuyển</Button>
-            </Box>
+            </Box> :
+              <h1></h1>}
+
           </Stack>
 
           <Stack className='description-detail'> {/*=================div detail phần body==================*/}

@@ -8,7 +8,8 @@ import TabPanel from './component/TabPanel';
 import "./style.scss";
 
 function Business() {
-  const id = useParams();
+  const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
+  const param = useParams();
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(2);
@@ -20,12 +21,12 @@ function Business() {
 
   useEffect(() => {
     setLoading(true)
-    const fetchJobOffer = async () => {
-      const jobList = await businessApi.getID(id.id);
+    const fetchBusiness = async () => {
+      const jobList = await businessApi.getID(param.id);
       setRepo(jobList);
       setLoading(false)
     }
-    fetchJobOffer();
+    fetchBusiness();
   }, []);
   console.log(repo)
   return (
@@ -48,10 +49,16 @@ function Business() {
               <p>Địa chỉ: {repo?.address}, {repo?.location?.city}, {repo?.location?.province}</p>
               <Rating name="read-only" value={rating} readOnly />
             </Box>
-            <Box className='business-button'>
-              <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
-              <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
-            </Box>
+
+
+            {user.role == 'Applicant' ?
+              <Box className='business-button'>
+                <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
+                <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
+              </Box> :
+              <h4>Welcome {user.name}</h4>}
+
+
           </Stack>
 
           <Stack>

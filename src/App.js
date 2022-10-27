@@ -59,6 +59,7 @@ function App() {
       <AuthHeader />
       <Routes>
         <Route path='/createbusiness' element={<Createbusines />} />
+        <Route path='/updatebusiness/:id' element={<Createbusines />} />
         <Route path='/' element={<HomeBaseOnRole />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/profile/:role/:id' element={<ViewOtherProfile />} />
