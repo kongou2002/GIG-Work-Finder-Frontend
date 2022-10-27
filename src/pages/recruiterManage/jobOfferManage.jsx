@@ -23,7 +23,7 @@ function JobOfferManagement() {
                         <Tabs value={value} onChange={handleTabs}>
                             <Tab label='Tất cả bài đăng tuyển của bạn' />
                             <Tab label='Bài viết đang đăng tuyển' />
-                            <Tab label='Bài đăng tuyển đã hết hạn' />
+                            <Tab label='Bài đăng tuyển đã xóa hoặc hết hạn' />
                         </Tabs>
                         <TabPanel value={value} index={0}>
                             <Box className='intro-box'>
@@ -44,7 +44,7 @@ function JobOfferManagement() {
                         <TabPanel value={value} index={2}>
                             <Box className='intro-box'>
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
-                                    Danh sách các bài đăng tuyển đã hết hạn:
+                                    Danh sách các bài đăng tuyển đã xóa hoặc hết hạn:
                                 </Typography>
                                 <Userjoboffer id={user?.id} index={2} />
                             </Box>
