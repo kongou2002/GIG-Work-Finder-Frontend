@@ -91,7 +91,6 @@ function Profile() {
               <Rating name="read-only" value={rating} readOnly />
             </Box>
             <Box className='business-button'>
-              <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
               {handleUpdateButton(user?.role)}
 
             </Box>
