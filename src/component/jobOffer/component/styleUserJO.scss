@@ -1,4 +1,4 @@
-.box-job-of-user {
+.box-job-of-user-02 {
     display: flex;
     box-shadow:
         0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -11,11 +11,11 @@
     // 0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
-.info-bus {
+.info-bus-02 {
     margin-left: 5%;
     margin-right: 5%;
-    padding-top: 20px;
-    width: 720px;
+    padding-top: 10px;
+    width: 490px;
 
     &>h1 {
         font-size: 22px;
@@ -23,17 +23,29 @@
     }
 
     &>p {
-        font-size: 20px;
+        font-size: 16px;
+        font-weight: 400;
     }
 }
 
-.button-bus-detail {
+.button-bus-detail-02 {
     padding-top: 40px;
 
     &>Button {
         background-color: #00b000;
-        color: white !important;
-        text-decoration: none !important;
-    }
 
+        &>Link {
+            color: white !important;
+            text-decoration: none !important;
+        }
+    }
+}
+
+.update-button-02 {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+.delete-button-02 {
+    background-color: red !important;
 }

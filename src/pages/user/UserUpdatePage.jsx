@@ -1,4 +1,4 @@
-import { Box, Button, Container, TextField } from '@mui/material'
+import { Box, Button, Container, MenuItem, TextField } from '@mui/material'
 import axios from 'axios';
 import React from 'react'
 import { useEffect, useState } from 'react';
@@ -8,27 +8,69 @@ import "./style.scss";
 function UserUpdatePage() {
     const nav = useNavigate();
     const user = JSON.parse(localStorage.getItem('FWApp-gig:rememberedAccount'));
-    console.log(user);
+    const role = localStorage.getItem('role')
+    console.log('user', user)
+    console.log('user', user.name);
+    const name = user?.name == undefined ? '' : user.name;
     const [data, setData] = useState({
-        name: user?.name
+        accountID: user?.id,
+        lastName: name.indexOf(' ') > -1 ? name.substring(0, name.indexOf(' ')) : name,
+        firstName: name.indexOf(' ') > -1 ? name.substring(name.indexOf(' ') + 1, name.length) : ''
     });
+    const [select, setSelect] = useState()
+    const [repo, setRepo] = useState()
+    const [loading, setLoading] = useState()
+    const [fectch, setFectch] = useState([])
+    // const [province, setProvince] = useState()
+    const province = ["Thành phố Cần Thơ", "Thành phố Đà Nẵng", "Thành phố Hà Nội", "Thành phố Hải Phòng", "Thành phố Hồ Chí Minh", "Tỉnh An Giang", "Tỉnh Bà Rịa - Vũng Tàu", "Tỉnh Bắc Giang", "Tỉnh Bắc Kạn", "Tỉnh Bạc Liêu", "Tỉnh Bắc Ninh", "Tỉnh Bến Tre", "Tỉnh Bình Định", "Tỉnh Bình Dương", "Tỉnh Bình Phước", "Tỉnh Bình Thuận", "Tỉnh Cà Mau", "Tỉnh Cao Bằng", "Tỉnh Đắk Lắk", "Tỉnh Đắk Nông", "Tỉnh Điện Biên", "Tỉnh Đồng Nai", "Tỉnh Đồng Tháp", "Tỉnh Gia Lai", "Tỉnh Hà Giang", "Tỉnh Hà Nam", "Tỉnh Hà Tĩnh", "Tỉnh Hải Dương", "Tỉnh Hậu Giang", "Tỉnh Hoà Bình", "Tỉnh Hưng Yên", "Tỉnh Khánh Hòa", "Tỉnh Kiên Giang", "Tỉnh Kon Tum", "Tỉnh Lai Châu", "Tỉnh Lâm Đồng", "Tỉnh Lạng Sơn", "Tỉnh Lào Cai", "Tỉnh Long An", "Tỉnh Nam Định", "Tỉnh Nghệ An", "Tỉnh Ninh Bình", "Tỉnh Ninh Thuận", "Tỉnh Phú Thọ", "Tỉnh Phú Yên", "Tỉnh Quảng Bình", "Tỉnh Quảng Nam", "Tỉnh Quảng Ngãi", "Tỉnh Quảng Ninh", "Tỉnh Quảng Trị", "Tỉnh Sóc Trăng", "Tỉnh Sơn La", "Tỉnh Tây Ninh", "Tỉnh Thái Bình", "Tỉnh Thái Nguyên", "Tỉnh Thanh Hóa", "Tỉnh Thừa Thiên Huế", "Tỉnh Tiền Giang", "Tỉnh Trà Vinh", "Tỉnh Tuyên Quang", "Tỉnh Vĩnh Long", "Tỉnh Vĩnh Phúc", "Tỉnh Yên Bái"]
+
+    // useEffect(() => {
+    //     setLoading(true)
+    //     setProvince = axios.get(`https://gig-worker-backend.azurewebsites.net//Location/Province/ALL`)
+    //         .then((res) => {
+    //             const { data } = res;
+    //             setProvince = data;
+    //             console.log('province', province)
+    //         })
+    //     setLoading(false)
+    // })
+    console.log("province: ", province)
+    useEffect(() => {
+        setLoading(true)
+        axios.get(`https://gig-worker-backend.azurewebsites.net/Location/City?province=${select}`)
+            .then((res) => {
+                const { data } = res;
+                setFectch(data);
+                console.log(fectch);
+                console.log(data);
+                setLoading(false)
+            })
+    }, [select])
+    console.log(fetch)
+    console.log(repo)
     const inputsHandler = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
+    }
+    const selectLocation = (e) => {
+        setSelect(e.target.value)
         setData({ ...data, [e.target.name]: e.target.value })
     }
     const handleSubmit = (event) => {
         event.preventDefault(event)
-        console.log(data)
-        //         try {
-        //             // axios.post("https://gig-worker-backend.azurewebsites.net/JobOffer/CreateJO",
-        //             axios.post("https://localhost:8080/")
-        //             data
-        //             )
-        //                 .then(res => {
-        //                 console.log(res.data)
-        //             })
-        // } catch (error) {
-        //     alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
-        // }
+        console.log('data', data)
+        try {
+            axios.put(`https://gig-worker-backend.azurewebsites.net/${user?.role}/Update`,
+                // axios.put(`http://localhost:8080/${user?.role}/Update`,
+                data
+            )
+                .then(res => {
+                    console.log(res.data)
+                })
+        } catch (error) {
+            alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
+        }
+        localStorage.removeItem('firebase:rememberedAccount')
+        nav('/')
     }
     return (
         <Container>
@@ -43,7 +85,8 @@ function UserUpdatePage() {
                 }}
             >
 
-                <TextField variant='filled' name='userName' label='Họ và tên' value={user?.name} onChange={inputsHandler} />
+                <TextField variant='filled' name='lastName' label='Họ' defaultValue={data?.lastName} onChange={inputsHandler} />
+                <TextField variant='filled' name='firstName' label='Tên' defaultValue={data?.firstName} onChange={inputsHandler} />
                 <TextField variant='filled' name='address' label='Địa chỉ' onChange={inputsHandler} />
                 {/* <DatePicker
                         label="Basic example"
@@ -52,18 +95,44 @@ function UserUpdatePage() {
                             setDateValue(newValue);
                         }}
                         renderInput={(dateValue) => */}
-                <TextField variant='filled' name='dob' label='Ngày sinh' onChange={inputsHandler} />
-                <TextField variant='filled' name='gender' label='Giới tính' onChange={inputsHandler} />
-                <TextField variant='filled' name='city' label='Quận' onChange={inputsHandler} />
-                <TextField variant='filled' name='province' label='Tỉnh/Thành phố' onChange={inputsHandler} />
-                <TextField variant='filled' name='decription' label='Mô tả' onChange={inputsHandler} />
+                {role == 'Applicant' && (<TextField variant='filled' name='dob' label='Ngày sinh' onChange={inputsHandler} />)}
+                <TextField variant='filled' name='gender' label='Giới tính' onChange={inputsHandler} defaultValue={user?.gender} />
                 <TextField variant='filled' name='phone' label='Số điện thoại' onChange={inputsHandler} />
+                {role == 'Applicant' && (
+                    <div>
+                        <TextField
+                            select
+                            label="Chọn Tỉnh"
+                            // value={select}
+                            onChange={selectLocation}
+                            name='province'>
+                            {province?.map((option) => (
+                                <MenuItem key={option} value={option} >
+                                    {option}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField
+                            select
+                            label="Chọn Thành phố/Quận/Huyện"
+                            onChange={inputsHandler}
+                            name='location'>
+                            {fectch?.map((option) => (
+                                <MenuItem key={option?.locationID} value={option?.locationID}>
+                                    {option?.city}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </div>
+                )}
+                <TextField variant='filled' name='description' label='Mô tả' onChange={inputsHandler} />
                 {/* <Button type='submit' >Cập nhật</Button> */}
+                <Box className="all-update-profile-button">
+                    <Button className='update-button' type='submit' >Cập nhật</Button>
+                    <Button className='cancel-button' type='button' onClick={() => nav('/')}>Bỏ qua</Button>
+                </Box>
             </Box>
-            <Box className="all-update-profile-button">
-                <Button className='update-button' type='submit' >Cập nhật</Button>
-                <Button className='cancel-button' type='button' onClick={() => nav('/')}>Bỏ qua</Button>
-            </Box>
+
         </Container >
     )
 }

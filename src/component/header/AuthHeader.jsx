@@ -41,7 +41,6 @@ export default function AuthHeader() {
     const handleLogout = () => {
         Logout();
         nav('/');
-        window.location.reload();
     }
     const handleButton = (event) => {
         const eventRole = event.target.value;

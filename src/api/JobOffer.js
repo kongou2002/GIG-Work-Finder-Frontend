@@ -33,5 +33,18 @@ const jobOfferApi = {
         const url = `/jobOffer/${id}`;
         return axiosClient.delete(url);
     },
+
+    getAllJO(id) {
+        const url = `/JobOffer/GetAllJO/${id}`;
+        return axiosClient.get(url);
+    },
+    getAllJOActive(id) {
+        const url = `/JobOffer/GetAllJOActive/${id}`;
+        return axiosClient.get(url);
+    },
+    getAllJOUnActive(id) {
+        const url = `/JobOffer/GetAllJOUnActive/${id}`;
+        return axiosClient.get(url);
+    }
 };
 export default jobOfferApi;
