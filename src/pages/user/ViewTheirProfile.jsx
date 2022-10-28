@@ -120,7 +120,7 @@ function Profile() {
                 </Typography>
                 {role == 'Applicant' &&
                   <div>
-                    (<Typography component='li'>
+                    <Typography component='li'>
                       Tuổi: {handlePrintUserData(handleYearsOld(repo?.dob))}
                     </Typography>
                     <Typography component='li'>

@@ -101,3 +101,16 @@
 // .button-1st:hover {
 //     background-color: red;
 // }
+.create-job-button-hover:hover {
+    background-color: rgb(5, 158, 5);
+
+    &>p {
+        color: gray;
+    }
+}
+
+.button-1st:hover,
+.button-2nd:hover,
+.button-3rd:hover {
+    background-color: #F2FFEE !important;
+}
