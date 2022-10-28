@@ -1,4 +1,5 @@
 import { Container, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import TabPanel from '../../component/business/component/TabPanel';
@@ -38,6 +39,7 @@ function JobOfferManagement() {
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                                     Danh sách các bài viết đang đăng tuyển :
                                 </Typography>
+                                <h1><Link to="/createjob" style={{ textDecoration: 'none', color: '#00b000' }} >+ Thêm bài viết</Link></h1>
                                 <Userjoboffer id={user?.id} index={1} />
                             </Box>
                         </TabPanel>

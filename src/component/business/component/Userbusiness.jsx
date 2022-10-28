@@ -1,3 +1,4 @@
+import { User } from '@auth0/auth0-spa-js';
 import { Button, Typography } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
 import React from 'react'
@@ -13,12 +14,13 @@ function Userbusiness(props) {
     useEffect(() => {
         setLoading(true)
         const fetchJobOffer = async () => {
-            const jobList = await businessApi.getUID(2); //sau sửa lại thành param.id
+            const jobList = await businessApi.getUID(param?.id); //sau sửa lại thành param.id
             setRepo(jobList);
             setLoading(false)
         }
         fetchJobOffer();
     }, []);
+    console.log(param?.id)
     console.log(loading)
     console.log(repo)
     return (
@@ -26,18 +28,17 @@ function Userbusiness(props) {
             <Stack>
                 <Box className='box-job-are'>
                     {repo?.map(data => (
-                        <Box className='box-job'>
-                            <Box className='img-logo'>
+                        <Box className='box-job-of-user'>
+                            <Box className='img-logo-bus'>
                                 <img src={data.businessLogo} style={{ width: '100px', height: '100px' }} />
                             </Box>
-                            <Box>
-                                <h1>{data.businessName}</h1>
+                            <Box className='info-bus'>
+                                <h1>Tên công ty: {data.businessName}</h1>
                                 <p>Địa chỉ: {data.address}, {data?.location?.city}, {data?.location?.province}</p>
                             </Box>
-                            <Box>
-                                <Button variant='contained' ><Link to={`/business/${data.businessID}`} >Xem công ty</Link></Button>
-                                <Button variant='contained'><Link to={`/updatebusiness/${data.businessID}`}>Chỉnh sửa công ty</Link></Button>
-                                <Button variant='contained'>Delete</Button>
+                            <Box className='button-bus-detail'>
+                                <Button variant='contained' ><Link to={`/business/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem công ty</Link></Button>
+                                <Button variant='contained'><Link to={`/updatebusiness/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật công ty</Link></Button>
                             </Box>
                         </Box>
                     ))}

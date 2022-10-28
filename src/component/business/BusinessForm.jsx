@@ -95,7 +95,7 @@ function BusinessForm() {
                 },
             })
                 .then(res => {
-                    console.log()
+                    alert(res)
                 })
         } catch (error) {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
