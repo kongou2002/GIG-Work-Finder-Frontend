@@ -1,9 +1,7 @@
 import { User } from '@auth0/auth0-spa-js';
 import { Button, Typography } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
-import React from 'react'
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import businessApi from '../../../api/businessApi';
 import "./styleUserBusiness.scss";
@@ -37,11 +35,10 @@ function Userbusiness(props) {
                                 <h1>Tên công ty: {data.businessName}</h1>
                                 <p>Địa chỉ: {data.address}, {data?.location?.city}, {data?.location?.province}</p>
                             </Box>
-                            <Box className='button-bus-detail'>
-                                <Button variant='contained' ><Link to={`/business/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem công ty</Link></Button>
-                                {param?.id == user?.id &&
-                                    <Button variant='contained'><Link to={`/updatebusiness/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật công ty</Link></Button>
-                                }
+                            <Box>
+                                <Button variant='contained'><Link to={`/business/${data.businessID}`} >Xem công ty</Link></Button>
+                                <Button variant='contained'><Link to={`/updatebusiness/${data.businessID}`}>Chỉnh sửa công ty</Link></Button>
+                                <Button variant='contained'>Delete</Button>
                             </Box>
                         </Box>
                     ))}

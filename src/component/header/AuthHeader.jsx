@@ -228,12 +228,12 @@ export default function AuthHeader() {
                             >
 
                                 <Link to={'/profile'} style={{ textDecoration: "none", color: 'black' }}>
-                                    <MenuItem>Profile</MenuItem>
+                                    <MenuItem>Thông tin cá nhân</MenuItem>
                                 </Link>
 
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
                                 <MenuItem onClick={handleChangeRole}>Change to {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
-                                <MenuItem onClick={handleLogout}>Log out</MenuItem>
+                                <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
                             </Menu>
                         </div>
                     )}

@@ -1,48 +1,39 @@
-import { Co2Sharp } from '@mui/icons-material'
-import { Autocomplete, Button, Container, MenuItem, TextField } from '@mui/material'
+import { Button, Container, MenuItem, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import axios from 'axios'
-import React from 'react'
-import { useRef } from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import businessApi from '../../api/businessApi';
-import "./styleForm.scss";
+import businessApi from '../../api/businessApi'
+import locationApi from '../../api/locationApi'
+import "./styleForm.scss"
 const provivince = ["Thành phố Cần Thơ", "Thành phố Đà Nẵng", "Thành phố Hà Nội", "Thành phố Hải Phòng", "Thành phố Hồ Chí Minh", "Tỉnh An Giang", "Tỉnh Bà Rịa - Vũng Tàu", "Tỉnh Bắc Giang", "Tỉnh Bắc Kạn", "Tỉnh Bạc Liêu", "Tỉnh Bắc Ninh", "Tỉnh Bến Tre", "Tỉnh Bình Định", "Tỉnh Bình Dương", "Tỉnh Bình Phước", "Tỉnh Bình Thuận", "Tỉnh Cà Mau", "Tỉnh Cao Bằng", "Tỉnh Đắk Lắk", "Tỉnh Đắk Nông", "Tỉnh Điện Biên", "Tỉnh Đồng Nai", "Tỉnh Đồng Tháp", "Tỉnh Gia Lai", "Tỉnh Hà Giang", "Tỉnh Hà Nam", "Tỉnh Hà Tĩnh", "Tỉnh Hải Dương", "Tỉnh Hậu Giang", "Tỉnh Hoà Bình", "Tỉnh Hưng Yên", "Tỉnh Khánh Hòa", "Tỉnh Kiên Giang", "Tỉnh Kon Tum", "Tỉnh Lai Châu", "Tỉnh Lâm Đồng", "Tỉnh Lạng Sơn", "Tỉnh Lào Cai", "Tỉnh Long An", "Tỉnh Nam Định", "Tỉnh Nghệ An", "Tỉnh Ninh Bình", "Tỉnh Ninh Thuận", "Tỉnh Phú Thọ", "Tỉnh Phú Yên", "Tỉnh Quảng Bình", "Tỉnh Quảng Nam", "Tỉnh Quảng Ngãi", "Tỉnh Quảng Ninh", "Tỉnh Quảng Trị", "Tỉnh Sóc Trăng", "Tỉnh Sơn La", "Tỉnh Tây Ninh", "Tỉnh Thái Bình", "Tỉnh Thái Nguyên", "Tỉnh Thanh Hóa", "Tỉnh Thừa Thiên Huế", "Tỉnh Tiền Giang", "Tỉnh Trà Vinh", "Tỉnh Tuyên Quang", "Tỉnh Vĩnh Long", "Tỉnh Vĩnh Phúc", "Tỉnh Yên Bái"]
 
 function BusinessForm() {
     /*===============================logic=============================== */
     const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
-    const [value, setValue] = useState()
-    const [inputValue, setInputValue] = useState()
     const [repo, setRepo] = useState({})
     const param = useParams()
     const [data, setData] = useState({
         accountID: user?.id,
     })
-    const ref = useRef()
-    const [city, setCity] = useState()
+    const [city, setCity] = useState([])
     const [loading, setLoading] = useState(false)
     const [select, setSelect] = useState()
     const [file, setFile] = useState()
     const [image, setImage] = useState(null)
     const [updatedata, setUpdatedata] = useState({
-        businessID: param.id,
+        businessID: parseInt(param.id),
         accountID: user?.id,
     })
-    console.log(city)
     useEffect(() => {
         setLoading(true)
-        axios.get(`https://gig-worker-backend.azurewebsites.net/Location/City?province=${select}`)
-            .then((res) => {
-                const { data } = res;
-                setCity(data);
-                console.log(data);
-                setLoading(false)
-            })
+        const fetchlocation = async () => {
+            const location = await locationApi.getProvince(select);
+            setCity(location)
+            setLoading(false)
+        }
+        fetchlocation()
     }, [select]);
-    console.log(select)
     useEffect(() => {
         setLoading(true)
         const fetchBusiness = async () => {
@@ -51,7 +42,7 @@ function BusinessForm() {
             setLoading(false)
         }
         fetchBusiness();
-    }, []);
+    }, [param.id != undefined])
     const handleselect = (event) => {
         setSelect(event.target.value)
         setData({ ...data, [event.target.name]: event.target.value })
@@ -95,7 +86,7 @@ function BusinessForm() {
                 },
             })
                 .then(res => {
-                    alert(res)
+                    alert(res.status)
                 })
         } catch (error) {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
@@ -103,6 +94,7 @@ function BusinessForm() {
     }
     console.log(data)
     console.log(repo)
+    console.log(select)
     /*===============================handle update=============================== */
     const handleUpdate = (event) => {
         event.preventDefault()
@@ -126,16 +118,17 @@ function BusinessForm() {
             axios.put("https://gig-worker-backend.azurewebsites.net/Business/UpdateBu",
                 formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    "Content-Type": "application/json",
                 },
             })
                 .then(res => {
-                    alert(res)
+                    alert(res.status)
                 })
         } catch (error) {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
         }
     }
+    console.log(city)
     return (
         <Container>
             {loading == false ?
@@ -174,7 +167,7 @@ function BusinessForm() {
                                             </MenuItem>
                                         ))}
                                     </TextField>
-                                    <TextField
+                                    {select == undefined ? <div></div> : <TextField
                                         select
                                         label="Chọn Thành phố/Quận/Huyện"
                                         onChange={inputhandler}
@@ -184,7 +177,8 @@ function BusinessForm() {
                                                 {option?.city}
                                             </MenuItem>
                                         ))}
-                                    </TextField>
+                                    </TextField>}
+
                                 </div>
 
                                 <div className='descrip-bus'>
@@ -278,9 +272,7 @@ function BusinessForm() {
                             </Box>
                     } </Box> :
                 <Box>
-
                 </Box>}
-
         </Container>
     )
 }
