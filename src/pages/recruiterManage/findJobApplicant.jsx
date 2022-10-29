@@ -1,9 +1,9 @@
 import { Container, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import TabPanel from '../../component/business/component/TabPanel';
-import Userbusiness from '../../component/business/component/Userbusiness';
+import JobApplicant from '../../component/jobOffer/component/JobApplicant';
+//import Userbusiness from '../../component/business/component/Userbusiness';
 //import "./style.scss";
 
 function BusinessManagement() {
@@ -24,10 +24,9 @@ function BusinessManagement() {
                     <Stack>
                         <Box className='intro-box'>
                             <Typography component='h5' sx={{ fontWeight: 'bold', fontSize: '20px' }} className='bold-title'>
-                                Danh sách các công ty và cửa hàng đang quản lý:
+                                Danh sách các ứng viên được đề xuất:
                             </Typography>
-                            <h1><Link to="/createbusiness" style={{ textDecoration: 'none', color: '#00b000' }} >+ Thêm cửa hàng</Link></h1>
-                            <Userbusiness id={user?.id} />
+                            <JobApplicant />
                         </Box>
                     </Stack>
                 </Container >

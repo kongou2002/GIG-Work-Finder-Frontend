@@ -52,3 +52,44 @@
 .delete-button-02 {
     background-color: red !important;
 }
+
+//----------------------
+.box-app-job {
+    display: flex;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.button-app-job {
+    padding-top: 40px;
+
+    &>Button {
+        background-color: #00b000;
+
+        &>Link {
+            color: white !important;
+            text-decoration: none !important;
+        }
+    }
+}
+
+.intro-app-job {
+    margin-left: 2%;
+    margin-right: 5%;
+    padding-top: 10px;
+    width: 650px;
+
+    &>h1 {
+        color: #00b000;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &>p {
+        font-size: 18px;
+    }
+}

@@ -13,6 +13,7 @@ import ApplicantManagement from './pages/recruiterManage/applicantManage';
 import BusinessManagement from './pages/recruiterManage/businessManage';
 import JobOfferManagement from './pages/recruiterManage/jobOfferManage';
 import Profile from './pages/user/ViewTheirProfile';
+import JobApplicant from './pages/recruiterManage/findJobApplicant';
 // import Recruiter from './component/user/recruiter';
 import UserUpdatePage from '../src/pages/user/UserUpdatePage';
 import CreateJO from './component/jobOffer/component/CreateJO';
@@ -69,6 +70,7 @@ function App() {
         <Route path='/businessManage' element={<BusinessManagement />} />
         <Route path='/applicantManage' element={<ApplicantManagement />} />
         <Route path='/jobofferManage' element={<JobOfferManagement />} />
+        <Route path='/findJobApplicant' element={<JobApplicant />} />
         {/* <Route path='/recruiter/:id' element={<Recruiter />} /> */}
         <Route path='/createjob' element={<CreateJO />} />
         <Route path='/userProfile' element={<UserUpdatePage />} />

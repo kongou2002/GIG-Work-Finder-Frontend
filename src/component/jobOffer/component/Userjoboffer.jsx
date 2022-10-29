@@ -7,22 +7,21 @@ import { Link } from 'react-router-dom';
 import jobOfferApi from '../../../api/JobOffer';
 import "./styleUserJO.scss";
 function Userbusiness(props) {
-    const userid = (props)
-    console.log(userid);
+    const user = (props)
     const [loading, setLoading] = useState(false)
     const [repo, setRepo] = useState()
     useEffect(() => {
         setLoading(true)
         const fetchJobOffer = async () => {
             var jobList;
-            if (userid?.index == 1) {
-                jobList = await jobOfferApi.getAllJOActive(2);
+            if (user?.index == 1) {
+                jobList = await jobOfferApi.getAllJOActive(user?.id);
             }
-            if (userid?.index == 0) {
-                jobList = await jobOfferApi.getAllJO(2);
+            if (user?.index == 0) {
+                jobList = await jobOfferApi.getAllJO(user?.id);
             }
-            if (userid?.index == 2) {
-                jobList = await jobOfferApi.getAllJOUnActive(2);
+            if (user?.index == 2) {
+                jobList = await jobOfferApi.getAllJOUnActive(user?.id);
             }
 
             setRepo(jobList);
@@ -46,7 +45,7 @@ function Userbusiness(props) {
                                 <p>Địa chỉ: {data?.address}, {data?.location?.city}, {data?.location?.province}</p>
                                 <p style={{ color: 'blue' }}>Tình trạng tuyển: 0/{data?.numOfRecruit}</p>
                             </Box>
-                            {userid?.index == 0 &&
+                            {user?.index == 0 &&
                                 <Box className='button-bus-detail-02'>
                                     <Button className='detail-button-02' variant='contained' ><Link to={`/detail/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
                                     {data.status == 0 &&
@@ -56,13 +55,13 @@ function Userbusiness(props) {
                                         <Button className='update-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Bài viết đang đăng tuyển</Link></Button>
                                     }
                                 </Box>}
-                            {userid?.index == 1 &&
+                            {user?.index == 1 &&
                                 <Box className='button-bus-detail-02'>
                                     <Button className='detail-button-02' variant='contained' ><Link to={`/detail/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
                                     <Button className='update-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật</Link></Button>
                                     <Button className='delete-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Xóa bài viết</Link></Button>
                                 </Box>}
-                            {userid?.index == 2 &&
+                            {user?.index == 2 &&
                                 <Box className='button-bus-detail-02'>
                                     <Button className='detail-button-02' variant='contained' ><Link to={`/detail/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
                                     <Button className='delete-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Bài viết đã xóa / hết hạn</Link></Button>

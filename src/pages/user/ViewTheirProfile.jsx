@@ -6,6 +6,7 @@ import applicantApi from '../../api/applicantApi';
 import recruiterApi from '../../api/recruiterApi';
 import TabPanel from '../../component/business/component/TabPanel';
 //import "./style.scss";
+import Userbusiness from '../../component/business/component/Userbusiness';
 
 function Profile() {
   const nav = useNavigate();
@@ -99,8 +100,8 @@ function Profile() {
           <Stack>
             <Tabs value={value} onChange={handleTabs}>
               <Tab label='Thông tin' />
-              {handleDashboard(role)}
               <Tab label='Đánh giá' />
+              {handleDashboard(role)}
             </Tabs>
             <TabPanel value={value} index={0}>
               <Box className='intro-box'>
@@ -119,7 +120,7 @@ function Profile() {
                 </Typography>
                 {role == 'Applicant' &&
                   <div>
-                    (<Typography component='li'>
+                    <Typography component='li'>
                       Tuổi: {handlePrintUserData(handleYearsOld(repo?.dob))}
                     </Typography>
                     <Typography component='li'>
@@ -155,9 +156,11 @@ function Profile() {
             </TabPanel>
             <TabPanel value={value} index={1} className='box-job'>
               {/* <Businessjob id={repo.businessID} className='box-job-info' /> */}
+
             </TabPanel>
             <TabPanel value={value} index={2} className='box-job'>
               {/* <Businessjob id={repo.businessID} className='box-job-info' /> */}
+              <Userbusiness id={user?.id} />
             </TabPanel>
           </Stack>
         </Container >
