@@ -8,13 +8,14 @@ import { Link } from 'react-router-dom';
 import businessApi from '../../../api/businessApi';
 import "./styleUserBusiness.scss";
 function Userbusiness(props) {
+    const user = JSON.parse(localStorage.getItem('FWApp-gig:rememberedAccount'));
     const param = (props)
     const [loading, setLoading] = useState(false)
     const [repo, setRepo] = useState()
     useEffect(() => {
         setLoading(true)
         const fetchJobOffer = async () => {
-            const jobList = await businessApi.getUID(param?.id); //sau sửa lại thành param.id
+            const jobList = await businessApi.getUID(param.id); //sau sửa lại thành param.id
             setRepo(jobList);
             setLoading(false)
         }
@@ -38,7 +39,9 @@ function Userbusiness(props) {
                             </Box>
                             <Box className='button-bus-detail'>
                                 <Button variant='contained' ><Link to={`/business/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem công ty</Link></Button>
-                                <Button variant='contained'><Link to={`/updatebusiness/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật công ty</Link></Button>
+                                {param?.id == user?.id &&
+                                    <Button variant='contained'><Link to={`/updatebusiness/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật công ty</Link></Button>
+                                }
                             </Box>
                         </Box>
                     ))}

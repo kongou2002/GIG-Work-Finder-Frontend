@@ -46,13 +46,13 @@ function App() {
       localStorage.setItem('isAuthenticated', true);
       if (localStorage.getItem('role') == null) {
         localStorage.setItem('role', "Applicant");
-
       }
       const fwAppUserData = await authorizationApi.getToken(token, localStorage.getItem('role'));
       localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
       localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
-      localStorage.setItem('isAuthenticated', true);
-
+      console.log('fwAppUserData.createNew', fwAppUserData.createNew)
+      if (fwAppUserData.createNew == true) localStorage.setItem('isCreateNew', true);
+      if (localStorage.getItem('isCreateNew') == true) nav('/userProfile');
     })
     return () => unregisterAuthObserver;
   }, [])
