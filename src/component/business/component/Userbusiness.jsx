@@ -37,6 +37,9 @@ function Userbusiness(props) {
                             </Box>
                             <Box>
                                 <Button variant='contained'><Link to={`/business/${data.businessID}`} >Xem công ty</Link></Button>
+                                {param?.id == user?.id &&
+                                    <Button variant='contained'><Link to={`/updatebusiness/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật công ty</Link></Button>
+                                }
                                 <Button variant='contained'><Link to={`/updatebusiness/${data.businessID}`}>Chỉnh sửa công ty</Link></Button>
                                 <Button variant='contained'>Delete</Button>
                             </Box>

@@ -1,7 +1,7 @@
 import axios from "axios";
 const axiosClient = axios.create({
-    // baseURL: 'https://gig-worker-backend.azurewebsites.net',
-    baseURL: 'http://localhost:8080/',
+    baseURL: 'https://gig-worker-backend.azurewebsites.net',
+    // baseURL: 'http://localhost:8080/',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('FWApp-gig:rememberedAccount')?.token,
@@ -24,8 +24,8 @@ axiosClient.interceptors.response.use(function (response) {
     return response.data;
 }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
-    alert('sumthing wong')
-    // Do something with response error
+    // alert('sumthing wong')
+    // Do something with response error 
     return Promise.reject(error);
 });
 

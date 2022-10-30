@@ -14,7 +14,8 @@ const authorizationApi = {
             name: user.displayName,
             picUrl: user.photoURL,
             gender: user.gender,
-            token: googleToken
+            token: googleToken,
+            isCreateNew: false
         }
         const url = `/Authorization`;
         return axiosClient.post(url, data);

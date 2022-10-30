@@ -3,10 +3,14 @@ import { Button, Rating, Skeleton } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import "./detailstyle.scss";
 import Moment from 'moment';
+import JobOffer from './joboffer';
+import jobOfferApi from '../../api/JobOffer';
+
 function Detail() {
+  const nav = useNavigate();
   const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
   const id = useParams();
   const [repo, setRepo] = useState({});
@@ -14,7 +18,7 @@ function Detail() {
   const [value, setValue] = useState(2);
   useEffect(() => {
     setLoading(true)
-    axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id.id}`).then((res) => {
+    axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id?.id}`).then((res) => {
       const { data } = res
       setRepo(data)
       setLoading(false)
@@ -23,6 +27,10 @@ function Detail() {
   }, []);
   console.log(repo)
   console.log(loading)
+  const handleButtonJobOfferApi = (oID, jAID) => {
+    jobOfferApi.getApplyJO(oID, jAID)
+    nav('/jobApplyManage');
+  }
 
   return (
     <Container className='around'>
@@ -66,10 +74,13 @@ function Detail() {
                 <p><p className='bold-p'>Bằng cấp tối thiểu:</p><p className='value-p'>{repo?.degree?.degreeName}</p></p>
               </Box>
             </Box>
-            {user.role == 'Applicant' ? <Box className='apply-button'>
-              <Button>Ứng tuyển</Button>
-            </Box> :
-              <h1></h1>}
+            {/* {user.role == 'Applicant' ?  */}
+            <Box className='apply-button'>
+              {console.log('oid', id?.id, 'userID', user?.id)}
+              <Button onClick={handleButtonJobOfferApi(id?.id, 2)}>Ứng tuyển</Button>
+            </Box>
+            {/* : */}
+            {/* <h1></h1>} */}
 
           </Stack>
 

@@ -40,9 +40,9 @@ function RecruiterHomePage() {
                     </p>
                 </div>
                 <div className='button-3rd'>
-                    <h1><Link to="/findJobApplicant" style={{ textDecoration: 'none', color: '#00b000' }} >Tìm kiếm các nhân sự tiềm năng và nổi bật</Link></h1>
+                    <h1><Link to="/offerJobForApplicant" style={{ textDecoration: 'none', color: '#00b000' }} >Tìm kiếm các nhân sự tiềm năng và nổi bật</Link></h1>
                     <p>
-                        Danh sách các nhân sự tài năng, sẵn sàng làm việc mọi lúc, và đang chờ đợi ứng tuyển.
+                        Đề xuất các nhân sự tài năng, sẵn sàng làm việc mọi lúc, và đang chờ đợi ứng tuyển cho những công việc của bạn.
                     </p>
                 </div>
             </div>

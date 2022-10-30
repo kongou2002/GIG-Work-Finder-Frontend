@@ -158,7 +158,7 @@ export default function AuthHeader() {
                                                     <Link
                                                         className='headContent'
                                                         tag={Link}
-                                                        to="/external-api"
+                                                        to="/jobApplyManage"
                                                         exact
                                                         activeClassName="router-link-exact-active"
                                                     >

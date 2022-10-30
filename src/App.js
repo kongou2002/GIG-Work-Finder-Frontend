@@ -14,10 +14,12 @@ import BusinessManagement from './pages/recruiterManage/businessManage';
 import JobOfferManagement from './pages/recruiterManage/jobOfferManage';
 import Profile from './pages/user/ViewTheirProfile';
 import JobApplicant from './pages/recruiterManage/findJobApplicant';
+import JobApplyManagement from './pages/applicantMange/jobApplyManage';
 // import Recruiter from './component/user/recruiter';
 import UserUpdatePage from '../src/pages/user/UserUpdatePage';
 import CreateJO from './component/jobOffer/component/CreateJO';
 import ViewOtherProfile from './pages/user/ViewOtherProfile';
+import OfferJobForApplicant from './pages/recruiterManage/offerJobForApplicant';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -33,6 +35,7 @@ function App() {
   //Login using firebase
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
+      localStorage.setItem('isCreateNew', true)
       if (!user) {
         console.log("This isn't user");
         return;
@@ -48,11 +51,10 @@ function App() {
         localStorage.setItem('role', "Applicant");
       }
       const fwAppUserData = await authorizationApi.getToken(token, localStorage.getItem('role'));
-      localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
-      localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
-      console.log('fwAppUserData.createNew', fwAppUserData.createNew)
+
       if (fwAppUserData.createNew == true) localStorage.setItem('isCreateNew', true);
-      if (localStorage.getItem('isCreateNew') == true) nav('/userProfile');
+      console.log('fwAppUserData.createNew', fwAppUserData.createNew)
+      localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
     })
     return () => unregisterAuthObserver;
   }, [])
@@ -70,7 +72,10 @@ function App() {
         <Route path='/businessManage' element={<BusinessManagement />} />
         <Route path='/applicantManage' element={<ApplicantManagement />} />
         <Route path='/jobofferManage' element={<JobOfferManagement />} />
-        <Route path='/findJobApplicant' element={<JobApplicant />} />
+        <Route path='/findJobApplicant/:oid' element={<JobApplicant />} />
+        <Route path='/jobApplyManage' element={<JobApplyManagement />} />
+        <Route path='/offerJobForApplicant' element={<OfferJobForApplicant />} />
+
         {/* <Route path='/recruiter/:id' element={<Recruiter />} /> */}
         <Route path='/createjob' element={<CreateJO />} />
         <Route path='/userProfile' element={<UserUpdatePage />} />

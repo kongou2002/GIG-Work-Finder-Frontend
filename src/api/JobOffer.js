@@ -45,6 +45,10 @@ const jobOfferApi = {
     getAllJOUnActive(id) {
         const url = `/JobOffer/GetAllJOUnActive/${id}`;
         return axiosClient.get(url);
+    },
+    getApplyJO(oid, jaid) {
+        const url = `/JobOffer/ApplyJO//${oid}/${jaid}`;
+        return axiosClient.get(url);
     }
 };
 export default jobOfferApi;

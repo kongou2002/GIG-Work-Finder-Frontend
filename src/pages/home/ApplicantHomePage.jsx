@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import JobOffer from '../../component/jobOffer/joboffer';
 import Search from '../../component/search/Search';
 import "./style.scss";
