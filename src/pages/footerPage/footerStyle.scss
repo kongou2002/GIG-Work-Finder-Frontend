@@ -1,0 +1,131 @@
+.ria-background {
+    background-color: #CAC4C4 !important;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.trong-background {
+    background-color: white !important;
+
+    padding: 20px;
+
+    &>h1 {
+        font-weight: bold;
+        font-size: 24px;
+        margin-top: 20px;
+    }
+
+    &>p {
+        font-size: 18px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.question {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &>h1 {
+        font-weight: bold;
+        font-size: 24px;
+        margin-top: 20px;
+    }
+
+    &>p {
+        font-size: 18px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.contact {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &>h2 {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    &>p {
+        font-size: 16px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.security {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &>h2 {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    &>p {
+        font-size: 16px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.activity {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &>h2 {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    &>p {
+        font-size: 16px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.report {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &>h1 {
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    &>p {
+        font-size: 20px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+.term {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &>h1 {
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    &>h2 {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    &>p {
+        font-size: 18px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}

@@ -9,14 +9,14 @@ $max-width: 1024px;
 
 .footer-top {
     display: flex;
-    width: $max-width  !important;
+    width: $max-width !important;
     justify-content: space-between;
     margin-top: 20px;
 }
 
 .footer-bot {
     text-align: center;
-    width: $max-width  !important;
+    width: $max-width !important;
     color: #CAC4C4;
     margin-top: 20px;
 }
@@ -60,4 +60,17 @@ HR {
             margin-top: 10px;
         }
     }
+}
+
+.headContent-footer {
+    color: #CAC4C4;
+    //font-weight: bold;
+    display: flex;
+    text-align: center;
+    text-decoration: none;
+    width: max-content;
+}
+
+.headContent-footer:hover {
+    color: white !important;
 }
