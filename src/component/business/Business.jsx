@@ -51,12 +51,12 @@ function Business() {
             </Box>
 
 
-            {user.role == 'Applicant' ?
+            {user.id != repo.accountID ?
               <Box className='business-button'>
                 <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
                 <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
               </Box> :
-              <h4>Welcome {user.name}</h4>}
+              <h4>Welcome owner: {user.name}</h4>}
 
 
           </Stack>

@@ -27,7 +27,10 @@ function Detail() {
   }, []);
   console.log(repo)
   console.log(loading)
-  const handleButtonJobOfferApi = (event) => {
+  const handleButtonJobOfferApi = (oID, jAID) => {
+    jobOfferApi.getApplyJO(oID, jAID)
+
+    // nav('/jobApplyManage');
   }
 
   return (

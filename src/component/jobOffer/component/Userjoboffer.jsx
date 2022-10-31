@@ -23,7 +23,6 @@ function Userbusiness(props) {
             if (user?.index == 2) {
                 jobList = await jobOfferApi.getAllJOUnActive(user?.id);
             }
-
             setRepo(jobList);
             setLoading(false)
         }
