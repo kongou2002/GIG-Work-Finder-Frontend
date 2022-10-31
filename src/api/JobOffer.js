@@ -47,7 +47,7 @@ const jobOfferApi = {
         return axiosClient.get(url);
     },
     getApplyJO(oid, jaid) {
-        const url = `/JobOffer/ApplyJO//${oid}/${jaid}`;
+        const url = `/JobOffer/ApplyJO/${oid}/${jaid}`;
         return axiosClient.get(url);
     }
 };
