@@ -6,11 +6,11 @@ import GuestHomePage from './GuestHomePage';
 import RecruiterHomePage from './RecruiterHomePage';
 function HomeBaseOnRole() {
     const role = localStorage.getItem("role");
+    const x = localStorage.getItem('isCreateNew');
     const nav = useNavigate();
     useEffect(() => {
-        const x = localStorage.getItem('isCreateNew');
         if (x == true) nav('/userProfile');
-    })
+    }, [x])
     if (role == null)
         return <GuestHomePage />
     if (role == "Recruiter")

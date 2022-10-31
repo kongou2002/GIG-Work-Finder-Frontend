@@ -17,6 +17,7 @@ const authorizationApi = {
             token: googleToken,
             isCreateNew: false
         }
+        console.log("data in getToken: ", data)
         const url = `/Authorization`;
         return axiosClient.post(url, data);
     }

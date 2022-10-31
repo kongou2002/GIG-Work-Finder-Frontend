@@ -83,7 +83,9 @@ function Detail() {
                   jobOfferApi.getApplyJO(id?.id, user?.id)
                   nav('/jobApplyManage');
                 }
-              }>Ứng tuyển</Button>
+              }>
+                Ứng tuyển
+              </Button>
             </Box>
             {/* : */}
             {/* <h1></h1>} */}
