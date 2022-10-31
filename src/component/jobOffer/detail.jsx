@@ -27,9 +27,7 @@ function Detail() {
   }, []);
   console.log(repo)
   console.log(loading)
-  const handleButtonJobOfferApi = (oID, jAID) => {
-    jobOfferApi.getApplyJO(oID, jAID)
-    nav('/jobApplyManage');
+  const handleButtonJobOfferApi = (event) => {
   }
 
   return (
@@ -77,7 +75,12 @@ function Detail() {
             {/* {user.role == 'Applicant' ?  */}
             <Box className='apply-button'>
               {console.log('oid', id?.id, 'userID', user?.id)}
-              <Button onClick={handleButtonJobOfferApi(id?.id, user?.id)}>Ứng tuyển</Button>
+              <Button onClick={
+                () => {
+                  jobOfferApi.getApplyJO(id?.id, user?.id)
+                  nav('/jobApplyManage');
+                }
+              }>Ứng tuyển</Button>
             </Box>
             {/* : */}
             {/* <h1></h1>} */}
