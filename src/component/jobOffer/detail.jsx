@@ -29,7 +29,8 @@ function Detail() {
   console.log(loading)
   const handleButtonJobOfferApi = (oID, jAID) => {
     jobOfferApi.getApplyJO(oID, jAID)
-    nav('/jobApplyManage');
+
+    // nav('/jobApplyManage');
   }
 
   return (
