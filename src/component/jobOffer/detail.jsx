@@ -106,7 +106,7 @@ function Detail() {
           </Stack>
 
           <Stack className='comment-detail'> {/*=================div detail phần comment==================*/}
-            <p>comment div - chưa có làm qq j hết</p>
+            {/* <p>comment div - chưa có làm qq j hết</p> */}
           </Stack>
 
         </Stack>

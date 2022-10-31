@@ -5,11 +5,12 @@ import { Link, useParams } from 'react-router-dom';
 import businessApi from '../../api/businessApi';
 //import Businessjob from './component/BusinessJob';
 import TabPanel from '../../component/business/component/TabPanel';
+import ListApplyApplicant from './listApplyApplicant';
 //import "./style.scss";
 
 function ApplicantManagement() {
     // const id = useParams();
-    const id = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
+    const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
     const [repo, setRepo] = useState({});
     const [loading, setLoading] = useState(false);
     const [rating, setRating] = useState(2);
@@ -46,6 +47,7 @@ function ApplicantManagement() {
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                                     Danh sách các đơn ứng tuyển:
                                 </Typography>
+                                <ListApplyApplicant id={user?.id} index={0} />
                             </Box>
                         </TabPanel>
                         <TabPanel value={value} index={1}>

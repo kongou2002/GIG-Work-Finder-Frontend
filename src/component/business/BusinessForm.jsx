@@ -10,6 +10,10 @@ const provivince = ["Thành phố Cần Thơ", "Thành phố Đà Nẵng", "Thà
 
 function BusinessForm() {
     /*===============================logic=============================== */
+    const delay = ms => new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
+
     const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
     const [repo, setRepo] = useState({})
     const param = useParams()
@@ -39,6 +43,7 @@ function BusinessForm() {
         const fetchBusiness = async () => {
             const jobList = await businessApi.getID(param.id);
             setRepo(jobList);
+            //await delay(10000); ========================================================== code delay
             setLoading(false)
         }
         fetchBusiness();
@@ -129,6 +134,7 @@ function BusinessForm() {
         }
     }
     console.log(city)
+
     return (
         <Container>
             {loading == false ?
@@ -267,7 +273,7 @@ function BusinessForm() {
                                     </div>
                                 </div>
                                 <div className='add-business-button'>
-                                    <Button type='submit' onClick={handleUpdate}>Thêm</Button>
+                                    <Button type='submit' onClick={handleUpdate}>Cập nhật</Button>
                                 </div>
                             </Box>
                     } </Box> :

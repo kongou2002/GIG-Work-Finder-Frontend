@@ -47,6 +47,12 @@
     justify-content: center;
 }
 
+.add-business-button:hover {
+    &>Button {
+        background-color: rgb(5, 158, 5) !important;
+    }
+}
+
 .test-align {
     margin-left: 10%;
 }

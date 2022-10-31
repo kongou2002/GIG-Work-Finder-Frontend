@@ -48,10 +48,10 @@ function Userbusiness(props) {
                                 <Box className='button-bus-detail-02'>
                                     <Button className='detail-button-02' variant='contained' ><Link to={`/detail/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
                                     {data.status == 0 &&
-                                        <Button className='delete-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Bài viết đã xóa / hết hạn</Link></Button>
+                                        <Button className='delete-button-02' variant='contained' >Bài viết đã xóa / hết hạn</Button>
                                     }
                                     {data.status == 1 &&
-                                        <Button className='update-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Bài viết đang đăng tuyển</Link></Button>
+                                        <Button className='update-button-02' variant='contained' >Bài viết đang đăng tuyển</Button>
                                     }
                                 </Box>}
                             {user?.index == 1 &&
