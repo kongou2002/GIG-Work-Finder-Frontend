@@ -77,7 +77,7 @@ function Detail() {
             {/* {user.role == 'Applicant' ?  */}
             <Box className='apply-button'>
               {console.log('oid', id?.id, 'userID', user?.id)}
-              <Button onClick={handleButtonJobOfferApi(id?.id, 2)}>Ứng tuyển</Button>
+              <Button onClick={handleButtonJobOfferApi(id?.id, user?.id)}>Ứng tuyển</Button>
             </Box>
             {/* : */}
             {/* <h1></h1>} */}
