@@ -20,6 +20,14 @@ import UserUpdatePage from '../src/pages/user/UserUpdatePage';
 import CreateJO from './component/jobOffer/component/CreateJO';
 import ViewOtherProfile from './pages/user/ViewOtherProfile';
 import OfferJobForApplicant from './pages/recruiterManage/offerJobForApplicant';
+//Footer Page ========================
+import AboutGigworker from './pages/footerPage/aboutGigworker';
+import QandA from './pages/footerPage/QandA';
+import Contact from './pages/footerPage/contact';
+import Security from './pages/footerPage/security';
+import Activity from './pages/footerPage/activity';
+import Report from './pages/footerPage/report';
+import Term from './pages/footerPage/terms';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -79,6 +87,15 @@ function App() {
         {/* <Route path='/recruiter/:id' element={<Recruiter />} /> */}
         <Route path='/createjob' element={<CreateJO />} />
         <Route path='/userProfile' element={<UserUpdatePage />} />
+
+        {/* Footer pages =============================*/}
+        <Route path='/about' element={<AboutGigworker />} />
+        <Route path='/Q&A' element={<QandA />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/security' element={<Security />} />
+        <Route path='/activity' element={<Activity />} />
+        <Route path='/report' element={<Report />} />
+        <Route path='/terms' element={<Term />} />
       </Routes>
       <Footer />
     </div>

@@ -10,19 +10,51 @@ function footer(props) {
                 <Box className='about-us'>
                     <h3>About Us</h3>
                     <ul>
-                        <li>Trang chủ</li>
-                        <li>Về GIG-Worker</li>
-                        <li>Câu hỏi thường gặp</li>
-                        <li>Liên hệ</li>
+                        <li><Link className='headContent-footer'
+                            tag={Link}
+                            to="/"
+                            exact
+                            activeClassName="router-link-exact-active">Trang chủ</Link></li>
+                        <li><Link className='headContent-footer'
+                            tag={Link}
+                            to="/about"
+                            exact
+                            activeClassName="router-link-exact-active">Về GIG-Worker</Link></li>
+                        <li><Link className='headContent-footer'
+                            tag={Link}
+                            to="/Q&A"
+                            exact
+                            activeClassName="router-link-exact-active">Câu hỏi thường gặp</Link></li>
+                        <li><Link className='headContent-footer'
+                            tag={Link}
+                            to="/contact"
+                            exact
+                            activeClassName="router-link-exact-active">Liên hệ</Link></li>
                     </ul>
                 </Box>
                 <Box className='condition'>
                     <h3>Điều khoản chung</h3>
                     <ul>
-                        <li>Quy định bảo mật</li>
-                        <li>Quy chế hoạt động</li>
-                        <li>Giải quyết khiếu nại</li>
-                        <li>Thỏa thuận sử dụng</li>
+                        <li><Link className='headContent-footer'
+                            tag={Link}
+                            to="/security"
+                            exact
+                            activeClassName="router-link-exact-active">Quy định bảo mật</Link></li>
+                        <li><Link className='headContent-footer'
+                            tag={Link}
+                            to="/activity"
+                            exact
+                            activeClassName="router-link-exact-active">Quy chế hoạt động</Link></li>
+                        <li><Link className='headContent-footer'
+                            tag={Link}
+                            to="/report"
+                            exact
+                            activeClassName="router-link-exact-active">Giải quyết khiếu nại</Link></li>
+                        <li><Link className='headContent-footer'
+                            tag={Link}
+                            to="/terms"
+                            exact
+                            activeClassName="router-link-exact-active">Thỏa thuận sử dụng</Link></li>
                     </ul>
                 </Box>
                 <Box className='HR'>
