@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import jobApplicantApi from '../../api/jobApplicantApi';
 //import "./styleUserJO.scss";
-function Userbusiness(props) {
+function Userjobapply(props) {
     const user = (props)
     const [loading, setLoading] = useState(false)
     const [repo, setRepo] = useState()
@@ -33,16 +33,17 @@ function Userbusiness(props) {
     return (
         <Container>
             <Stack>
-                <Box className='box-job-are'>
+                {/* <Box className='box-job-are'>
                     {repo?.map(data => (
-                        <Box className='box-job-of-user-02'>
-                            <h1>Hello</h1>
-                        </Box>
+                        
                     ))}
+                </Box> */}
+                <Box className='box-job-of-user-02'>
+                    <h1>Hello</h1>
                 </Box>
             </Stack>
         </Container>
     )
 }
 
-export default Userbusiness
+export default Userjobapply

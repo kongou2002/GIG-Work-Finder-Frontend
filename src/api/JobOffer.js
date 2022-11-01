@@ -30,7 +30,7 @@ const jobOfferApi = {
         return axiosClient.patch(url, data);
     },
     remove(id) {
-        const url = `/jobOffer/${id}`;
+        const url = `/JobOffer/DeleteJO/${id}`;
         return axiosClient.delete(url);
     },
 
@@ -47,7 +47,7 @@ const jobOfferApi = {
         return axiosClient.get(url);
     },
     getApplyJO(oid, jaid) {
-        const url = `/JobOffer/ApplyJO//${oid}/${jaid}`;
+        const url = `/JobOffer/ApplyJO/${oid}/${jaid}`;
         return axiosClient.get(url);
     }
 };

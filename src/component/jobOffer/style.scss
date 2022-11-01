@@ -108,3 +108,9 @@
     }
 
 }
+
+.film-button:hover {
+    &>button {
+        background-color: rgb(5, 158, 5) !important;
+    }
+}

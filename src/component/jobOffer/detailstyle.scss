@@ -55,7 +55,7 @@
 .detail-business-button {
     margin-left: 50px;
 
-    &>button {
+    &>Button {
         background-color: #00B800;
         color: white !important;
         margin-left: 10px;
@@ -64,6 +64,12 @@
         border-radius: 5px;
     }
 
+}
+
+.detail-business-button:hover {
+    &>Button {
+        background-color: rgb(5, 158, 5) !important;
+    }
 }
 
 .body-detail {
@@ -106,6 +112,12 @@
         height: 40px;
         width: 400px;
         border-radius: 10px;
+    }
+}
+
+.apply-button:hover {
+    &>button {
+        background-color: rgb(5, 158, 5) !important;
     }
 }
 

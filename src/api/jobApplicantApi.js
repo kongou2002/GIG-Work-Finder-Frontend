@@ -5,5 +5,9 @@ const jobApplicantApi = {
         const url = '/JobApp/ALL'
         return axiosClient.get(url);
     },
+    getRID(rid) {
+        const url = `/JobApp/RID/${rid}`
+        return axiosClient.get(url);
+    }
 };
 export default jobApplicantApi;

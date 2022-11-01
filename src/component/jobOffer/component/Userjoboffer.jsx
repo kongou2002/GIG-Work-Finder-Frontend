@@ -10,6 +10,7 @@ function Userbusiness(props) {
     const user = (props)
     const [loading, setLoading] = useState(false)
     const [repo, setRepo] = useState()
+    const [fectch, setFectch] = useState(false);
     useEffect(() => {
         setLoading(true)
         const fetchJobOffer = async () => {
@@ -27,7 +28,7 @@ function Userbusiness(props) {
             setLoading(false)
         }
         fetchJobOffer();
-    }, []);
+    }, [fectch]);
     console.log(repo)
     return (
         <Container>
@@ -48,18 +49,27 @@ function Userbusiness(props) {
                                 <Box className='button-bus-detail-02'>
                                     <Button className='detail-button-02' variant='contained' ><Link to={`/detail/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
                                     {data.status == 0 &&
-                                        <Button className='delete-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Bài viết đã xóa / hết hạn</Link></Button>
+                                        <Button className='delete-button-02' variant='contained' >Bài viết đã xóa / hết hạn</Button>
                                     }
                                     {data.status == 1 &&
-                                        <Button className='update-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Bài viết đang đăng tuyển</Link></Button>
+                                        <Button className='update-button-02' variant='contained' >Bài viết đang đăng tuyển</Button>
                                     }
                                 </Box>}
+                            {console.log("data: ", data)}
                             {user?.index == 1 &&
                                 <Box className='button-bus-detail-02'>
                                     <Button className='detail-button-02' variant='contained' ><Link to={`/detail/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
                                     <Button className='detail-button-02' variant='contained' ><Link to={`/findJobApplicant/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Đề xuất</Link></Button>
                                     <Button className='update-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật</Link></Button>
-                                    <Button className='delete-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Xóa bài viết</Link></Button>
+                                    <Button className='delete-button-02' variant='contained'
+                                        onClick={
+                                            () => {
+                                                jobOfferApi.remove(data?.offerID);
+                                                if (fectch == false) setFectch(true); else setFectch(false);
+                                            }
+                                        }>
+                                        Xóa bài viết
+                                    </Button>
                                 </Box>}
                             {user?.index == 2 &&
                                 <Box className='button-bus-detail-02'>

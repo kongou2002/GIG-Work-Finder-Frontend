@@ -35,13 +35,11 @@ function Userbusiness(props) {
                                 <h1>Tên công ty: {data.businessName}</h1>
                                 <p>Địa chỉ: {data.address}, {data?.location?.city}, {data?.location?.province}</p>
                             </Box>
-                            <Box>
-                                <Button variant='contained'><Link to={`/business/${data.businessID}`} >Xem công ty</Link></Button>
+                            <Box className='button-bus-detail'>
+                                <Button className='button-bus-detail-011' variant='contained'><Link style={{ textDecoration: 'none', color: 'white' }} to={`/business/${data.businessID}`} >Xem công ty</Link></Button>
                                 {param?.id == user?.id &&
-                                    <Button variant='contained'><Link to={`/updatebusiness/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật công ty</Link></Button>
+                                    <Button className='button-bus-detail-022' variant='contained'><Link to={`/updatebusiness/${data.businessID}`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật công ty</Link></Button>
                                 }
-                                <Button variant='contained'><Link to={`/updatebusiness/${data.businessID}`}>Chỉnh sửa công ty</Link></Button>
-                                <Button variant='contained'>Delete</Button>
                             </Box>
                         </Box>
                     ))}

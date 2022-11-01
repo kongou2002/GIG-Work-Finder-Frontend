@@ -15,7 +15,24 @@
     margin-left: 5%;
     margin-right: 5%;
     padding-top: 10px;
-    width: 490px;
+    width: 390px;
+
+    &>h1 {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    &>p {
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+
+.info-bus-03 {
+    margin-left: 5%;
+    margin-right: 2%;
+    padding-top: 10px;
+    width: 300px;
 
     &>h1 {
         font-size: 22px;

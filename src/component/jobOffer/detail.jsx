@@ -78,7 +78,14 @@ function Detail() {
             {/* {user.role == 'Applicant' ?  */}
             <Box className='apply-button'>
               {console.log('oid', id?.id, 'userID', user?.id)}
-              <Button onClick={handleButtonJobOfferApi(id?.id, 2)}>Ứng tuyển</Button>
+              <Button onClick={
+                () => {
+                  jobOfferApi.getApplyJO(id?.id, user?.id)
+                  nav('/jobApplyManage');
+                }
+              }>
+                Ứng tuyển
+              </Button>
             </Box>
             {/* : */}
             {/* <h1></h1>} */}
@@ -101,7 +108,7 @@ function Detail() {
           </Stack>
 
           <Stack className='comment-detail'> {/*=================div detail phần comment==================*/}
-            <p>comment div - chưa có làm qq j hết</p>
+            {/* <p>comment div - chưa có làm qq j hết</p> */}
           </Stack>
 
         </Stack>
