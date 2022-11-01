@@ -15,14 +15,15 @@ function ViewOtherProfile() {
     const profileAccount = useParams();
     console.log(profileAccount);
     const nav = useNavigate();
-    const [repo, setRepo] = useState({});
+    const anonymousAvatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYGs0HC9ILFat0To_wWI0wIQfGxtmNmGggdw&usqp=CAU";
+    const [repo, setRepo] = useState({
+    });
     const [loading, setLoading] = useState(false);
     const [rating, setRating] = useState(2);
     const [value, setValue] = useState(0);
     const [user, setUser] = useState({
         id: profileAccount.id,
         role: profileAccount.role,
-        picUrl: `https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png`
     });
 
     const [role] = useState(profileAccount?.role);
@@ -45,8 +46,8 @@ function ViewOtherProfile() {
         }
         fetchJobOffer();
     }, [role]);
-    console.log('User');
-    console.log(user);
+    console.log('repo: ');
+    console.log(repo);
     console.log(role);
     const handleYearsOld = () => {
 
@@ -72,7 +73,7 @@ function ViewOtherProfile() {
                             <CardMedia
                                 component="img"
                                 sx={{ width: 151 }}
-                                image={user?.picUrl}
+                                image={repo?.avatar == null ? anonymousAvatar : repo?.avatar}
                                 alt="Live from space album cover"
                             />
                         </Box>
