@@ -7,6 +7,7 @@ import RecruiterHomePage from './RecruiterHomePage';
 function HomeBaseOnRole() {
     const role = localStorage.getItem("role");
     const x = localStorage.getItem('isCreateNew');
+    console.log("x", x)
     const nav = useNavigate();
     useEffect(() => {
         if (x == true) nav('/userProfile');
