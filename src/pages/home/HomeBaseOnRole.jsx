@@ -11,6 +11,7 @@ function HomeBaseOnRole() {
     useEffect(() => {
         if (x == true) nav('/userProfile');
     }, [x])
+
     if (role == null)
         return <GuestHomePage />
     if (role == "Recruiter")

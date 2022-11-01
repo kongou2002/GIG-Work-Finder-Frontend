@@ -43,7 +43,6 @@ function App() {
   //Login using firebase
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
-      localStorage.setItem('isCreateNew', true)
       if (!user) {
         console.log("This isn't user");
         return;
@@ -58,6 +57,7 @@ function App() {
       if (localStorage.getItem('role') == null) {
         localStorage.setItem('role', "Applicant");
       }
+
       const fwAppUserData = await authorizationApi.getToken(token, localStorage.getItem('role'));
 
       if (fwAppUserData.createNew == true) localStorage.setItem('isCreateNew', true);

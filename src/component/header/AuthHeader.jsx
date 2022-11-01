@@ -21,6 +21,7 @@ export default function AuthHeader() {
     console.log(role);
     const isAuthenticated = localStorage.getItem("isAuthenticated") == null ? false : localStorage.getItem("isAuthenticated");
     const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
+
     console.log("User: ");
     console.log(user);
     const toggle = () => setIsOpen(!isOpen);
@@ -108,7 +109,7 @@ export default function AuthHeader() {
                                         <Link
                                             className='headContent'
                                             tag={Link}
-                                            to="/support"
+                                            to="/contact"
                                             exact
                                             activeClassName="router-link-exact-active"
                                         >

@@ -10,9 +10,7 @@ function Userbusiness(props) {
     const user = (props)
     const [loading, setLoading] = useState(false)
     const [repo, setRepo] = useState()
-    const [fectch, setFectch] = useState(false);
     useEffect(() => {
-        setLoading(true)
         const fetchJobOffer = async () => {
             var jobList;
             if (user?.index == 1) {
@@ -25,10 +23,9 @@ function Userbusiness(props) {
                 jobList = await jobOfferApi.getAllJOUnActive(user?.id);
             }
             setRepo(jobList);
-            setLoading(false)
         }
         fetchJobOffer();
-    }, [fectch]);
+    }, [loading]);
     console.log(repo)
     return (
         <Container>
@@ -63,9 +60,10 @@ function Userbusiness(props) {
                                     <Button className='update-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật</Link></Button>
                                     <Button className='delete-button-02' variant='contained'
                                         onClick={
-                                            () => {
-                                                jobOfferApi.remove(data?.offerID);
-                                                if (fectch == false) setFectch(true); else setFectch(false);
+                                            async () => {
+                                                await setLoading(true)
+                                                await jobOfferApi.remove(data?.offerID);
+                                                await setLoading(false)
                                             }
                                         }>
                                         Xóa bài viết
