@@ -55,6 +55,7 @@ function ApplicantManagement() {
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                                     Danh sách các nhân sự đang làm việc:
                                 </Typography>
+                                <ListApplyApplicant id={user?.id} index={1} />
                             </Box>
                         </TabPanel>
                         <TabPanel value={value} index={2}>
@@ -62,6 +63,7 @@ function ApplicantManagement() {
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                                     Danh sách các nhân sự đã hoàn thành công việc:
                                 </Typography>
+                                <ListApplyApplicant id={user?.id} index={2} />
                             </Box>
                         </TabPanel>
                     </Stack>
