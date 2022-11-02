@@ -13,5 +13,9 @@ const businessApi = {
         const url = `/Business/AID/${id}`
         return axiosClient.get(url);
     },
+    getAll() {
+        const url = `/Business/ALL`
+        return axiosClient.get(url);
+    },
 };
 export default businessApi
