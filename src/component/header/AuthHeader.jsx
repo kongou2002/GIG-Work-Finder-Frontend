@@ -21,6 +21,7 @@ export default function AuthHeader() {
     console.log(role);
     const isAuthenticated = localStorage.getItem("isAuthenticated") == null ? false : localStorage.getItem("isAuthenticated");
     const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
+
     console.log("User: ");
     console.log(user);
     const toggle = () => setIsOpen(!isOpen);
@@ -81,7 +82,7 @@ export default function AuthHeader() {
                                         <Link
                                             className='headContent'
                                             tag={Link}
-                                            to="/"
+                                            to="/alljob"
                                             exact
                                             activeClassName="router-link-exact-active"
                                         >
@@ -90,7 +91,7 @@ export default function AuthHeader() {
                                         <Link
                                             className='headContent'
                                             tag={Link}
-                                            to="/company"
+                                            to="/allBusiness"
                                             exact
                                             activeClassName="router-link-exact-active"
                                         >
@@ -99,16 +100,16 @@ export default function AuthHeader() {
                                         <Link
                                             className='headContent'
                                             tag={Link}
-                                            to="/news"
+                                            to="/about"
                                             exact
                                             activeClassName="router-link-exact-active"
                                         >
-                                            Tin Tức
+                                            Giới Thiệu
                                         </Link>
                                         <Link
                                             className='headContent'
                                             tag={Link}
-                                            to="/support"
+                                            to="/contact"
                                             exact
                                             activeClassName="router-link-exact-active"
                                         >
@@ -165,7 +166,7 @@ export default function AuthHeader() {
                                                         Quản lý công việc
                                                     </Link>
                                                 </div>
-                                                <div>
+                                                {/* <div>
                                                     <Link
                                                         className='headContent'
                                                         tag={Link}
@@ -175,7 +176,7 @@ export default function AuthHeader() {
                                                     >
                                                         Thời khóa biểu
                                                     </Link>
-                                                </div>
+                                                </div> */}
                                             </div>
 
                                         )}
@@ -231,8 +232,8 @@ export default function AuthHeader() {
                                     <MenuItem>Thông tin cá nhân</MenuItem>
                                 </Link>
 
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleChangeRole}>Change to {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
+                                <MenuItem onClick={handleClose}>Thông báo</MenuItem>
+                                <MenuItem onClick={handleChangeRole}>Chuyển quyền sang {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
                                 <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
                             </Menu>
                         </div>

@@ -28,6 +28,9 @@ import Security from './pages/footerPage/security';
 import Activity from './pages/footerPage/activity';
 import Report from './pages/footerPage/report';
 import Term from './pages/footerPage/terms';
+//Header Page =========================
+import AllJob from './pages/headerPage/allJob';
+import AllBusiness from './pages/headerPage/allBusiness';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -43,7 +46,6 @@ function App() {
   //Login using firebase
   useEffect(() => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged(async (user) => {
-      localStorage.setItem('isCreateNew', true)
       if (!user) {
         console.log("This isn't user");
         return;
@@ -58,6 +60,7 @@ function App() {
       if (localStorage.getItem('role') == null) {
         localStorage.setItem('role', "Applicant");
       }
+
       const fwAppUserData = await authorizationApi.getToken(token, localStorage.getItem('role'));
 
       if (fwAppUserData.createNew == true) localStorage.setItem('isCreateNew', true);
@@ -96,6 +99,10 @@ function App() {
         <Route path='/activity' element={<Activity />} />
         <Route path='/report' element={<Report />} />
         <Route path='/terms' element={<Term />} />
+        {/* Header pages =============================*/}
+        <Route path='/alljob' element={<AllJob />} />
+        <Route path='/allBusiness' element={<AllBusiness />} />
+
       </Routes>
       <Footer />
     </div>
