@@ -17,21 +17,23 @@ function Userjobapply(props) {
         const fetchJobOffer = async () => {
             var jobList;
             if (user?.index == 0) {
-                jobList = await jobOfferApi.getAppIDUnValid(6);
+                jobList = await jobApplicantApi.getAppIDUnValid(user?.id);
+
             }
             if (user?.index == 1) {
-                jobList = await jobApplicantApi.getAppIDUnValid(6);
+                jobList = await jobOfferApi.getAppIDUnValid(user?.id);
+
             }
             if (user?.index == 2) {
                 //jobList = await jobApplicantApi.getAllJOUnActive(user?.id);
-                jobList = await jobApplicantApi.getAppIDValid(6);
+                jobList = await jobApplicantApi.getAppIDValid(user?.id);
             }
             if (user?.index == 3) {
                 //jobList = await jobApplicantApi.getAllJOUnActive(user?.id);
-                jobList = await jobApplicantApi.getAppIDFinish(6);
+                jobList = await jobApplicantApi.getAppIDFinish(user?.id);
             }
             if (user?.index == 4) {
-                jobList = await jobApplicantApi.getAppIDCancel(6);
+                jobList = await jobApplicantApi.getAppIDCancel(user?.id);
             }
 
             setRepo(jobList);
@@ -52,7 +54,7 @@ function Userjobapply(props) {
                             <Box className='info-bus-02'>
                                 <h1 style={{ color: '#00b000' }}>{data?.jobName}</h1>
                                 <p>Tên cửa hàng: {data?.buName}</p>
-                                <p>Địa chỉ: {data?.joaddress != undefined ? data?.joaddress : data?.buAddress}</p>
+                                <p>Địa chỉ: {data?.joaddress != '<null>' ? data?.joaddress : data?.buAddress}</p>
                                 {/* <p style={{ color: 'blue' }}>Tình trạng tuyển: {data?.numOfRecruit}</p> */}
                             </Box>
                             <Box className='button-bus-detail-02'>
@@ -97,7 +99,7 @@ function Userjobapply(props) {
                                             Xem công ty
                                         </Link>
                                     </Button>
-                                    <Button className='delete-button-02' variant='contained' style={{ textDecoration: 'none', color: 'white' }} >Đã bị từ chối</Button>
+                                    <Button className='update-button-02' variant='contained' style={{ textDecoration: 'none', color: 'white' }} >Đã hoàn thành</Button>
 
                                 </Box>}
                             {user?.index == 4 &&
@@ -114,7 +116,7 @@ function Userjobapply(props) {
                     ))}
                 </Box>
             </Stack>
-        </Container>
+        </Container >
     )
 }
 

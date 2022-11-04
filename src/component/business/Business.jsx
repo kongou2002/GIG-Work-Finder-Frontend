@@ -26,7 +26,7 @@ function Business(props) {
   useEffect(() => {
     setLoading(true)
     const fetchBusiness = async () => {
-      const jobList = await businessApi.getID(param?.businessID);
+      const jobList = await businessApi.getID(param?.businessID ? param?.businessID : id?.id);
       setRepo(jobList);
       setLoading(false)
     }
