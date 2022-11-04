@@ -31,7 +31,7 @@ function JobApplyManagement() {
                         <TabPanel value={value} index={0}>
                             <Box className='intro-box'>
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
-                                    Danh sách các ông việc đang chờ ứng tuyển:
+                                    Danh sách các công việc đang chờ duyệt ứng tuyển:
                                 </Typography>
                                 <Userjobapply id={user?.id} index={0} />
                             </Box>
