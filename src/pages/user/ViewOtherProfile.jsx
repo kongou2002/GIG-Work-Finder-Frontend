@@ -88,7 +88,8 @@ function ViewOtherProfile() {
                                 <p style={{ fontStyle: 'italic', color: 'gray' }}> Recruiter
                                 </p>)}
 
-                            <Rating name="read-only" value={rating} readOnly />
+                            {role == 'Recruiter' && (
+                                <Rating name="read-only" value={repo?.averageStars} readOnly precision={0.5} />)}
                         </Box>
                         <Box className='business-button'>
                             {/* <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button> */}
