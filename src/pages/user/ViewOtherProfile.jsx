@@ -81,10 +81,13 @@ function ViewOtherProfile() {
                             <h1>
                                 {repo?.firstName == undefined ? handleNullText : repo?.lastName + " " + repo?.firstName}
                             </h1>
-                            <p>Địa chỉ:
+                            {user?.role == 'Applicant' ? <p>Địa chỉ:
                                 {repo?.location?.city == undefined ? handleNullText
                                     : repo?.location?.province == undefined ? repo?.location?.city : repo?.location?.city + ", " + repo?.location?.province}
-                            </p>
+                            </p> : (
+                                <p style={{ fontStyle: 'italic', color: 'gray' }}> Recruiter
+                                </p>)}
+
                             <Rating name="read-only" value={rating} readOnly />
                         </Box>
                         <Box className='business-button'>

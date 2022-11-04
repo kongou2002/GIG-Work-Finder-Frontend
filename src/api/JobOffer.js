@@ -49,6 +49,19 @@ const jobOfferApi = {
     getApplyJO(oid, jaid) {
         const url = `/JobOffer/ApplyJO/${oid}/${jaid}`;
         return axiosClient.get(url);
-    }
+    },
+    getAppIDUnvalid(aid) {
+        const url = `/JobOffer/AppIDUnValid/${aid}`;
+        return axiosClient.get(url);
+    },
+    getAppIDValid(aid) {
+        const url = `/JobOffer/AppIDValid/${aid}`;
+        return axiosClient.get(url);
+    },
+    getAppIDFinish(aid) {
+        const url = `/JobOffer/AppIDFinish/${aid}`;
+        return axiosClient.get(url);
+    },
+
 };
 export default jobOfferApi;
