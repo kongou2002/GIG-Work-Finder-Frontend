@@ -81,14 +81,17 @@ function ViewOtherProfile() {
                             <h1>
                                 {repo?.firstName == undefined ? handleNullText : repo?.lastName + " " + repo?.firstName}
                             </h1>
-                            <p>Địa chỉ:
+                            {user?.role == 'Applicant' ? <p>Địa chỉ:
                                 {repo?.location?.city == undefined ? handleNullText
                                     : repo?.location?.province == undefined ? repo?.location?.city : repo?.location?.city + ", " + repo?.location?.province}
-                            </p>
+                            </p> : (
+                                <p style={{ fontStyle: 'italic', color: 'gray' }}> Recruiter
+                                </p>)}
+
                             <Rating name="read-only" value={rating} readOnly />
                         </Box>
                         <Box className='business-button'>
-                            <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
+                            {/* <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button> */}
                             <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }} onClick={() => { nav('*link here') }}>Liên hệ</Button>
 
 
@@ -98,7 +101,7 @@ function ViewOtherProfile() {
                     <Stack>
                         <Tabs value={value} onChange={handleTabs}>
                             <Tab label='Thông tin' />
-                            <Tab label='Đánh giá' />
+                            {/* <Tab label='Đánh giá' /> */}
                             {handleDashboard(role)}
                         </Tabs>
                         <TabPanel value={value} index={0}>
@@ -150,11 +153,12 @@ function ViewOtherProfile() {
                         </TabPanel>
                         <TabPanel value={value} index={1} className='box-job'>
                             {/* <Businessjob id={repo.businessID} className='box-job-info' /> */}
-                        </TabPanel>
-                        <TabPanel value={value} index={2} className='box-job'>
-                            {/* <Businessjob id={repo.businessID} className='box-job-info' /> */}
                             <Userbusiness id={user?.id} />
+
                         </TabPanel>
+                        {/* <TabPanel value={value} index={2} className='box-job'> */}
+                        {/* <Businessjob id={repo.businessID} className='box-job-info' /> */}
+                        {/* </TabPanel> */}
                     </Stack>
                 </Container >
             )

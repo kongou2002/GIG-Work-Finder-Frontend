@@ -18,13 +18,13 @@ function ListApplyApplicant(props) {
             var jobList;
 
             if (user?.index == 0) {
-                jobList = await jobApplicantApi.getRIDUnValid(2); // SỬAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                jobList = await jobApplicantApi.getRIDUnValid(user?.id); // SỬAAAAAAAAAAAAAAAAAAAAAAAAAAA
             }
             if (user?.index == 1) {
-                jobList = await jobApplicantApi.getRIDValid(2); // SỬAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                jobList = await jobApplicantApi.getRIDValid(user?.id); // SỬAAAAAAAAAAAAAAAAAAAAAAAAAAA
             }
             if (user?.index == 2) {
-                jobList = await jobApplicantApi.getRIDFinish(2); // SỬAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                jobList = await jobApplicantApi.getRIDFinish(user?.id); // SỬAAAAAAAAAAAAAAAAAAAAAAAAAAA
             }
             setRepo(jobList);
             //setLoading(false)

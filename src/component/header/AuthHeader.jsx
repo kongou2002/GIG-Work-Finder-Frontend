@@ -43,11 +43,6 @@ export default function AuthHeader() {
         Logout();
         nav('/');
     }
-    const handleButton = (event) => {
-        const eventRole = event.target.value;
-        localStorage.setItem("role", eventRole);
-        setRole(eventRole);
-    }
     const handleChangeRole = (event) => {
         const roleLocal = localStorage.getItem('role');
         localStorage.setItem('role', "Applicant" == roleLocal ? "Recruiter" : "Applicant");
@@ -188,15 +183,7 @@ export default function AuthHeader() {
                     {/* Account Authentication show below */}
                     {!isAuthenticated && (
                         <div className="login-gg-area" style={{ float: "right" }}>
-                            <div style={{ display: 'inline-block' }}>
-                                <form>
-                                    <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} checked style={{ color: "red" }} />
-                                    <label for="applicant" style={{ paddingRight: '5px' }}>Applicant</label>
-                                    <input name="role" id="recruiter" type="radio" onClick={handleButton} value="Recruiter" />
-                                    <label for="recruiter">Recruiter</label>
-                                </form>
-                            </div>
-                            <Login />
+                            <Button onClick={() => { nav('/Login') }}>Đăng nhập/Đặng ký</Button>
                         </div>
                     )}
 
@@ -232,7 +219,7 @@ export default function AuthHeader() {
                                     <MenuItem>Thông tin cá nhân</MenuItem>
                                 </Link>
 
-                                <MenuItem onClick={handleClose}>Thông báo</MenuItem>
+                                {/* <MenuItem onClick={handleClose}>Thông báo</MenuItem> */}
                                 <MenuItem onClick={handleChangeRole}>Chuyển quyền sang {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
                                 <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
                             </Menu>

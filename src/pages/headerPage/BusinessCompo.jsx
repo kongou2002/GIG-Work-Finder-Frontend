@@ -30,7 +30,7 @@ function AllBusiness(props) {
                                 <img src={data?.businessLogo} style={{ width: '100px', height: '100px' }} />
                             </Box>
                             <Box className='info-bus'>
-                                <h1>Tên công ty: {data?.businessName}</h1>
+                                <h1>{data?.businessName}</h1>
                                 <p>Địa chỉ: {data?.address}, {data?.location?.city}, {data?.location?.province}</p>
                             </Box>
                             <Box className='button-bus-detail'>

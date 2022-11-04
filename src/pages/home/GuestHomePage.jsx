@@ -1,7 +1,9 @@
 import { Button } from '@mui/material';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Member from '../../asset/image/memberbanner.jpg';
 import Tick from '../../asset/image/tick.png';
+import Login from '../../component/authentication/login';
 import JobOffer from '../../component/jobOffer/joboffer';
 import Search from '../../component/search/Search';
 import "./style.scss";
@@ -9,6 +11,7 @@ import "./style.scss";
 
 function GuestHomePage() {
   const image = [/* them url hinh anh vao day */];
+  const nav = useNavigate();
   return (
     <div className='container-home-page'>
       <div className='search-zone'>
@@ -69,13 +72,13 @@ function GuestHomePage() {
           </div>
           <div className='recruiter-button-box'>
             <div className='recruiter-button'>
-              <Button>Liên hệ để biết thêm chi tiết</Button>
+              <Button onClick={() => { nav("/contact") }}>Liên hệ để biết thêm chi tiết</Button>
             </div>
             <div className='recruiter-button'>
               <Button>Tham gia vào cộng đồng</Button>
             </div>
             <div className='recruiter-button'>
-              <Button>Tìm hiểu thêm về GIG-Worker</Button>
+              <Button onClick={() => { nav("/about") }}>Tìm hiểu thêm về GIG-Worker</Button>
             </div>
           </div>
         </div>

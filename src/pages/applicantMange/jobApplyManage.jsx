@@ -24,12 +24,14 @@ function JobApplyManagement() {
                         <Tabs value={value} onChange={handleTabs}>
                             <Tab label='Công việc đang chờ ứng tuyển' />
                             <Tab label='Công việc được đề xuất' />
+                            <Tab label='Công việc đang làm' />
                             <Tab label='Công việc đã hoàn thành' />
+                            <Tab label='Công việc bị từ chối' />
                         </Tabs>
                         <TabPanel value={value} index={0}>
                             <Box className='intro-box'>
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
-                                    Danh sách các ông việc đang chờ ứng tuyển:
+                                    Danh sách các công việc đang chờ duyệt ứng tuyển:
                                 </Typography>
                                 <Userjobapply id={user?.id} index={0} />
                             </Box>
@@ -39,8 +41,7 @@ function JobApplyManagement() {
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                                     Danh sách các công việc được đề xuất:
                                 </Typography>
-                                <h1><Link to="/createjob" style={{ textDecoration: 'none', color: '#00b000' }} >+ Thêm bài viết</Link></h1>
-                                {/* <Userjoboffer id={user?.id} index={1} /> */}
+                                <Userjobapply id={user?.id} index={1} />
                             </Box>
                         </TabPanel>
                         <TabPanel value={value} index={2}>
@@ -48,7 +49,23 @@ function JobApplyManagement() {
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                                     Danh sách các công việc đang làm:
                                 </Typography>
-                                {/* <Userjoboffer id={user?.id} index={2} /> */}
+                                {/* <Userjobapply id={user?.id} index={2} /> */}
+                            </Box>
+                        </TabPanel>
+                        <TabPanel value={value} index={3}>
+                            <Box className='intro-box'>
+                                <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
+                                    Danh sách các công việc đã hoàn thành:
+                                </Typography>
+                                {/* <Userjobapply id={user?.id} index={2} /> */}
+                            </Box>
+                        </TabPanel>
+                        <TabPanel value={value} index={4}>
+                            <Box className='intro-box'>
+                                <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
+                                    Danh sách các công việc bị từ chối:
+                                </Typography>
+                                <Userjobapply id={user?.id} index={4} />
                             </Box>
                         </TabPanel>
                     </Stack>
