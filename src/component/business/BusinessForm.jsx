@@ -15,7 +15,7 @@ function BusinessForm() {
     const [repo, setRepo] = useState({})
     const param = useParams()
     const [data, setData] = useState({
-        accountID: user?.id,
+
     })
     const [city, setCity] = useState([])
     const [loading, setLoading] = useState(true)
@@ -23,8 +23,7 @@ function BusinessForm() {
     const [file, setFile] = useState()
     const [image, setImage] = useState(null)
     const [updatedata, setUpdatedata] = useState({
-        businessID: parseInt(param.id),
-        accountID: user?.id,
+
     })
     //upload,view,get url image to cloudinary and post to backend
     const uploadImage = async (e) => {
@@ -42,8 +41,8 @@ function BusinessForm() {
         setLoading(false)
         setImage(file.secure_url);
         setFile(file.secure_url)
-        setData({ ...data, businessLogo: file.secure_url })
-        setUpdatedata({ ...updatedata, businessLogo: file.secure_url })
+        setData({ ...data, accountID: user?.id, businessLogo: file.secure_url })
+        setUpdatedata({ ...updatedata, accountID: user?.id, businessLogo: file.secure_url })
     }
     //onselect change fetch from backend
     const handleChange = (e) => {
@@ -52,8 +51,7 @@ function BusinessForm() {
             try {
                 const response = await locationApi.getProvince(e.target.value)
                 setCity(response)
-                setData({ ...data, province: select })
-                setUpdatedata({ ...updatedata, province: select })
+                setUpdatedata({ ...updatedata, province: e.target.value })
             } catch (error) {
                 console.log(error)
             }
@@ -88,13 +86,14 @@ function BusinessForm() {
     /*===============================Form data=============================== */
     const formData = new FormData();
     let details = {
-        accountID: data.accountID,
+        accountID: user?.id,
         businessName: data.businessName,
         address: data.address,
         province: data.province,
         locationID: data.locationID,
         description: data.description,
-        benefit: data.benefit
+        benefit: data.benefit,
+        businessLogo: data.businessLogo,
     }
     for (let key in details) {
         formData.append(key, details[key]);
@@ -130,8 +129,8 @@ function BusinessForm() {
         console.log(updatedata)
         const formData = new FormData();
         let details = {
-            accountID: updatedata.accountID,
-            businessID: updatedata.businessID,
+            businessID: parseInt(param.id),
+            accountID: user?.id,
             businessName: updatedata.businessName,
             address: updatedata.address,
             province: updatedata.province,
@@ -165,10 +164,10 @@ function BusinessForm() {
 
     return (
         <Container>
-            {loading == false ?
+            {loading === false ?
                 <Box>
                     {
-                        param.id == undefined ?
+                        param.id === undefined ?
                             <Box
                                 className='test-align'
                                 component={'form'}
@@ -201,7 +200,7 @@ function BusinessForm() {
                                             </MenuItem>
                                         ))}
                                     </TextField>
-                                    {select == undefined ? <div></div> :
+                                    {select == undefined ? <div>Hãy chọn tỉnh trước</div> :
                                         <div>
                                             <TextField
                                                 select
@@ -275,7 +274,7 @@ function BusinessForm() {
                                             </MenuItem>
                                         ))}
                                     </TextField>
-                                    {select == undefined ? <div></div> :
+                                    {select == undefined ? <div>Hãy chọn tỉnh trước</div> :
                                         <div>
                                             <TextField
                                                 select
