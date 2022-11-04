@@ -18,7 +18,7 @@ function BusinessForm() {
         accountID: user?.id,
     })
     const [city, setCity] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [select, setSelect] = useState()
     const [file, setFile] = useState()
     const [image, setImage] = useState(null)
@@ -60,26 +60,31 @@ function BusinessForm() {
         }
         fetchCity()
     }
-
-    //fetch api from backend when parm.id is not undefined
+    //onchange input
+    const inputhandler = (e) => {
+        const { name, value } = e.target
+        setData({ ...data, [name]: value })
+        setUpdatedata({ ...updatedata, [name]: value })
+    }
+    //fetch api from backend when parm.id is not undefined when finish set loading
     useEffect(() => {
         const fetchRepo = async () => {
             try {
-                const response = await businessApi.get(param.id)
+                const response = await businessApi.getID(param.id)
                 setRepo(response)
-                setData(response)
-                setUpdatedata(response)
-                setImage(response.businessLogo)
+                setLoading(false)
             } catch (error) {
                 console.log(error)
             }
         }
         fetchRepo()
     }, [param.id])
-    const inputhandler = (event) => {
-        setData({ ...data, accountID: user?.id, [event.target.name]: event.target.value })
-        setUpdatedata({ ...updatedata, accountID: user?.id, [event.target.name]: event.target.value })
-    }
+    //when param.id is undefined set loading false
+    useEffect(() => {
+        if (param.id === undefined) {
+            setLoading(false)
+        }
+    }, [param.id])
     /*===============================Form data=============================== */
     const formData = new FormData();
     let details = {

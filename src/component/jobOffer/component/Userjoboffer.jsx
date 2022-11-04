@@ -62,8 +62,11 @@ function Userbusiness(props) {
                                         onClick={
                                             async () => {
                                                 await setLoading(true)
-                                                await jobOfferApi.remove(data?.offerID);
-                                                await setLoading(false)
+                                                // popup dialog confirm delete job offer
+                                                if (window.confirm("Bạn có chắc chắn muốn xóa bài viết này không?")) {
+                                                    await jobOfferApi.remove(data?.offerID);
+                                                    await setLoading(false)
+                                                }
                                             }
                                         }>
                                         Xóa bài viết
