@@ -1,7 +1,7 @@
 import { Button, CardMedia, Container, Rating, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import businessApi from '../../api/businessApi';
 import Businessjob from './component/BusinessJob';
 import TabPanel from './component/TabPanel';
@@ -14,7 +14,7 @@ function Business() {
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(2);
   const [value, setValue] = useState(0);
-
+  const nav = useNavigate();
   const handleTabs = (e, val) => {
     setValue(val)
   }
@@ -53,7 +53,7 @@ function Business() {
 
             {user.id != repo.accountID ?
               <Box className='business-button'>
-                <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
+                <Button variant="contained" onClick={() => { nav(`/profile/Recruiter/${repo.accountID}`) }} sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
                 <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
               </Box> :
               <h4>Welcome owner: {user.name}</h4>}

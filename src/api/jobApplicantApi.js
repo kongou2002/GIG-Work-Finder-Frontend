@@ -39,5 +39,9 @@ const jobApplicantApi = {
         const url = `/JobApp/AppIDCancel/${aid}`
         return axiosClient.get(url);
     },
+    getAllJAppByApplicantID(aid) {
+        const url = `/JobApp/ALLJobApp/${aid}`
+        return axiosClient.get(url);
+    }
 };
 export default jobApplicantApi;

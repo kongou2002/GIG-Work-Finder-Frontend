@@ -22,7 +22,7 @@ function JobApplyManagement() {
                 <Container className='box-bg'>
                     <Stack>
                         <Tabs value={value} onChange={handleTabs}>
-                            <Tab label='Công việc đang chờ ứng tuyển' />
+                            <Tab label='Công việc đang chờ phê duyệt' />
                             <Tab label='Công việc được đề xuất' />
                             <Tab label='Công việc đang làm' />
                             <Tab label='Công việc đã hoàn thành' />
@@ -49,7 +49,7 @@ function JobApplyManagement() {
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                                     Danh sách các công việc đang làm:
                                 </Typography>
-                                {/* <Userjobapply id={user?.id} index={2} /> */}
+                                <Userjobapply id={user?.id} index={2} />
                             </Box>
                         </TabPanel>
                         <TabPanel value={value} index={3}>
@@ -57,7 +57,7 @@ function JobApplyManagement() {
                                 <Typography component='h5' sx={{ fontWeight: 'bold' }} className='bold-title'>
                                     Danh sách các công việc đã hoàn thành:
                                 </Typography>
-                                {/* <Userjobapply id={user?.id} index={2} /> */}
+                                <Userjobapply id={user?.id} index={3} />
                             </Box>
                         </TabPanel>
                         <TabPanel value={value} index={4}>

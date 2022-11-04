@@ -8,6 +8,7 @@ import "./detailstyle.scss";
 import Moment from 'moment';
 import JobOffer from './joboffer';
 import jobOfferApi from '../../api/JobOffer';
+import jobApplicantApi from '../../api/jobApplicantApi';
 
 function Detail() {
   const nav = useNavigate();
@@ -16,11 +17,14 @@ function Detail() {
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(2);
+  const [jobApp, setJobApp] = useState();
   useEffect(() => {
     setLoading(true)
     axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id?.id}`).then((res) => {
       const { data } = res
       setRepo(data)
+      const fetch = async () => { setJobApp(await jobApplicantApi.getAllJAppByApplicantID(user?.id)); }
+      fetch();
       setLoading(false)
     })
 
@@ -28,7 +32,7 @@ function Detail() {
   console.log(repo)
   console.log(loading)
   const handleButtonJobOfferApi = (oID, jAID) => {
-    jobOfferApi.getApplyJO(oID, jAID)
+    jobOfferApi.postApplyJO(oID, jAID)
 
     // nav('/jobApplyManage');
   }
@@ -77,10 +81,10 @@ function Detail() {
             </Box>
             {/* {user.role == 'Applicant' ?  */}
             <Box className='apply-button'>
-              {console.log('oid', id?.id, 'userID', user?.id)}
+              {console.log('oid', id?.id, 'userID', jobApp)}
               <Button onClick={
                 () => {
-                  jobOfferApi.getApplyJO(id?.id, user?.id)
+                  jobOfferApi.postApplyJO(id?.id, jobApp[0])
                   nav('/jobApplyManage');
                 }
               }>
