@@ -17,8 +17,8 @@ const jobApplicantApi = {
         const url = `/JobApp/RIDFinish/${rid}`
         return axiosClient.get(url);
     },
-    applyJA(jaid, aid) {
-        const url = `/JobApp/ApplyJA?jaid=${jaid}&aid=${aid}`
+    applyJA(oid, jaid, aid) {
+        const url = `/JobApp/ApplyJA?oid=${oid}&jaid=${jaid}&aid=${aid}`
         return axiosClient.post(url);
     },
 
