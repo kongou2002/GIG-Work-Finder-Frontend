@@ -1,5 +1,5 @@
 /* eslint-disable no-unreachable */
-import { Button, Rating, Skeleton } from '@mui/material';
+import { Button, Rating, Skeleton, Typography } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -8,7 +8,9 @@ import "./detailstyle.scss";
 import Moment from 'moment';
 import JobOffer from './joboffer';
 import jobOfferApi from '../../api/JobOffer';
-
+import Business from '../business/Business';
+import Popover from '@mui/material/Popover';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 function Detail() {
   const nav = useNavigate();
   const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
@@ -56,7 +58,31 @@ function Detail() {
                 </Box>
               </div>
               <Box className='detail-business-button'>
-                {repo?.business?.businessID != undefined ? <Button variant="outlined"><Link to={`/business/${repo?.business?.businessID}`} style={{ color: "white", textDecoration: "none" }}>Xem công ty</Link></Button> : <Button disabled ></Button>}
+                {repo?.business?.businessID != undefined ?
+                  <PopupState variant="popover" popupId="demo-popup-popover">
+                    {(popupState) => (
+                      <div>
+                        <Button variant="contained" {...bindTrigger(popupState)}>
+                          Xem thông tin công ty
+                        </Button>
+                        <Popover
+                          {...bindPopover(popupState)}
+                          anchorReference="anchorPosition"
+                          anchorPosition={{ top: 300, left: 150 }}
+                          anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center',
+                          }}
+                          transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                          }}
+                        >
+                          <Business businessID={repo?.business?.businessID} />
+                        </Popover>
+                      </div>
+                    )}
+                  </PopupState> : <Button disabled ></Button>}
               </Box>
             </Box>
           </Stack>
