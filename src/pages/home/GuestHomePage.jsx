@@ -75,7 +75,7 @@ function GuestHomePage() {
               <Button onClick={() => { nav("/contact") }}>Liên hệ để biết thêm chi tiết</Button>
             </div>
             <div className='recruiter-button'>
-              <Button>Tham gia vào cộng đồng</Button>
+              <Button onClick={() => { nav("/login") }}>Tham gia vào cộng đồng</Button>
             </div>
             <div className='recruiter-button'>
               <Button onClick={() => { nav("/about") }}>Tìm hiểu thêm về GIG-Worker</Button>

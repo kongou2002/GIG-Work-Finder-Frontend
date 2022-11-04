@@ -97,6 +97,12 @@
     }
 }
 
+.redirect-login-button:hover {
+    &>button {
+        background-color: green !important;
+    }
+}
+
 .right-col {
     display: block;
     justify-content: center;
@@ -186,5 +192,11 @@
         min-width: 220px;
         max-width: 44%;
         border-radius: 10px;
+    }
+}
+
+.recruiter-button:hover {
+    &>button {
+        background-color: green !important;
     }
 }
