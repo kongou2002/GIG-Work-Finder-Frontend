@@ -1,35 +1,16 @@
-import { Button, Container, MenuItem, TextField, Typography } from '@mui/material'
+import { Button, Container, MenuItem, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import axios from 'axios'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import businessApi from '../../api/businessApi'
 import locationApi from '../../api/locationApi'
 import "./styleForm.scss"
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
 const provivince = ["Thành phố Cần Thơ", "Thành phố Đà Nẵng", "Thành phố Hà Nội", "Thành phố Hải Phòng", "Thành phố Hồ Chí Minh", "Tỉnh An Giang", "Tỉnh Bà Rịa - Vũng Tàu", "Tỉnh Bắc Giang", "Tỉnh Bắc Kạn", "Tỉnh Bạc Liêu", "Tỉnh Bắc Ninh", "Tỉnh Bến Tre", "Tỉnh Bình Định", "Tỉnh Bình Dương", "Tỉnh Bình Phước", "Tỉnh Bình Thuận", "Tỉnh Cà Mau", "Tỉnh Cao Bằng", "Tỉnh Đắk Lắk", "Tỉnh Đắk Nông", "Tỉnh Điện Biên", "Tỉnh Đồng Nai", "Tỉnh Đồng Tháp", "Tỉnh Gia Lai", "Tỉnh Hà Giang", "Tỉnh Hà Nam", "Tỉnh Hà Tĩnh", "Tỉnh Hải Dương", "Tỉnh Hậu Giang", "Tỉnh Hoà Bình", "Tỉnh Hưng Yên", "Tỉnh Khánh Hòa", "Tỉnh Kiên Giang", "Tỉnh Kon Tum", "Tỉnh Lai Châu", "Tỉnh Lâm Đồng", "Tỉnh Lạng Sơn", "Tỉnh Lào Cai", "Tỉnh Long An", "Tỉnh Nam Định", "Tỉnh Nghệ An", "Tỉnh Ninh Bình", "Tỉnh Ninh Thuận", "Tỉnh Phú Thọ", "Tỉnh Phú Yên", "Tỉnh Quảng Bình", "Tỉnh Quảng Nam", "Tỉnh Quảng Ngãi", "Tỉnh Quảng Ninh", "Tỉnh Quảng Trị", "Tỉnh Sóc Trăng", "Tỉnh Sơn La", "Tỉnh Tây Ninh", "Tỉnh Thái Bình", "Tỉnh Thái Nguyên", "Tỉnh Thanh Hóa", "Tỉnh Thừa Thiên Huế", "Tỉnh Tiền Giang", "Tỉnh Trà Vinh", "Tỉnh Tuyên Quang", "Tỉnh Vĩnh Long", "Tỉnh Vĩnh Phúc", "Tỉnh Yên Bái"]
 
 function BusinessForm() {
     /*===============================logic=============================== */
-    const delay = ms => new Promise(
-        resolve => setTimeout(resolve, ms)
-    );
 
-    const formik = useFormik({
-        initialValues: {
-            locationID: Yup.number,
-        }, onChange: (values) => {
-            setData({ ...data, [values.target.name]: values.target.value })
-            setUpdatedata({ ...updatedata, [values.target.name]: values.target.value })
-        },
-        onSubmit: (values) => {
-            alert(JSON.stringify(formik.values))
-        },
-        validationSchema: Yup.object({
-            locationID: Yup.number().required("Required.").integer().typeError("Xin hãy chọn thành phố."),
-        }),
-    });
     const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
     const [repo, setRepo] = useState({})
     const param = useParams()
@@ -45,6 +26,26 @@ function BusinessForm() {
         businessID: parseInt(param.id),
         accountID: user?.id,
     })
+    //upload,view,get url image to cloudinary and post to backend
+    const uploadImage = async (e) => {
+        setImage(URL.createObjectURL(e.target.files[0]));
+        const files = e.target.files
+        const data = new FormData()
+        data.append('file', files[0])
+        data.append('upload_preset', 'pdqw5ig2')
+        console.log(files)
+        const res = await fetch('https://api.cloudinary.com/v1_1/dnypz3mia/image/upload', {
+            mode: 'cors',
+            method: 'POST',
+            body: data
+        })
+        const file = await res.json()
+        setLoading(false)
+        setFile(file.secure_url)
+        setData({ ...data, businessLogo: file.secure_url })
+        setUpdatedata({ ...updatedata, businessLogo: file.secure_url })
+        console.log(file.secure_url)
+    }
     useEffect(() => {
         setLoading(true)
         const fetchlocation = async () => {
@@ -58,9 +59,10 @@ function BusinessForm() {
         setLoading(true)
         const fetchBusiness = async () => {
             const jobList = await businessApi.getID(param.id);
-            setRepo(jobList);
+            await setRepo(jobList);
+            console.log(repo)
             //await delay(10000); ========================================================== code delay
-            setLoading(false)
+            await setLoading(false)
         }
         fetchBusiness();
     }, [param.id != undefined])
@@ -70,16 +72,9 @@ function BusinessForm() {
         setUpdatedata({ ...updatedata, [event.target.name]: event.target.value })
     }
     const inputhandler = (event) => {
-
         setData({ ...data, [event.target.name]: event.target.value })
         setUpdatedata({ ...updatedata, [event.target.name]: event.target.value })
     }
-    const onImageChange = (event) => {
-        setImage(URL.createObjectURL(event.target.files[0]));
-        setFile(event.target.files[0])
-    }
-    console.log(file)
-
     /*===============================Form data=============================== */
     const formData = new FormData();
     formData.append("businessLogo", file);
@@ -114,15 +109,14 @@ function BusinessForm() {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
         }
     }
-    console.log(data)
-    console.log(repo)
-    console.log(select)
+    // console.log(data)
+    // console.log(repo)
+    // console.log(select)
     /*===============================handle update=============================== */
     const handleUpdate = (event) => {
         event.preventDefault()
         console.log(updatedata)
         const formData = new FormData();
-        formData.append("businessLogo", file);
         let details = {
             accountID: updatedata.accountID,
             businessID: updatedata.businessID,
@@ -131,7 +125,8 @@ function BusinessForm() {
             province: updatedata.province,
             locationID: updatedata.locationID,
             description: updatedata.description,
-            benefit: updatedata.benefit
+            benefit: updatedata.benefit,
+            businessLogo: updatedata.businessLogo,
         }
         for (let key in details) {
             formData.append(key, details[key]);
@@ -195,15 +190,15 @@ function BusinessForm() {
                                             <TextField
                                                 select
                                                 label="Chọn Thành phố/Quận/Huyện"
-                                                value={formik?.values?.locationID}
-                                                onChange={formik.handleChange}>
+                                                name='locationID'
+                                                onChange={inputhandler}>
+
                                                 {city?.map((option) => (
                                                     <MenuItem key={option?.locationID} value={option?.locationID}>
                                                         {option?.city}
                                                     </MenuItem>
                                                 ))}
                                             </TextField>
-                                            {formik.errors.locationID && (<Typography variant="caption" color="red">{formik.errors.locationID}</Typography>)}
                                         </div>
                                     }
 
@@ -225,7 +220,7 @@ function BusinessForm() {
                                         }} alt="preview image" />
                                     </div>
                                     <div className='input-img'>
-                                        <input type="file" onChange={onImageChange} className="filetype" />
+                                        <input type="file" onChange={uploadImage} className="filetype" />
                                     </div>
                                 </div>
                                 <div className='add-business-button'>
@@ -292,7 +287,7 @@ function BusinessForm() {
                                         }} alt="preview image" />
                                     </div>
                                     <div className='input-img'>
-                                        <input type="file" onChange={onImageChange} className="filetype" />
+                                        <input type="file" onChange={uploadImage} className="filetype" />
                                     </div>
                                 </div>
                                 <div className='add-business-button'>
