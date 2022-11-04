@@ -7,12 +7,7 @@ import Profile from "../../pages/user/ViewTheirProfile";
 import Login from "../authentication/login";
 import Logout from "../authentication/logout";
 import "./style.scss";
-// <<<<<<< HEAD
-// =======
-// import { Stack } from "@mui/system";
-// import Logo from '../../asset/image/logo.jpg'
-// import { Button } from "@mui/material";
-// >>>>>>> 79a006337449df1f7c04ad71ace3f5032742c37b
+
 export default function AuthHeader() {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -161,6 +156,8 @@ export default function AuthHeader() {
                                                         Quản lý công việc
                                                     </Link>
                                                 </div>
+                                                <div style={{ width: '260px' }}>
+                                                </div>
                                                 {/* <div>
                                                     <Link
                                                         className='headContent'
@@ -181,52 +178,56 @@ export default function AuthHeader() {
                         </Stack>
                     </div>
                     {/* Account Authentication show below */}
-                    {!isAuthenticated && (
-                        <div className="login-gg-area" style={{ float: "right" }}>
-                            <Button onClick={() => { nav('/Login') }}>Đăng nhập/Đặng ký</Button>
-                        </div>
-                    )}
+                    {
+                        !isAuthenticated && (
+                            <div className="login-gg-area" style={{ float: "right" }}>
+                                <Button onClick={() => { nav('/Login') }}>Đăng nhập/Đăng ký</Button>
+                            </div>
+                        )
+                    }
 
 
-                    {isAuthenticated && (
-                        <div className="profile-dashboard" style={{ float: "right" }}>
-                            <Stack flexDirection={'row'} sx={{ alignItems: 'center' }}>
+                    {
+                        isAuthenticated && (
+                            <div className="profile-dashboard" style={{ float: "right" }}>
+                                <Stack flexDirection={'row'} sx={{ alignItems: 'center' }}>
 
-                                <Button onClick={handleMenu}>
-                                    <div style={{ color: "White" }}> {user?.name}</div>
-                                    <Avatar alt="Remy Sharp" src={user?.picUrl} sx={{ ml: '20px' }} />
-                                </Button>
+                                    <Button onClick={handleMenu}>
+                                        <div style={{ color: "White" }}> {user?.name}</div>
+                                        <Avatar alt="Remy Sharp" src={user?.picUrl} sx={{ ml: '20px' }} />
+                                    </Button>
 
-                            </Stack>
+                                </Stack>
 
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}
+                                >
 
-                                <Link to={'/profile'} style={{ textDecoration: "none", color: 'black' }}>
-                                    <MenuItem>Thông tin cá nhân</MenuItem>
-                                </Link>
+                                    <Link to={'/profile'} style={{ textDecoration: "none", color: 'black' }}>
+                                        <MenuItem>Thông tin cá nhân</MenuItem>
+                                    </Link>
 
-                                {/* <MenuItem onClick={handleClose}>Thông báo</MenuItem> */}
-                                <MenuItem onClick={handleChangeRole}>Chuyển quyền sang {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
-                                <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
-                            </Menu>
-                        </div>
-                    )}
-                </Toolbar>
-            </AppBar>
+                                    {/* <MenuItem onClick={handleClose}>Thông báo</MenuItem> */}
+                                    <MenuItem onClick={handleChangeRole}>Chuyển quyền sang {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
+                                    <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
+                                </Menu>
+                            </div>
+                        )
+                    }
+                </Toolbar >
+            </AppBar >
         </div >
     );//end of return
 };

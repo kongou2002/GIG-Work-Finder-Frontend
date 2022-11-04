@@ -48,7 +48,11 @@
 }
 
 .login-gg-area {
-    margin-left: 40% !important;
+    margin-left: 52% !important;
+
+    &>Button {
+        color: white !important;
+    }
 }
 
 .headPage {
