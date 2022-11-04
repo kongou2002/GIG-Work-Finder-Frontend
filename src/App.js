@@ -31,6 +31,7 @@ import Term from './pages/footerPage/terms';
 //Header Page =========================
 import AllJob from './pages/headerPage/allJob';
 import AllBusiness from './pages/headerPage/allBusiness';
+import Login from './component/authentication/login';
 
 const config = {
   apiKey: 'AIzaSyByxVrPFIOIRcXURS8m4PodEwtOtQmmY9s',
@@ -86,7 +87,7 @@ function App() {
         <Route path='/findJobApplicant/:oid' element={<JobApplicant />} />
         <Route path='/jobApplyManage' element={<JobApplyManagement />} />
         <Route path='/offerJobForApplicant' element={<OfferJobForApplicant />} />
-
+        <Route path='/Login' element={<Login />} />
         {/* <Route path='/recruiter/:id' element={<Recruiter />} /> */}
         <Route path='/createjob' element={<CreateJO />} />
         <Route path='/userProfile' element={<UserUpdatePage />} />

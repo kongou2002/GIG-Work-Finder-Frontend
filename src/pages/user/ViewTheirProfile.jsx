@@ -100,7 +100,7 @@ function Profile() {
           <Stack>
             <Tabs value={value} onChange={handleTabs}>
               <Tab label='Thông tin' />
-              <Tab label='Đánh giá' />
+              {/* <Tab label='Đánh giá' /> */}
               {handleDashboard(role)}
             </Tabs>
             <TabPanel value={value} index={0}>

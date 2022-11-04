@@ -17,17 +17,17 @@ function Userjobapply(props) {
             var jobList;
 
             if (user?.index == 0) {
-                jobList = await jobApplicantApi.getRIDUnValid(2);
+                // jobList = await jobApplicantApi.getRIDUnValid(2);
             }
 
             if (user?.index == 1) {
-                jobList = await jobOfferApi.getAppIDValid(6);
+                // jobList = await jobOfferApi.getAppIDValid(6);
             }
             if (user?.index == 2) {
-                jobList = await jobOfferApi.getAppIDFinish(6);
+                // jobList = await jobOfferApi.getAppIDFinish(6);
             }
             if (user?.index == 3) {
-                jobList = await jobOfferApi.getAppIDUnvalid(6);
+                // jobList = await jobOfferApi.getAppIDUnvalid(6);
             }
 
             setRepo(jobList);
