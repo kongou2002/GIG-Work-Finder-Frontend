@@ -1,7 +1,7 @@
 import { Button, Container, MenuItem, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import businessApi from '../../api/businessApi'
 import locationApi from '../../api/locationApi'
@@ -15,20 +15,18 @@ function BusinessForm() {
     const [repo, setRepo] = useState({})
     const param = useParams()
     const [data, setData] = useState({
-        accountID: user?.id,
+
     })
     const [city, setCity] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [select, setSelect] = useState()
     const [file, setFile] = useState()
     const [image, setImage] = useState(null)
     const [updatedata, setUpdatedata] = useState({
-        businessID: parseInt(param.id),
-        accountID: user?.id,
+
     })
     //upload,view,get url image to cloudinary and post to backend
     const uploadImage = async (e) => {
-        setImage(URL.createObjectURL(e.target.files[0]));
         const files = e.target.files
         const data = new FormData()
         data.append('file', files[0])
@@ -41,52 +39,61 @@ function BusinessForm() {
         })
         const file = await res.json()
         setLoading(false)
+        setImage(file.secure_url);
         setFile(file.secure_url)
-        setData({ ...data, businessLogo: file.secure_url })
-        setUpdatedata({ ...updatedata, businessLogo: file.secure_url })
-        console.log(file.secure_url)
+        setData({ ...data, accountID: user?.id, businessLogo: file.secure_url })
+        setUpdatedata({ ...updatedata, accountID: user?.id, businessLogo: file.secure_url })
     }
+    //onselect change fetch from backend
+    const handleChange = (e) => {
+        setSelect(e.target.value)
+        const fetchCity = async () => {
+            try {
+                const response = await locationApi.getProvince(e.target.value)
+                setCity(response)
+                setUpdatedata({ ...updatedata, province: e.target.value })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchCity()
+    }
+    //onchange input
+    const inputhandler = (e) => {
+        const { name, value } = e.target
+        setData({ ...data, [name]: value })
+        setUpdatedata({ ...updatedata, [name]: value })
+    }
+    //fetch api from backend when parm.id is not undefined when finish set loading
     useEffect(() => {
-        setLoading(true)
-        const fetchlocation = async () => {
-            const location = await locationApi.getProvince(select);
-            setCity(location)
+        const fetchRepo = async () => {
+            try {
+                const response = await businessApi.getID(param.id)
+                setRepo(response)
+                setLoading(false)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchRepo()
+    }, [param.id])
+    //when param.id is undefined set loading false
+    useEffect(() => {
+        if (param.id === undefined) {
             setLoading(false)
         }
-        fetchlocation()
-    }, [select]);
-    useEffect(() => {
-        setLoading(true)
-        const fetchBusiness = async () => {
-            const jobList = await businessApi.getID(param.id);
-            await setRepo(jobList);
-            console.log(repo)
-            //await delay(10000); ========================================================== code delay
-            await setLoading(false)
-        }
-        fetchBusiness();
-    }, [param.id != undefined])
-    const handleselect = (event) => {
-        setSelect(event.target.value)
-        setData({ ...data, [event.target.name]: event.target.value })
-        setUpdatedata({ ...updatedata, [event.target.name]: event.target.value })
-    }
-    const inputhandler = (event) => {
-        setData({ ...data, [event.target.name]: event.target.value })
-        setUpdatedata({ ...updatedata, [event.target.name]: event.target.value })
-    }
+    }, [param.id])
     /*===============================Form data=============================== */
     const formData = new FormData();
-    formData.append("businessLogo", file);
-
     let details = {
-        accountID: data.accountID,
+        accountID: user?.id,
         businessName: data.businessName,
         address: data.address,
         province: data.province,
         locationID: data.locationID,
         description: data.description,
-        benefit: data.benefit
+        benefit: data.benefit,
+        businessLogo: data.businessLogo,
     }
     for (let key in details) {
         formData.append(key, details[key]);
@@ -103,13 +110,17 @@ function BusinessForm() {
                 },
             })
                 .then(res => {
-                    alert(res.status)
+                    //on res success print 'success' else print 'error'
+                    if (res.status === 200) {
+                        alert('Em đẹp lắm')
+                    } else {
+                        alert('Sum thing wong')
+                    }
                 })
         } catch (error) {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
         }
     }
-    // console.log(data)
     // console.log(repo)
     // console.log(select)
     /*===============================handle update=============================== */
@@ -118,8 +129,8 @@ function BusinessForm() {
         console.log(updatedata)
         const formData = new FormData();
         let details = {
-            accountID: updatedata.accountID,
-            businessID: updatedata.businessID,
+            businessID: parseInt(param.id),
+            accountID: user?.id,
             businessName: updatedata.businessName,
             address: updatedata.address,
             province: updatedata.province,
@@ -139,7 +150,11 @@ function BusinessForm() {
                 },
             })
                 .then(res => {
-                    alert(res.status)
+                    if (res.status === 200) {
+                        alert('Em đẹp lắm')
+                    } else {
+                        alert('Sum thing wong')
+                    }
                 })
         } catch (error) {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
@@ -149,10 +164,10 @@ function BusinessForm() {
 
     return (
         <Container>
-            {loading == false ?
+            {loading === false ?
                 <Box>
                     {
-                        param.id == undefined ?
+                        param.id === undefined ?
                             <Box
                                 className='test-align'
                                 component={'form'}
@@ -177,7 +192,7 @@ function BusinessForm() {
                                         select
                                         label="Chọn Tỉnh"
                                         // value={select}
-                                        onChange={handleselect}
+                                        onChange={handleChange}
                                         name='province'>
                                         {provivince.map((option) => (
                                             <MenuItem key={option} value={option} >
@@ -185,7 +200,7 @@ function BusinessForm() {
                                             </MenuItem>
                                         ))}
                                     </TextField>
-                                    {select == undefined ? <div></div> :
+                                    {select == undefined ? <div>Hãy chọn tỉnh trước</div> :
                                         <div>
                                             <TextField
                                                 select
@@ -251,7 +266,7 @@ function BusinessForm() {
                                         select
                                         label="Chọn Tỉnh"
                                         // value={select}
-                                        onChange={handleselect}
+                                        onChange={handleChange}
                                         name='province'>
                                         {provivince.map((option) => (
                                             <MenuItem key={option} value={option} >
@@ -259,17 +274,21 @@ function BusinessForm() {
                                             </MenuItem>
                                         ))}
                                     </TextField>
-                                    <TextField
-                                        select
-                                        label="Chọn Thành phố/Quận/Huyện"
-                                        onChange={inputhandler}
-                                        name='locationID'>
-                                        {city?.map((option) => (
-                                            <MenuItem key={option?.locationID} value={option?.locationID}>
-                                                {option?.city}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
+                                    {select == undefined ? <div>Hãy chọn tỉnh trước</div> :
+                                        <div>
+                                            <TextField
+                                                select
+                                                label="Chọn Thành phố/Quận/Huyện"
+                                                onChange={inputhandler}
+                                                name='locationID'>
+                                                {city?.map((option) => (
+                                                    <MenuItem key={option?.locationID} value={option?.locationID}>
+                                                        {option?.city}
+                                                    </MenuItem>
+                                                ))}
+                                            </TextField>
+                                        </div>
+                                    }
                                 </div>
 
                                 <div className='descrip-bus'>
