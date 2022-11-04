@@ -8,16 +8,16 @@ import recruiterApi from '../../api/recruiterApi';
 import TabPanel from './component/TabPanel';
 import "./style.scss";
 
-function Business() {
+function Business(props) {
   const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
-  console.log("User id: " + user?.id);
-
-  const param = useParams();
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(2);
   const [value, setValue] = useState(0);
-
+  const [prop, setProp] = useState();
+  const param = (props)
+  const id = useParams()
+  console.log(param)
   const handleTabs = (e, val) => {
     setValue(val)
   }
@@ -25,7 +25,7 @@ function Business() {
   useEffect(() => {
     setLoading(true)
     const fetchBusiness = async () => {
-      const jobList = await businessApi.getID(param.id);
+      const jobList = await businessApi.getID(param?.id ? param?.id : id?.id);
       setRepo(jobList);
       setLoading(false)
     }
