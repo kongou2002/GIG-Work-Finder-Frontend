@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import jobApplicantApi from '../../api/jobApplicantApi';
+import jobOfferApi from '../../api/JobOffer';
+import jobMapApi from '../../api/jobMapApi';
 //import "./styleUserJO.scss";
 function Userjobapply(props) {
     const user = (props)
@@ -14,14 +16,20 @@ function Userjobapply(props) {
         setLoading(true)
         const fetchJobOffer = async () => {
             var jobList;
-            if (user?.index == 1) {
-                jobList = await jobApplicantApi.getAllJOActive(user?.id);
-            }
             if (user?.index == 0) {
-                jobList = await jobApplicantApi.getAllJO(user?.id);
+                jobList = await jobOfferApi.getAppIDUnValid(6);
+            }
+            if (user?.index == 1) {
+                jobList = await jobApplicantApi.getAppIDUnValid(user?.id);
             }
             if (user?.index == 2) {
-                jobList = await jobApplicantApi.getAllJOUnActive(user?.id);
+                //jobList = await jobApplicantApi.getAllJOUnActive(user?.id);
+            }
+            if (user?.index == 3) {
+                //jobList = await jobApplicantApi.getAllJOUnActive(user?.id);
+            }
+            if (user?.index == 4) {
+                jobList = await jobApplicantApi.getAppIDCancel(user?.id);
             }
 
             setRepo(jobList);
@@ -33,13 +41,50 @@ function Userjobapply(props) {
     return (
         <Container>
             <Stack>
-                {/* <Box className='box-job-are'>
+                <Box className='box-job-are'>
                     {repo?.map(data => (
-                        
+                        <Box className='box-job-of-user-02'>
+                            <Box className='img-logo-02'>
+                                <img src={data?.business?.businessLogo} style={{ width: '100px', height: '100px' }} />
+                            </Box>
+                            <Box className='info-bus-02'>
+                                <h1 style={{ color: '#00b000' }}>{data?.jobType?.name}</h1>
+                                <p>Tên cửa hàng: {data?.business?.businessName}</p>
+                                <p>Địa chỉ: {data?.address}, {data?.location?.city}, {data?.location?.province}</p>
+                                <p style={{ color: 'blue' }}>Tình trạng tuyển: 0/{data?.numOfRecruit}</p>
+                            </Box>
+                            {user?.index == 0 &&
+                                <Box className='button-bus-detail-02'>
+                                    <Button className='detail-button-02' variant='contained' ><Link to={`/detail/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
+                                </Box>}
+                            {console.log("data: ", data)}
+                            {user?.index == 1 &&
+                                <Box className='button-bus-detail-02'>
+                                    <Button className='detail-button-02' variant='contained' ><Link to={`/detail/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
+                                    <Button className='update-button-02' variant='contained'
+                                        onClick={
+                                            async () => {
+                                                await setLoading(true)
+                                                await jobMapApi.confirm(data?.mapID);
+                                                await setLoading(false)
+                                            }
+                                        }>Chấp nhận</Button>
+                                    <Button className='delete-button-02' variant='contained'
+                                        onClick={
+                                            async () => {
+                                                await setLoading(true)
+                                                await jobMapApi.cancel(data?.mapID);
+                                                await setLoading(false)
+                                            }
+                                        }>Từ chối</Button>
+                                </Box>}
+                            {/* {user?.index == 2 &&
+                                <Box className='button-bus-detail-02'>
+                                    <Button className='detail-button-02' variant='contained' ><Link to={`/detail/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
+                                    <Button className='delete-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Bài viết đã xóa / hết hạn</Link></Button>
+                                </Box>} */}
+                        </Box>
                     ))}
-                </Box> */}
-                <Box className='box-job-of-user-02'>
-                    <h1>Hello</h1>
                 </Box>
             </Stack>
         </Container>

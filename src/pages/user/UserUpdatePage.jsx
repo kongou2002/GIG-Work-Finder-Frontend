@@ -62,11 +62,15 @@ function UserUpdatePage() {
         setData({ ...data, available })
     }
     console.log(data)
+    var url = "https://gig-worker-backend.azurewebsites.net/";
     const handleSubmit = (event) => {
         event.preventDefault(event)
         console.log('data', data)
+        if (user.role == "Applicant")
+            url = url + "Applicant/UpdateApp";
+        else url = url + "Recruiter/UpdateRecruiter";
         try {
-            axios.put(`https://gig-worker-backend.azurewebsites.net/${user?.role}/Update`,
+            axios.put(url,
                 // axios.put(`http://localhost:8080/${user?.role}/Update`,
                 data
             )

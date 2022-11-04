@@ -2,6 +2,7 @@ import { Button } from '@mui/material';
 import React from 'react';
 import Member from '../../asset/image/memberbanner.jpg';
 import Tick from '../../asset/image/tick.png';
+import Login from '../../component/authentication/login';
 import JobOffer from '../../component/jobOffer/joboffer';
 import Search from '../../component/search/Search';
 import "./style.scss";

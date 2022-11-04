@@ -17,7 +17,6 @@ function Login() {
         uiConfig={uiConfig}
         firebaseAuth={firebase.auth()}
       />
-
     </div>
 
 
