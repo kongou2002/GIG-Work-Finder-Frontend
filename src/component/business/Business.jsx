@@ -17,7 +17,7 @@ function Business(props) {
   const [prop, setProp] = useState();
   const param = (props)
   const id = useParams()
-  console.log(param)
+  console.log("param", param)
   const handleTabs = (e, val) => {
     setValue(val)
   }
@@ -25,7 +25,7 @@ function Business(props) {
   useEffect(() => {
     setLoading(true)
     const fetchBusiness = async () => {
-      const jobList = await businessApi.getID(param?.id ? param?.id : id?.id);
+      const jobList = await businessApi.getID(param?.businessID);
       setRepo(jobList);
       setLoading(false)
     }

@@ -8,6 +8,7 @@ import jobAppApi from '../../../api/jobApplicantApi';
 import "./styleUserJO.scss";
 function Userbusiness(props) {
     const data1 = (props)
+    console.log("data1", data1)
     const [repo, setRepo] = useState();
     const [loading, setLoading] = useState(false);
     /* A hook that is called when the component is mounted. */
@@ -40,7 +41,7 @@ function Userbusiness(props) {
                             <Button className='detail-button-02' variant='contained' ><Link to={`/profile/Applicant/${data?.accountID?.accountID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
                             <Button className='detail-button-02' variant='contained' onClick={async () => {
                                 await setLoading(true)
-                                await jobAppApi.applyJA(data1?.id, data1?.userID)
+                                await jobAppApi.applyJA(data1?.id, data?.applicationID, data1?.userID)
                                 await setLoading(false)
                             }}>Đề xuất ứng tuyển</Button>
                         </Box>
