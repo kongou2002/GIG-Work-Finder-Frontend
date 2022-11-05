@@ -11,6 +11,8 @@ import jobOfferApi from '../../api/JobOffer';
 import jobApplicantApi from '../../api/jobApplicantApi';
 import Business from '../business/Business';
 import Popover from '@mui/material/Popover';
+import recruiterApi from '../../api/recruiterApi';
+
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 function Detail() {
   const nav = useNavigate();
@@ -20,18 +22,27 @@ function Detail() {
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(2);
   const [jobApp, setJobApp] = useState();
+  const [rate, setRate] = useState();
   useEffect(() => {
     setLoading(true)
     axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id?.id}`).then((res) => {
       const { data } = res
       setRepo(data)
-      const fetch = async () => { setJobApp(await jobApplicantApi.getAllJAppByApplicantID(user?.id)); }
+
+      const fetch = async () => {
+        const x = repo?.recruiter?.accountID
+        console.log('user id: ', x)
+
+        setRate(await recruiterApi.getID(x));
+        console.log(repo);
+        console.log('rate: ' + rate);
+        setJobApp(await jobApplicantApi.getAllJAppByApplicantID(user?.id));
+      }
       fetch();
       setLoading(false)
     })
 
   }, []);
-  console.log(repo)
   console.log(loading)
   const handleButtonJobOfferApi = (oID, jAID) => {
     jobOfferApi.postApplyJO(oID, jAID)
@@ -56,9 +67,12 @@ function Detail() {
               </div>
               <div className='business-name'>
                 <h1>{repo?.business?.businessName}</h1>
-                <p>Địa chỉ: {repo.address}, {repo?.location?.city}, {repo?.location?.province}</p>
+                {(repo?.business?.address != null && repo?.business?.address != undefined) ?
+                  (<p>Địa chỉ: {repo?.business?.address}, {repo?.location?.city}, {repo?.location?.province}</p>) :
+                  (<p>Địa chỉ: {repo?.address}, {repo?.location?.city}, {repo?.location?.province}</p>)
+                }
                 <Box>
-                  <Rating name="read-only" value={value} readOnly />
+                  <Rating name="read-only" value={repo?.recruiter?.averageStars} readOnly precision={0.5} />
                 </Box>
               </div>
               <Box className='detail-business-button'>
@@ -66,7 +80,7 @@ function Detail() {
                   <PopupState variant="popover" popupId="demo-popup-popover">
                     {(popupState) => (
                       <div>
-                        <Button variant="contained" {...bindTrigger(popupState)}>
+                        <Button variant="contained" className='popup-button' {...bindTrigger(popupState)}>
                           Xem thông tin công ty
                         </Button>
                         <Popover
