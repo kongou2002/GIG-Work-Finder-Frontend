@@ -55,7 +55,15 @@ function CreateJO() {
                 data
             )
                 .then(res => {
-                    console.log(res.data)
+                    if (res.status === 200) {
+                        alert("Tạo thành công")
+                    } else if (res.status === 400) {
+                        alert("Tạo thất bại")
+                    } else if (res.status === 500) {
+                        alert("Lỗi hệ thống")
+                    } else {
+                        alert("Lỗi")
+                    }
                 })
         } catch (error) {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
