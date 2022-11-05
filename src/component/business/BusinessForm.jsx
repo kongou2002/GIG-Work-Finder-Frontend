@@ -24,6 +24,7 @@ function BusinessForm() {
     const [image, setImage] = useState(null)
     const [updatedata, setUpdatedata] = useState({
         businessID: parseInt(param.id),
+        accountID: user?.id
     })
     //upload,view,get url image to cloudinary and post to backend
     const uploadImage = async (e) => {
@@ -90,20 +91,20 @@ function BusinessForm() {
         }
     }, [param.id])
     /*===============================Form data=============================== */
-    // const formData = new FormData();
-    // let details = {
-    //     accountID: user?.id,
-    //     businessName: data.businessName,
-    //     address: data.address,
-    //     province: data.province,
-    //     locationID: data.locationID,
-    //     description: data.description,
-    //     benefit: data.benefit,
-    //     businessLogo: data.businessLogo,
-    // }
-    // for (let key in details) {
-    //     formData.append(key, details[key]);
-    // }
+    const formData = new FormData();
+    let details = {
+        accountID: user?.id,
+        businessName: data.businessName,
+        address: data.address,
+        province: data.province,
+        locationID: data.locationID,
+        description: data.description,
+        benefit: data.benefit,
+        businessLogo: data.businessLogo,
+    }
+    for (let key in details) {
+        formData.append(key, details[key]);
+    }
     /*===============================handle create=============================== */
     const handlecreate = (event) => {
         event.preventDefault()
@@ -133,22 +134,22 @@ function BusinessForm() {
     const handleUpdate = (event) => {
         event.preventDefault()
         console.log(updatedata)
-        // const formData = new FormData();
-        // let details = {
-        //     // if updatedata is undefine send nothing
-        //     businessID: updatedata.businessID === undefined ? null : updatedata.businessID,
-        //     accountID: updatedata.accountID === undefined ? null : updatedata.accountID,
-        //     businessName: updatedata.businessName === undefined ? null : updatedata.businessName,
-        //     address: updatedata.address === undefined ? null : updatedata.address,
-        //     province: updatedata.province === undefined ? null : updatedata.province,
-        //     locationID: updatedata.locationID === undefined ? null : updatedata.locationID,
-        //     description: updatedata.description === undefined ? null : updatedata.description,
-        //     benefit: updatedata.benefit === undefined ? null : updatedata.benefit,
-        //     businessLogo: updatedata.businessLogo === undefined ? null : updatedata.businessLogo,
-        // }
-        // for (let key in details) {
-        //     formData.append(key, details[key]);
-        // }
+        const formData = new FormData();
+        let details = {
+            // if updatedata is undefine send nothing
+            businessID: parseInt(param.id),
+            accountID: user?.id,
+            businessName: updatedata.businessName === undefined ? null : updatedata.businessName,
+            address: updatedata.address === undefined ? null : updatedata.address,
+            province: updatedata.province === undefined ? null : updatedata.province,
+            locationID: updatedata.locationID === undefined ? null : updatedata.locationID,
+            description: updatedata.description === undefined ? null : updatedata.description,
+            benefit: updatedata.benefit === undefined ? null : updatedata.benefit,
+            businessLogo: updatedata.businessLogo === undefined ? null : updatedata.businessLogo,
+        }
+        for (let key in details) {
+            formData.append(key, details[key]);
+        }
         try {
             axios.put("https://gig-worker-backend.azurewebsites.net/Business/UpdateBu",
                 updatedata, {

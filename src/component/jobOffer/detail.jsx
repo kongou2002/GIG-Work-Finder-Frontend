@@ -101,20 +101,21 @@ function Detail() {
                 <p><p className='bold-p'>Bằng cấp tối thiểu:</p><p className='value-p'>{repo?.degree?.degreeName}</p></p>
               </Box>
             </Box>
-            {/* {user.role == 'Applicant' ?  */}
-            <Box className='apply-button'>
-              {console.log('oid', id?.id, 'userID', user?.id)}
-              <Button onClick={
-                () => {
-                  jobOfferApi.getApplyJO(id?.id, user?.id)
-                  nav('/jobApplyManage');
-                }
-              }>
-                Ứng tuyển
-              </Button>
-            </Box>
-            {/* : */}
-            {/* <h1></h1>} */}
+            {user.role == 'Applicant' ?
+              <Box className='apply-button'>
+                {console.log('oid', id?.id, 'userID', user?.id)}
+                <Button onClick={
+                  () => {
+                    jobOfferApi.getApplyJO(id?.id, user?.id)
+                    nav('/jobApplyManage');
+                  }
+                }>
+                  Ứng tuyển
+                </Button>
+              </Box>
+              :
+              <h1></h1>
+            }
 
           </Stack>
 
