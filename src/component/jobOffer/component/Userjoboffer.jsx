@@ -39,7 +39,10 @@ function Userbusiness(props) {
                             <Box className='info-bus-02'>
                                 <h1 style={{ color: '#00b000' }}>{data?.jobType?.name}</h1>
                                 <p>Tên cửa hàng: {data?.business?.businessName}</p>
-                                <p>Địa chỉ: {data?.address}, {data?.location?.city}, {data?.location?.province}</p>
+                                {(data?.business?.address != null && data?.business?.address != undefined) ?
+                                    (<p>Địa chỉ: {data?.business?.address}, {data?.location?.city}, {data?.location?.province}</p>) :
+                                    (<p>Địa chỉ: {data?.address}, {data?.location?.city}, {data?.location?.province}</p>)
+                                }
                                 <p style={{ color: 'blue' }}>Tình trạng tuyển: 0/{data?.numOfRecruit}</p>
                             </Box>
                             {user?.index == 0 &&
