@@ -8,6 +8,7 @@ import "./detailstyle.scss";
 import Moment from 'moment';
 import JobOffer from './joboffer';
 import jobOfferApi from '../../api/JobOffer';
+import jobApplicantApi from '../../api/jobApplicantApi';
 import Business from '../business/Business';
 import Popover from '@mui/material/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
@@ -18,11 +19,14 @@ function Detail() {
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(2);
+  const [jobApp, setJobApp] = useState();
   useEffect(() => {
     setLoading(true)
     axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id?.id}`).then((res) => {
       const { data } = res
       setRepo(data)
+      const fetch = async () => { setJobApp(await jobApplicantApi.getAllJAppByApplicantID(user?.id)); }
+      fetch();
       setLoading(false)
     })
 
@@ -30,7 +34,7 @@ function Detail() {
   console.log(repo)
   console.log(loading)
   const handleButtonJobOfferApi = (oID, jAID) => {
-    jobOfferApi.getApplyJO(oID, jAID)
+    jobOfferApi.postApplyJO(oID, jAID)
 
     // nav('/jobApplyManage');
   }
@@ -101,21 +105,20 @@ function Detail() {
                 <p><p className='bold-p'>Bằng cấp tối thiểu:</p><p className='value-p'>{repo?.degree?.degreeName}</p></p>
               </Box>
             </Box>
-            {user.role == 'Applicant' ?
-              <Box className='apply-button'>
-                {console.log('oid', id?.id, 'userID', user?.id)}
-                <Button onClick={
-                  () => {
-                    jobOfferApi.getApplyJO(id?.id, user?.id)
-                    nav('/jobApplyManage');
-                  }
-                }>
-                  Ứng tuyển
-                </Button>
-              </Box>
-              :
-              <h1></h1>
-            }
+            {/* {user.role == 'Applicant' ?  */}
+            <Box className='apply-button'>
+              {console.log('oid', id?.id, 'userID', jobApp)}
+              <Button onClick={
+                () => {
+                  jobOfferApi.postApplyJO(id?.id, jobApp[0])
+                  nav('/jobApplyManage');
+                }
+              }>
+                Ứng tuyển
+              </Button>
+            </Box>
+            {/* : */}
+            {/* <h1></h1>} */}
 
           </Stack>
 

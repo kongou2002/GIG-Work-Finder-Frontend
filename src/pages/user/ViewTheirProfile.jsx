@@ -89,7 +89,11 @@ function Profile() {
               {role == 'Recruiter' && (
                 <p style={{ fontStyle: 'italic', color: 'gray' }}> Recruiter
                 </p>)}
-              <Rating name="read-only" value={rating} readOnly />
+              {role == 'Applicant' && (
+                <p style={{ fontStyle: 'italic', color: 'gray' }}> Applicant
+                </p>)}
+              {role == 'Recruiter' && (
+                <Rating name="read-only" value={repo?.averageStars} readOnly precision={0.5} />)}
             </Box>
             <Box className='business-button'>
               {handleUpdateButton(user?.role)}
@@ -120,9 +124,9 @@ function Profile() {
                 </Typography>
                 {role == 'Applicant' &&
                   <div>
-                    <Typography component='li'>
+                    {/* <Typography component='li'>
                       Tuổi: {handlePrintUserData(handleYearsOld(repo?.dob))}
-                    </Typography>
+                    </Typography> */}
                     <Typography component='li'>
                       Ngày sinh: {handlePrintUserData(repo?.dob)}
                     </Typography>

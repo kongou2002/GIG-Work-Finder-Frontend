@@ -20,6 +20,7 @@ function AllBusiness(props) {
         }
         fetchJobOffer();
     }, []);
+    console.log("repo", repo)
     return (
         <Container>
             <Stack>
@@ -34,7 +35,12 @@ function AllBusiness(props) {
                                 <p>Địa chỉ: {data?.address}, {data?.location?.city}, {data?.location?.province}</p>
                             </Box>
                             <Box className='button-bus-detail'>
-                                <Button className='button-bus-detail-011' variant='contained'><Link style={{ textDecoration: 'none', color: 'white' }} to={`/business/${data.businessID}`} >Xem công ty</Link></Button>
+                                <Button className='button-bus-detail-011' variant='contained'>
+                                    <Link style={{ textDecoration: 'none', color: 'white' }}
+                                        to={`/business/${data?.businessID}`} >
+                                        Xem công ty
+                                    </Link>
+                                </Button>
                             </Box>
                         </Box>
                     ))}

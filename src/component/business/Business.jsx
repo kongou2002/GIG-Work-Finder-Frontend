@@ -1,9 +1,10 @@
 import { Button, CardMedia, Container, Rating, Skeleton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import businessApi from '../../api/businessApi';
 import Businessjob from './component/BusinessJob';
+import recruiterApi from '../../api/recruiterApi';
 import TabPanel from './component/TabPanel';
 import "./style.scss";
 
@@ -17,6 +18,7 @@ function Business(props) {
   const param = (props)
   const id = useParams()
   console.log(param)
+  const nav = useNavigate();
   const handleTabs = (e, val) => {
     setValue(val)
   }
@@ -24,7 +26,7 @@ function Business(props) {
   useEffect(() => {
     setLoading(true)
     const fetchBusiness = async () => {
-      const jobList = await businessApi.getID(param?.id ? param?.id : id?.id);
+      const jobList = await businessApi.getID(param?.businessID ? param?.businessID : id?.id);
       setRepo(jobList);
       setLoading(false)
     }
@@ -50,15 +52,16 @@ function Business(props) {
               <h1>{repo?.businessName}</h1>
               <p>Địa chỉ: {repo?.address}, {repo?.location?.city}, {repo?.location?.province}</p>
               <Rating name="read-only" value={rating} readOnly />
+
             </Box>
 
 
             {user.id != repo.accountID ?
               <Box className='business-button'>
-                <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
+                <Button variant="contained" onClick={() => { nav(`/profile/Recruiter/${repo.accountID}`) }} sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
                 <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
               </Box> :
-              <h4>Welcome owner: {user.name}</h4>}
+              <h4>Chào mừng quản lý: {user.name}</h4>}
 
 
           </Stack>

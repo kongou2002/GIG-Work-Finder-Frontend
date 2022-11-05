@@ -1,0 +1,38 @@
+.login-around-page {
+    margin: 100px 25%;
+    padding: 50px;
+    width: 800px;
+    //display: flex;
+    //justify-content: center;
+    text-align: center;
+    border: black 1px solid;
+    background-color: #1E1E1E;
+    border-radius: 10px;
+
+    &>h1 {
+        font-size: 24px;
+        color: #00b000;
+        margin-bottom: 20px;
+    }
+}
+
+.choice-box-login {
+    //margin-left: 20px;
+    color: white;
+
+    &>p {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+#applicant:active {
+    .labelInput {
+        color: #00b000 !important;
+    }
+}
+
+.firebase-login {
+    margin-top: 20px;
+    display: inline-block;
+}
