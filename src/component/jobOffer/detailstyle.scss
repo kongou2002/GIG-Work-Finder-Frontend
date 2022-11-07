@@ -115,6 +115,15 @@
     }
 }
 
+.popup-button {
+    background-color: #00B800 !important;
+    color: white !important;
+}
+
+.popup-button:hover {
+    background-color: rgb(5, 158, 5) !important;
+}
+
 .apply-button:hover {
     &>button {
         background-color: rgb(5, 158, 5) !important;

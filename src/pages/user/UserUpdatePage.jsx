@@ -58,7 +58,7 @@ function UserUpdatePage() {
     }
     const handlechange = (e) => {
         setValue(e.target.checked)
-        const available = value == false ? 0 : 1
+        const available = value == false ? 1 : 0
         setData({ ...data, available })
     }
     console.log(data)

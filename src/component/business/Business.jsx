@@ -15,6 +15,7 @@ function Business(props) {
   const [rating, setRating] = useState(2);
   const [value, setValue] = useState(0);
   const [prop, setProp] = useState();
+  const [rate, setRate] = useState()
   const param = (props)
   const id = useParams()
   console.log(param)
@@ -28,9 +29,12 @@ function Business(props) {
     const fetchBusiness = async () => {
       const jobList = await businessApi.getID(param?.businessID ? param?.businessID : id?.id);
       setRepo(jobList);
+      setRate(await recruiterApi.getID(jobList?.accountID));
+
       setLoading(false)
     }
     fetchBusiness();
+
   }, []);
   console.log(repo)
   return (
@@ -51,15 +55,15 @@ function Business(props) {
             <Box className='business-name'>
               <h1>{repo?.businessName}</h1>
               <p>Địa chỉ: {repo?.address}, {repo?.location?.city}, {repo?.location?.province}</p>
-              <Rating name="read-only" value={rating} readOnly />
+              <Rating name="read-only" value={rate?.averageStars} readOnly precision={0.5} />
 
             </Box>
 
 
             {user.id != repo.accountID ?
               <Box className='business-button'>
-                <Button variant="contained" onClick={() => { nav(`/profile/Recruiter/${repo.accountID}`) }} sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
-                <Button variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
+                <Button className='business-button-01' variant="contained" onClick={() => { nav(`/profile/Recruiter/${repo.accountID}`) }} sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
+                <Button className='business-button-02' variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
               </Box> :
               <h4>Chào mừng quản lý: {user.name}</h4>}
 
