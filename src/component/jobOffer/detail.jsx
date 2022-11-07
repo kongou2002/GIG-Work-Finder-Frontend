@@ -19,7 +19,7 @@ function Detail() {
   const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
   const id = useParams();
   const [repo, setRepo] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [value, setValue] = useState(2);
   const [jobApp, setJobApp] = useState();
   const [rate, setRate] = useState();
@@ -28,18 +28,19 @@ function Detail() {
     axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id?.id}`).then((res) => {
       const { data } = res
       setRepo(data)
-
+      console.log('repo', data)
       const fetch = async () => {
-        const x = repo?.recruiter?.accountID
+        const x = data?.recruiter?.accountID
         console.log('user id: ', x)
-
         setRate(await recruiterApi.getID(x));
         console.log(repo);
         console.log('rate: ' + rate);
-        setJobApp(await jobApplicantApi.getAllJAppByApplicantID(user?.id));
+        const a = await jobApplicantApi.getAllJAppByApplicantID(user?.id)
+        setJobApp(a);
+        setLoading(false)
       }
       fetch();
-      setLoading(false)
+
     })
 
   }, []);
@@ -49,10 +50,10 @@ function Detail() {
 
     // nav('/jobApplyManage');
   }
-
+  console.log(jobApp)
   return (
     <Container className='around'>
-      {loading ? (
+      {loading == true ? (
         <Skeleton variant="rounded" width={'100%'} height={400} />
       ) : (
 
@@ -123,8 +124,8 @@ function Detail() {
             <Box className='apply-button'>
               {console.log('oid', id?.id, 'userID', jobApp)}
               <Button onClick={
-                () => {
-                  jobOfferApi.postApplyJO(id?.id, jobApp[0])
+                async () => {
+                  await jobOfferApi.postApplyJO(id?.id, jobApp[0])
                   nav('/jobApplyManage');
                 }
               }>
