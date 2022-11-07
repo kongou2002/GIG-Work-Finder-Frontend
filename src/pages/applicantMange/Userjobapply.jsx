@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material';
+import { Button, Skeleton, Typography } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
 import React from 'react'
 import { useState } from 'react';
@@ -13,7 +13,6 @@ function Userjobapply(props) {
     const [loading, setLoading] = useState(false)
     const [repo, setRepo] = useState()
     useEffect(() => {
-        setLoading(true)
         const fetchJobOffer = async () => {
             var jobList;
             if (user?.index == 0) {
@@ -37,10 +36,9 @@ function Userjobapply(props) {
             }
 
             setRepo(jobList);
-            setLoading(false)
         }
         fetchJobOffer();
-    }, []);
+    }, [loading]);
     console.log(repo)
     return (
         <Container>
@@ -114,9 +112,10 @@ function Userjobapply(props) {
 
                                 </Box>}
                         </Box>
-                    ))}
-                </Box>
-            </Stack>
+                    ))
+                    }
+                </Box >
+            </Stack >
         </Container >
     )
 }
