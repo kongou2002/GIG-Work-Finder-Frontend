@@ -1,8 +1,6 @@
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
-import React from 'react'
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import jobOfferApi from '../../../api/JobOffer';
 import "./styleUserJO.scss";
@@ -68,6 +66,10 @@ function Userbusiness(props) {
                                                 // popup dialog confirm delete job offer
                                                 if (window.confirm("Bạn có chắc chắn muốn xóa bài viết này không?")) {
                                                     await jobOfferApi.remove(data?.offerID);
+                                                    // check if delete success
+                                                    if (data?.status == 0) {
+                                                        alert("Xóa bài viết thành công");
+                                                    }
                                                     await setLoading(false)
                                                 }
                                             }

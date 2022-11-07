@@ -90,6 +90,7 @@ function App() {
         <Route path='/Login' element={<Login />} />
         {/* <Route path='/recruiter/:id' element={<Recruiter />} /> */}
         <Route path='/createjob' element={<CreateJO />} />
+        <Route path='/updatejob/:id' element={<CreateJO />} />
         <Route path='/userProfile' element={<UserUpdatePage />} />
 
         {/* Footer pages =============================*/}

@@ -1,7 +1,7 @@
 import { Button, Container, MenuItem, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import axios from 'axios'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import businessApi from '../../api/businessApi'
 import locationApi from '../../api/locationApi'
@@ -76,7 +76,8 @@ function BusinessForm() {
                     ...updatedata,
                     province: response.province,
                     businessName: response.businessName,
-                    businessAddress: response.businessAddress,
+                    businessAddress: response.address,
+                    province: response.location.province,
                 })
                 setLoading(false)
             } catch (error) {
@@ -120,9 +121,13 @@ function BusinessForm() {
                 .then(res => {
                     //on res success print 'success' else print 'error'
                     if (res.status === 200) {
-                        alert('Thêm cửa hàng thành công')
+                        alert("Tạo thành công")
+                    } else if (res.status === 400) {
+                        alert("Tạo thất bại")
+                    } else if (res.status === 500) {
+                        alert("Lỗi hệ thống")
                     } else {
-                        alert('Có lỗi đã xảy ra! Xin vui lòng kiểm tra lại!')
+                        alert('Sum thing wong')
                     }
                 })
         } catch (error) {
@@ -155,14 +160,18 @@ function BusinessForm() {
             axios.put("https://gig-worker-backend.azurewebsites.net/Business/UpdateBu",
                 updatedata, {
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    "Content-Type": "amultipart/form-data",
                 },
             })
                 .then(res => {
                     if (res.status === 200) {
-                        alert('Cập nhật thông tin cửa hàng thành công')
+                        alert("Cập nhật thành công")
+                    } else if (res.status === 400) {
+                        alert("Cập nhật thất bại")
+                    } else if (res.status === 500) {
+                        alert("Lỗi hệ thống")
                     } else {
-                        alert('Có lỗi đã xảy ra! Xin vui lòng kiểm tra lại!')
+                        alert("Lỗi")
                     }
                 })
         } catch (error) {

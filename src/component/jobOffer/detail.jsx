@@ -1,19 +1,16 @@
 /* eslint-disable no-unreachable */
-import { Button, Rating, Skeleton, Typography } from '@mui/material';
+import { Button, Rating, Skeleton } from '@mui/material';
+import Popover from '@mui/material/Popover';
 import { Box, Container, Stack } from '@mui/system';
 import axios from 'axios';
+import PopupState, { bindPopover, bindTrigger } from 'material-ui-popup-state';
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import "./detailstyle.scss";
-import Moment from 'moment';
-import JobOffer from './joboffer';
-import jobOfferApi from '../../api/JobOffer';
+import { useNavigate, useParams } from 'react-router-dom';
 import jobApplicantApi from '../../api/jobApplicantApi';
-import Business from '../business/Business';
-import Popover from '@mui/material/Popover';
+import jobOfferApi from '../../api/JobOffer';
 import recruiterApi from '../../api/recruiterApi';
-
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import Business from '../business/Business';
+import './detailstyle.scss';
 function Detail() {
   const nav = useNavigate();
   const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
