@@ -126,7 +126,7 @@ function BusinessForm() {
                     } else if (res.status === 500) {
                         alert("Lỗi hệ thống")
                     } else {
-                        alert("Lỗi")
+                        alert('Sum thing wong')
                     }
                 })
         } catch (error) {
