@@ -119,9 +119,9 @@ function BusinessForm() {
                 .then(res => {
                     //on res success print 'success' else print 'error'
                     if (res.status === 200) {
-                        alert('Em đẹp lắm')
+                        alert('Thêm cửa hàng thành công')
                     } else {
-                        alert('Sum thing wong')
+                        alert('Có lỗi đã xảy ra! Xin vui lòng kiểm tra lại!')
                     }
                 })
         } catch (error) {
@@ -154,14 +154,14 @@ function BusinessForm() {
             axios.put("https://gig-worker-backend.azurewebsites.net/Business/UpdateBu",
                 updatedata, {
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "multipart/form-data",
                 },
             })
                 .then(res => {
                     if (res.status === 200) {
-                        alert('Em đẹp lắm')
+                        alert('Cập nhật thông tin cửa hàng thành công')
                     } else {
-                        alert('Sum thing wong')
+                        alert('Có lỗi đã xảy ra! Xin vui lòng kiểm tra lại!')
                     }
                 })
         } catch (error) {

@@ -97,7 +97,14 @@ function UserUpdatePage() {
             >
                 <div className='head-intro-with-switch'>
                     <div className="switch-button">
-                        <Switch checked={value} onChange={handlechange} name='available' />
+                        {console.log("available: ", data?.available)}
+                        {data?.available == 1 &&
+                            <Switch checked={value} defaultValue={true} onChange={handlechange} name='available' />
+                        }
+                        {data?.available == 0 &&
+                            <Switch checked={value} defaultValue={false} onChange={handlechange} name='available' />
+                        }
+                        {/* <Switch checked={value} defaultValue={data?.available == 1} onChange={handlechange} name='available' /> */}
                     </div>
                     <div className='notice-switch'>
                         <p>Bật nút bên cạnh nếu bạn muốn thông tin của bạn công khai với nhà tuyển dụng</p>

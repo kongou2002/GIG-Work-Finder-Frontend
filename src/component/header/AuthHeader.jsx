@@ -220,7 +220,7 @@ export default function AuthHeader() {
                                     </Link>
 
                                     {/* <MenuItem onClick={handleClose}>Thông báo</MenuItem> */}
-                                    <MenuItem onClick={handleChangeRole}>Chuyển quyền sang {(role == "Recruiter") ? "Applicant" : "Recruiter"}</MenuItem>
+                                    <MenuItem onClick={handleChangeRole}>Chuyển sang {(role == "Recruiter") ? "Ứng Viên" : "Nhà Tuyển Dụng"}</MenuItem>
                                     <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
                                 </Menu>
                             </div>

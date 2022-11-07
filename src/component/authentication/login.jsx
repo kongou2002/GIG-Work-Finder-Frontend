@@ -23,9 +23,9 @@ function Login() {
         <p>Chọn quyền của bạn khi đăng nhập:</p>
         <form>
           <input name="role" id="applicant" type="radio" value="Applicant" onClick={handleButton} />
-          <label for="applicant" className='labelInput' style={{ paddingRight: '20px' }}>Applicant</label>
+          <label for="applicant" className='labelInput' style={{ paddingRight: '20px' }}>Ứng viên</label>
           <input name="role" id="recruiter" type="radio" onClick={handleButton} value="Recruiter" />
-          <label for="recruiter" className='labelInput'>Recruiter</label>
+          <label for="recruiter" className='labelInput'>Nhà tuyển dụng</label>
         </form>
       </div>
       <div className='firebase-login'>
