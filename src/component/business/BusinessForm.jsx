@@ -15,7 +15,7 @@ function BusinessForm() {
     const [repo, setRepo] = useState({})
     const param = useParams()
     const [data, setData] = useState({
-
+        accountID: user?.id
     })
     const [city, setCity] = useState([])
     const [loading, setLoading] = useState(true)
@@ -73,7 +73,8 @@ function BusinessForm() {
                 setRepo(response)
                 setImage(response.businessLogo)
                 setUpdatedata({
-                    ...updatedata, province: response.province,
+                    ...updatedata,
+                    province: response.province,
                     businessName: response.businessName,
                     businessAddress: response.address,
                     province: response.location.province,
@@ -112,7 +113,7 @@ function BusinessForm() {
         console.log(data)
         try {
             axios.post("https://gig-worker-backend.azurewebsites.net/Business/CreateBu",
-                data, {
+                formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
