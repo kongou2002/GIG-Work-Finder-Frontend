@@ -66,7 +66,7 @@ function Detail() {
               <div className='business-name'>
                 <h1>{repo?.business?.businessName}</h1>
                 {(repo?.business?.address != null && repo?.business?.address != undefined) ?
-                  (<p>Địa chỉ: {repo?.business?.address}, {repo?.location?.city}, {repo?.location?.province}</p>) :
+                  (<p>Địa chỉ: {repo?.business?.address}, {repo?.business?.location.city}, {repo?.business?.location.province}</p>) :
                   (<p>Địa chỉ: {repo?.address}, {repo?.location?.city}, {repo?.location?.province}</p>)
                 }
                 <Box>

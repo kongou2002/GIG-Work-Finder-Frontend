@@ -1,11 +1,11 @@
 import { Button, MenuItem, TextField } from '@mui/material';
 import { Box, Container } from '@mui/system';
 import axios from 'axios';
+import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
+import * as Yup from 'yup';
 import jobOfferApi from '../../../api/JobOffer';
 import "./style.scss";
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
 
 const provivince = ["Thành phố Cần Thơ", "Thành phố Đà Nẵng", "Thành phố Hà Nội", "Thành phố Hải Phòng", "Thành phố Hồ Chí Minh", "Tỉnh An Giang", "Tỉnh Bà Rịa - Vũng Tàu", "Tỉnh Bắc Giang", "Tỉnh Bắc Kạn", "Tỉnh Bạc Liêu", "Tỉnh Bắc Ninh", "Tỉnh Bến Tre", "Tỉnh Bình Định", "Tỉnh Bình Dương", "Tỉnh Bình Phước", "Tỉnh Bình Thuận", "Tỉnh Cà Mau", "Tỉnh Cao Bằng", "Tỉnh Đắk Lắk", "Tỉnh Đắk Nông", "Tỉnh Điện Biên", "Tỉnh Đồng Nai", "Tỉnh Đồng Tháp", "Tỉnh Gia Lai", "Tỉnh Hà Giang", "Tỉnh Hà Nam", "Tỉnh Hà Tĩnh", "Tỉnh Hải Dương", "Tỉnh Hậu Giang", "Tỉnh Hoà Bình", "Tỉnh Hưng Yên", "Tỉnh Khánh Hòa", "Tỉnh Kiên Giang", "Tỉnh Kon Tum", "Tỉnh Lai Châu", "Tỉnh Lâm Đồng", "Tỉnh Lạng Sơn", "Tỉnh Lào Cai", "Tỉnh Long An", "Tỉnh Nam Định", "Tỉnh Nghệ An", "Tỉnh Ninh Bình", "Tỉnh Ninh Thuận", "Tỉnh Phú Thọ", "Tỉnh Phú Yên", "Tỉnh Quảng Bình", "Tỉnh Quảng Nam", "Tỉnh Quảng Ngãi", "Tỉnh Quảng Ninh", "Tỉnh Quảng Trị", "Tỉnh Sóc Trăng", "Tỉnh Sơn La", "Tỉnh Tây Ninh", "Tỉnh Thái Bình", "Tỉnh Thái Nguyên", "Tỉnh Thanh Hóa", "Tỉnh Thừa Thiên Huế", "Tỉnh Tiền Giang", "Tỉnh Trà Vinh", "Tỉnh Tuyên Quang", "Tỉnh Vĩnh Long", "Tỉnh Vĩnh Phúc", "Tỉnh Yên Bái"]
 
@@ -87,9 +87,18 @@ function CreateJO() {
         },
         onChange: (e) => {
             setData({ ...data, [e.target.name]: e.target.value })
-            console.log(data)
-        }
+            //on province change get location
+            if (e.target.name === "province") {
+                const url = `https://gig-worker-backend.azurewebsites.net/Location/City?province=${e.target.value}`;
+                axios.get(url)
+                    .then((res) => {
+                        const { data } = res;
+                        setFectch(data)
+                    })
+            }
+        },
     });
+    console.log(fetch)
     useEffect(() => {
         setLoading(true)
         const fetchData = async () => {
@@ -111,6 +120,7 @@ function CreateJO() {
                 console.log(data);
                 setLoading(false)
             })
+        formik.setFieldValue("province", e.target.value)
         setData({ ...data, [e.target.name]: e.target.value })
     }
     const selectBusiness = (e) => {
@@ -208,7 +218,7 @@ function CreateJO() {
                             select
                             label="Chọn Tỉnh"
                             // value={select}
-                            onChange={selectLocation}
+                            onChange={formik.handleChange && selectLocation}
                             name='province'>
                             {provivince.map((option) => (
                                 <MenuItem key={option} value={option} >
@@ -219,7 +229,7 @@ function CreateJO() {
                         <TextField
                             select
                             label="Chọn Thành phố/Quận/Huyện"
-                            onChange={inputsHandler}
+                            onChange={formik.handleChange}
                             name='location'>
                             {fectch?.map((option) => (
                                 <MenuItem key={option?.locationID} value={option?.locationID}>
@@ -230,7 +240,7 @@ function CreateJO() {
                     </> : <TextField
                         select
                         label="Chọn địa chỉ doanh nghiệp"
-                        onChange={setSelectbusiness}
+                        onChange={formik.handleChange}
                         name='business'>
                         {repo?.businessAddresses?.map((option) => (
                             <MenuItem key={option?.businessID} value={option?.businessID}>
@@ -247,7 +257,6 @@ function CreateJO() {
                 <TextField required label="Số lượng cần tuyển:" variant="standard" value={formik.values.numOfRecruit} onChange={formik.handleChange} name='numOfRecruit' />
                 {formik.errors.numOfRecruit ? <div>{formik.errors.numOfRecruit}</div> : null}
                 <TextField
-                    format="dd/mm/yyyy"
                     label="Ngày kết thúc đăng tuyển"
                     name='offerEndTime'
                     type="date"
