@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material';
+import { Button, Skeleton, Typography } from '@mui/material';
 import { Box, Container, Stack } from '@mui/system';
 import React from 'react'
 import { useState } from 'react';
@@ -13,7 +13,6 @@ function Userjobapply(props) {
     const [loading, setLoading] = useState(false)
     const [repo, setRepo] = useState()
     useEffect(() => {
-        setLoading(true)
         const fetchJobOffer = async () => {
             var jobList;
             if (user?.index == 0) {
@@ -26,21 +25,20 @@ function Userjobapply(props) {
             }
             if (user?.index == 2) {
                 //jobList = await jobApplicantApi.getAllJOUnActive(user?.id);
-                jobList = await jobApplicantApi.getAppIDValid(user?.id);
+                jobList = await jobOfferApi.getAppIDValid(user?.id);
             }
             if (user?.index == 3) {
                 //jobList = await jobApplicantApi.getAllJOUnActive(user?.id);
-                jobList = await jobApplicantApi.getAppIDFinish(user?.id);
+                jobList = await jobOfferApi.getAppIDFinish(user?.id);
             }
             if (user?.index == 4) {
                 jobList = await jobApplicantApi.getAppIDCancel(user?.id);
             }
 
             setRepo(jobList);
-            setLoading(false)
         }
         fetchJobOffer();
-    }, []);
+    }, [loading]);
     console.log(repo)
     return (
         <Container>
@@ -48,13 +46,14 @@ function Userjobapply(props) {
                 <Box className='box-job-are'>
                     {repo?.map(data => (
                         <Box className='box-job-of-user-02'>
+                            {console.log("data: " + data)}
                             <Box className='img-logo-02'>
                                 <img src={data?.buLogo} style={{ width: '100px', height: '100px' }} />
                             </Box>
                             <Box className='info-bus-02'>
                                 <h1 style={{ color: '#00b000' }}>{data?.jobName}</h1>
                                 <p>Tên cửa hàng: {data?.buName}</p>
-                                <p>Địa chỉ: {data?.joaddress != '<null>' ? data?.joaddress : data?.buAddress}</p>
+                                <p>Địa chỉ: {data?.joaddress != '<null>' && data?.joaddress != null ? data?.joaddress : data?.buAddress}</p>
                                 {/* <p style={{ color: 'blue' }}>Tình trạng tuyển: {data?.numOfRecruit}</p> */}
                             </Box>
                             <Box className='button-bus-detail-02'>
@@ -90,7 +89,7 @@ function Userjobapply(props) {
                                 </Box>}
                             {user?.index == 2 &&
                                 <Box className='button-bus-detail-02'>
-                                    <Button className='delete-button-02' variant='contained' style={{ textDecoration: 'none', color: 'white' }}>Đang tiến hành</Button>
+                                    <Button className='update-button-02' variant='contained' style={{ textDecoration: 'none', color: 'white' }}>Đang tiến hành</Button>
                                 </Box>}
                             {user?.index == 3 &&
                                 <Box className='button-bus-detail-02'>
@@ -113,9 +112,10 @@ function Userjobapply(props) {
 
                                 </Box>}
                         </Box>
-                    ))}
-                </Box>
-            </Stack>
+                    ))
+                    }
+                </Box >
+            </Stack >
         </Container >
     )
 }
