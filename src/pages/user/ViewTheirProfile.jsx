@@ -83,7 +83,7 @@ function Profile() {
                 {repo?.firstName == undefined ? handleNullText : repo?.lastName + " " + repo?.firstName}
               </h1>
               {role == 'Applicant' && (
-                <p>Địa chỉ: {repo?.location?.city == undefined ? handleNullText
+                <p>Địa chỉ: {repo?.address}, {repo?.location?.city == undefined ? handleNullText
                   : repo?.location?.province == undefined ? repo?.location?.city : repo?.location?.city + ", " + repo?.location?.province}
                 </p>)}
               {role == 'Recruiter' && (
@@ -128,7 +128,7 @@ function Profile() {
                       Tuổi: {handlePrintUserData(handleYearsOld(repo?.dob))}
                     </Typography> */}
                     <Typography component='li'>
-                      Ngày sinh: {handlePrintUserData(repo?.dob)}
+                      Ngày sinh: {handlePrintUserData(repo?.dob?.slice(0, 10))}
                     </Typography>
                   </div>
                 }

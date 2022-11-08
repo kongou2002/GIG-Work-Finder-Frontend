@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { date } from 'yup';
 import applicantApi from '../../api/applicantApi';
+import recruiterApi from '../../api/recruiterApi';
 import "./style.scss";
 
 function UserUpdatePage() {
@@ -44,18 +45,34 @@ function UserUpdatePage() {
     console.log("province: ", province)
     useEffect(() => {
         const callApi = async () => {
-            const userApi = await applicantApi.getID(user?.id);
-            setData({
-                ...data,
-                firstName: userApi?.firstName,
-                lastName: userApi?.lastName,
-                available: userApi?.available,
-                address: userApi?.address,
-                phone: userApi?.phone,
-                gender: userApi?.gender,
-                description: userApi?.description
-            })
-            setLoading(false)
+            if (user?.role == "Applicant") {
+                const userApi = await applicantApi.getID(user?.id);
+                setData({
+                    ...data,
+                    firstName: userApi?.firstName,
+                    lastName: userApi?.lastName,
+                    available: userApi?.available,
+                    address: userApi?.address,
+                    phone: userApi?.phone,
+                    gender: userApi?.gender,
+                    description: userApi?.description
+                })
+                setLoading(false)
+            }
+            if (user?.role == "Recruiter") {
+                const userApi = await recruiterApi.getID(user?.id);
+                setData({
+                    ...data,
+                    firstName: userApi?.firstName,
+                    lastName: userApi?.lastName,
+                    available: userApi?.available,
+                    address: userApi?.address,
+                    phone: userApi?.phone,
+                    gender: userApi?.gender,
+                    description: userApi?.description
+                })
+                setLoading(false)
+            }
         }
         callApi();
 
@@ -74,17 +91,19 @@ function UserUpdatePage() {
             .then((res) => {
                 const { data } = res;
                 setFectch(data);
-                setData({ ...data, [e.target.name]: e.target.value });
                 console.log(fectch);
                 console.log(data);
             })
     }
     const handlechange = (e) => {
-        setValue(e.target.name)
+        if (e.target.value == false) {
+            setValue(true)
+        } else {
+            setValue(false)
+        }
         const available = value == false ? 1 : 0
         setData({ ...data, available })
     }
-    console.log(data)
     var url = "https://gig-worker-backend.azurewebsites.net/";
     const handleSubmit = (event) => {
         event.preventDefault(event)
@@ -169,7 +188,7 @@ function UserUpdatePage() {
                                     select
                                     label="Chọn Thành phố/Quận/Huyện"
                                     onChange={inputsHandler}
-                                    name='location'>
+                                    name='locationID'>
                                     {fectch?.map((option) => (
                                         <MenuItem key={option?.locationID} value={option?.locationID}>
                                             {option?.city}
