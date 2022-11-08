@@ -33,8 +33,8 @@ function JobOfferAll() {
                                     <h1>{jobLists?.jobType?.name}</h1>
                                     <p className='salary'>Luơng: {jobLists?.salary} VND/giờ</p>
                                     {(jobLists?.business?.address != null && jobLists?.business?.address != undefined) ?
-                                        (<p>Địa chỉ: {jobLists?.business?.address}, {jobLists.location.city}, {jobLists.location.province}</p>) :
-                                        (<p>Địa chỉ: {jobLists.address}, {jobLists.location.city}, {jobLists.location.province}</p>)
+                                        (<p>Địa chỉ: {jobLists?.business?.address}, {jobLists?.business?.location?.city}, {jobLists?.business?.location?.province}</p>) :
+                                        (<p>Địa chỉ: {jobLists.address}, {jobLists?.location?.city}, {jobLists?.location?.province}</p>)
                                     }
                                 </div>
                             </div>
