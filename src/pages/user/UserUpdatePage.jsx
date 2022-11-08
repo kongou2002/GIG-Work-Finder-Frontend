@@ -87,8 +87,8 @@ function UserUpdatePage() {
         event.preventDefault(event)
         console.log('data', data)
         if (user.role == "Applicant")
-            url = url + "Applicant/UpdateApp";
-        else url = url + "Recruiter/UpdateRecruiter";
+            url = "https://gig-worker-backend.azurewebsites.net/Applicant/UpdateApp";
+        else url = "https://gig-worker-backend.azurewebsites.net/Recruiter/UpdateRecruiter";
         try {
             axios.put(url,
                 // axios.put(`http://localhost:8080/${user?.role}/Update`,

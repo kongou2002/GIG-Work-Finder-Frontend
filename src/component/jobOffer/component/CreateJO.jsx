@@ -184,19 +184,24 @@ function CreateJO() {
                 13. Address: input text */}
 
                 <h4>Thông tin loại công việc và địa chỉ ứng tuyển:</h4>
-                <TextField
-                    select
-                    label="Chọn loại công việc"
-                    value={formik.values.jobType}
-                    onChange={formik.handleChange}
-                    name='jobType'>
-                    {repo?.jobNames?.map((option) => (
-                        <MenuItem key={option?.typeID} value={option?.typeID}>
-                            {option?.name}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                {formik.errors.jobType ? <div className='error-validate' >{formik.errors.jobType}</div> : null}
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        select
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Chọn loại công việc"
+                        value={formik.values.jobType}
+                        onChange={formik.handleChange}
+                        name='jobType'>
+                        {repo?.jobNames?.map((option) => (
+                            <MenuItem key={option?.typeID} value={option?.typeID}>
+                                {option?.name}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    {formik.errors.jobType ? <div className='error-validate' >{formik.errors.jobType}</div> : null}
+                </div>
                 <TextField
                     select
                     label="Chọn bằng cấp"
@@ -254,62 +259,104 @@ function CreateJO() {
 
 
                 <h4>Thông tin chi tiết về công việc:</h4>
-                <TextField required label="Số lượng cần tuyển:" variant="standard" value={formik.values.numOfRecruit} onChange={formik.handleChange} name='numOfRecruit' />
-                {formik.errors.numOfRecruit ? <div>{formik.errors.numOfRecruit}</div> : null}
-                <TextField
-                    label="Ngày kết thúc đăng tuyển"
-                    name='offerEndTime'
-                    type="date"
-                    value={formik.values.offerEndTime}
-                    onChange={formik.handleChange}
-                    sx={{ width: 220 }}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                {formik.errors.offerEndTime ? <div>{formik.errors.offerEndTime}</div> : null}
-                <TextField label="Lương (theo giờ):" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.salary} name='salary' />
-                {formik.errors.salary ? <div>{formik.errors.salary}</div> : null}
-                <TextField label="Tuổi:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.age} name='age' />
-                {formik.errors.age ? <div>{formik.errors.age}</div> : null}
-                <TextField
-                    id="time"
-                    name='startTime'
-                    label="Thời gian bắt đầu"
-                    type="time"
-                    defaultValue="07:30"
-                    value={formik.values.startTime}
-                    onChange={formik.handleChange}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    inputProps={{
-                        step: 300, // 5 min
-                    }}
-                    sx={{ width: 150 }}
-                />
-                {formik.errors.startTime ? <div>{formik.errors.startTime}</div> : null}
-                <TextField
-                    id="time"
-                    name='endTime'
-                    label="Thời gian kết thúc"
-                    type="time"
-                    defaultValue="07:30"
-                    value={formik.values.endTime}
-                    onChange={formik.handleChange}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    inputProps={{
-                        step: 300, // 5 min
-                    }}
-                    sx={{ width: 150 }}
-                />
-                {formik.errors.endTime ? <div>{formik.errors.endTime}</div> : null}
-                <TextField label="Mô tả công việc:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.jobDescription} name='jobDescription' />
-                {formik.errors.jobDescription ? <div>{formik.errors.jobDescription}</div> : null}
-                <TextField label="Yêu cầu khác:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.other} name='other' />
-                {formik.errors.other ? <div>{formik.errors.other}</div> : null}
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        required label="Số lượng cần tuyển:" variant="standard" value={formik.values.numOfRecruit} onChange={formik.handleChange} name='numOfRecruit' />
+                    {formik.errors.numOfRecruit ? <div className='error-validate'>{formik.errors.numOfRecruit}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Ngày kết thúc đăng tuyển"
+                        name='offerEndTime'
+                        type="date"
+                        value={formik.values.offerEndTime}
+                        onChange={formik.handleChange}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                    {formik.errors.offerEndTime ? <div className='error-validate'>{formik.errors.offerEndTime}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Lương (theo giờ):" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.salary} name='salary' />
+                    {formik.errors.salary ? <div className='error-validate'>{formik.errors.salary}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Tuổi:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.age} name='age' />
+                    {formik.errors.age ? <div className='error-validate'>{formik.errors.age}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        id="time"
+                        name='startTime'
+                        label="Thời gian bắt đầu"
+                        type="time"
+                        defaultValue="07:30"
+                        value={formik.values.startTime}
+                        onChange={formik.handleChange}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        inputProps={{
+                            step: 300, // 5 min
+                        }}
+                    />
+                    {formik.errors.startTime ? <div className='error-validate'>{formik.errors.startTime}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        id="time"
+                        name='endTime'
+                        label="Thời gian kết thúc"
+                        type="time"
+                        defaultValue="07:30"
+                        value={formik.values.endTime}
+                        onChange={formik.handleChange}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        inputProps={{
+                            step: 300, // 5 min
+                        }}
+                    />
+                    {formik.errors.endTime ? <div className='error-validate'>{formik.errors.endTime}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Mô tả công việc:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.jobDescription} name='jobDescription' />
+                    {formik.errors.jobDescription ? <div className='error-validate'>{formik.errors.jobDescription}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Yêu cầu khác:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.other} name='other' />
+                    {formik.errors.other ? <div className='error-validate'>{formik.errors.other}</div> : null}
+                </div>
 
                 <Button className='submit-button' type='submit'>Đăng tuyển</Button>
             </Box>
