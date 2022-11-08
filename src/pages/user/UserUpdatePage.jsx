@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { date } from 'yup';
 import applicantApi from '../../api/applicantApi';
 import "./style.scss";
 
@@ -10,6 +11,7 @@ function UserUpdatePage() {
     const nav = useNavigate();
     const user = JSON.parse(localStorage.getItem('FWApp-gig:rememberedAccount'));
     const role = localStorage.getItem('role')
+    const [date, setdate] = useState(Date.now());
     console.log('user', user)
     console.log('user', user.name);
     //const x = applicantApi.getID(user?.id)
@@ -72,14 +74,15 @@ function UserUpdatePage() {
             .then((res) => {
                 const { data } = res;
                 setFectch(data);
+                setData({ ...data, [e.target.name]: e.target.value });
                 console.log(fectch);
                 console.log(data);
             })
     }
     const handlechange = (e) => {
-        setValue(e.target.checked)
+        setValue(e.target.name)
         const available = value == false ? 1 : 0
-        setData({ ...data, [e.target.name]: e.target.value, available: available })
+        setData({ ...data, available })
     }
     console.log(data)
     var url = "https://gig-worker-backend.azurewebsites.net/";
@@ -106,7 +109,7 @@ function UserUpdatePage() {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
         }
         localStorage.removeItem('firebase:rememberedAccount')
-
+        nav('/')
     }
     return (
         <Container>
@@ -145,7 +148,7 @@ function UserUpdatePage() {
                         setDateValue(newValue);
                     }}
                     renderInput={(dateValue) => */}
-                        {role == 'Applicant' && (<TextField variant='filled' name='dob' label='Ngày sinh' onChange={inputsHandler} />)}
+                        {role == 'Applicant' && (<TextField name='dob' label='Ngày sinh' defaultValue="2017-05-24" onChange={inputsHandler} type="date" />)}
                         <TextField variant='filled' name='gender' label='Giới tính' onChange={inputsHandler} defaultValue={data?.gender} />
                         <TextField variant='filled' name='phone' label='Số điện thoại' onChange={inputsHandler} defaultValue={data?.phone} />
                         {role == 'Applicant' && (
