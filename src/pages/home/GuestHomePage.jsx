@@ -54,7 +54,7 @@ function GuestHomePage() {
               <h2>Quản lí và bảo mật thông tin</h2>
             </div>
             <div className='redirect-login-button'>
-              <Button>Tham gia ngay</Button>
+              <Button onClick={() => { nav("/login") }}>Tham gia ngay</Button>
             </div>
           </div>
           <div className='right-col'>
