@@ -2,7 +2,7 @@ import { Box, Button, Container, MenuItem, Switch, TextField } from '@mui/materi
 import axios from 'axios';
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import applicantApi from '../../api/applicantApi';
 import "./style.scss";
 
@@ -95,6 +95,10 @@ function UserUpdatePage() {
                 data
             )
                 .then(res => {
+                    if (res.status == 200) {
+                        alert("Update Success")
+                        Navigate('/profile')
+                    }
                     console.log(res.data)
                 })
         } catch (error) {

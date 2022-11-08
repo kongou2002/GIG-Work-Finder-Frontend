@@ -77,13 +77,13 @@ function CreateJO() {
                 jobType: values.jobType,
             }
             console.log(data)
-            // const url = "https://gig-worker-backend.azurewebsites.net/JobOffer/CreateJO";
-            // axios.post(url, data).then((res) => {
-            //     console.log(res)
-            //     if (res.status === 200) {
-            //         alert("Tạo thành công")
-            //     }
-            // })
+            const url = "https://gig-worker-backend.azurewebsites.net/JobOffer/CreateJO";
+            axios.post(url, data).then((res) => {
+                console.log(res)
+                if (res.status === 200) {
+                    alert("Tạo thành công")
+                }
+            })
         },
         onChange: (e) => {
             setData({ ...data, [e.target.name]: e.target.value })
