@@ -160,7 +160,7 @@ function BusinessForm() {
             axios.put("https://gig-worker-backend.azurewebsites.net/Business/UpdateBu",
                 updatedata, {
                 headers: {
-                    "Content-Type": "amultipart/form-data",
+                    "Content-Type": "multipart/form-data",
                 },
             })
                 .then(res => {
@@ -202,6 +202,19 @@ function BusinessForm() {
                                     <h4>Thêm cửa hàng của bạn vào danh sách:</h4>
                                 </div>
 
+                                <h2>Thêm hình ảnh/logo cửa hàng của bạn:</h2>
+                                <div className='add-img'>
+                                    <div>
+                                        <img src={image} style={{
+                                            height: 150,
+                                            width: 150
+                                        }} alt="preview image" />
+                                    </div>
+                                    <div className='input-img'>
+                                        <input type="file" onChange={uploadImage} className="filetype" />
+                                    </div>
+                                </div>
+
                                 <div className='create-info-bus'>
                                     <h2>Thông tin cửa hàng của bạn:</h2>
                                     <TextField variant='filled' name='businessName' label='Tên cửa hàng' onChange={inputhandler} />
@@ -218,7 +231,7 @@ function BusinessForm() {
                                             </MenuItem>
                                         ))}
                                     </TextField>
-                                    {select == undefined ? <div>Hãy chọn tỉnh trước</div> :
+                                    {select == undefined ? <div></div> :
                                         <div>
                                             <TextField
                                                 select
@@ -244,18 +257,7 @@ function BusinessForm() {
                                     <TextField variant='filled' name='benefit' label='Quyền lợi' onChange={inputhandler} />
                                 </div>
 
-                                <h2>Thêm hình ảnh/logo cửa hàng của bạn:</h2>
-                                <div className='add-img'>
-                                    <div>
-                                        <img src={image} style={{
-                                            height: 150,
-                                            width: 150
-                                        }} alt="preview image" />
-                                    </div>
-                                    <div className='input-img'>
-                                        <input type="file" onChange={uploadImage} className="filetype" />
-                                    </div>
-                                </div>
+
                                 <div className='add-business-button'>
                                     <Button type='submit'>Thêm</Button>
                                 </div>
@@ -274,6 +276,19 @@ function BusinessForm() {
 
                                 <div className='intro-head'>
                                     <h4>Chỉnh sửa cửa hàng của bạn Tại đây:</h4>
+                                </div>
+
+                                <h2>Thêm hình ảnh/logo cửa hàng của bạn:</h2>
+                                <div className='add-img'>
+                                    <div>
+                                        <img src={image} style={{
+                                            height: 150,
+                                            width: 150
+                                        }} alt="preview image" />
+                                    </div>
+                                    <div className='input-img'>
+                                        <input type="file" onChange={uploadImage} className="filetype" />
+                                    </div>
                                 </div>
 
                                 <div className='create-info-bus'>
@@ -315,18 +330,7 @@ function BusinessForm() {
                                     <TextField variant='filled' name='benefit' label='Quyền lợi' onChange={inputhandler} defaultValue={repo?.benefit} />
                                 </div>
 
-                                <h2>Thêm hình ảnh/logo cửa hàng của bạn:</h2>
-                                <div className='add-img'>
-                                    <div>
-                                        <img src={image} style={{
-                                            height: 150,
-                                            width: 150
-                                        }} alt="preview image" />
-                                    </div>
-                                    <div className='input-img'>
-                                        <input type="file" onChange={uploadImage} className="filetype" />
-                                    </div>
-                                </div>
+
                                 <div className='add-business-button'>
                                     <Button type='submit' onClick={handleUpdate}>Cập nhật</Button>
                                 </div>

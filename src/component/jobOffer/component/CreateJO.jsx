@@ -40,20 +40,20 @@ function CreateJO() {
             // jobType: "",
         },
         validationSchema: Yup.object({
-            numOfRecruit: Yup.number().required().typeError("xin vui lòng nhập số lượng tuyển"),
-            offerEndTime: Yup.date().required().min(new Date(), "Ngày kết thúc phải lớn hơn ngày hiện tại"),
-            salary: Yup.number().typeError("xin vui lòng nhập lương"),
-            age: Yup.number().typeError("xin vui lòng nhập số tuổi"),
-            startTime: Yup.string().typeError("xin vui lòng nhập giờ bắt đầu").min(1, "xin vui lòng nhập đúng định dạng giờ").max(24, "xin vui lòng nhập đúng định dạng giờ"),
-            endTime: Yup.string().typeError("xin vui lòng nhập giờ kết thúc"),
-            jobDescription: Yup.string().typeError("xin vui lòng nhập mô tả"),
+            numOfRecruit: Yup.number().required("Vui lòng nhập vào số lượng tuyển").typeError("Xin vui lòng nhập số"),
+            offerEndTime: Yup.date().required("Vui lòng chọn ngày kết thúc đăng tuyển").min(new Date(), "Ngày kết thúc phải lớn hơn ngày hiện tại"),
+            salary: Yup.number().typeError("Xin vui lòng nhập lương"),
+            age: Yup.number().typeError("Xin vui lòng nhập số tuổi"),
+            startTime: Yup.string().typeError("Xin vui lòng nhập giờ bắt đầu").min(1, "Xin vui lòng nhập đúng định dạng giờ").max(24, "Xin vui lòng nhập đúng định dạng giờ"),
+            endTime: Yup.string().typeError("Xin vui lòng nhập giờ kết thúc"),
+            jobDescription: Yup.string().typeError("Xin vui lòng nhập mô tả"),
             other: Yup.string(),
-            business: Yup.string().typeError("xin vui lòng chọn công ty"),
+            business: Yup.string().typeError("Xin vui lòng chọn công ty"),
             location: Yup.number(),
             province: Yup.string(),
-            address: Yup.string().typeError("xin vui lòng nhập địa chỉ"),
+            address: Yup.string().typeError("Xin vui lòng nhập địa chỉ"),
             degree: Yup.string(),
-            jobType: Yup.string(),
+            jobType: Yup.string().required("Vui lòng chọn loại công việc"),
         }),
         onSubmit: (values) => {
             console.log(values)
@@ -196,7 +196,7 @@ function CreateJO() {
                         </MenuItem>
                     ))}
                 </TextField>
-                {formik.errors.jobType ? <div>{formik.errors.jobType}</div> : null}
+                {formik.errors.jobType ? <div className='error-validate' >{formik.errors.jobType}</div> : null}
                 <TextField
                     select
                     label="Chọn bằng cấp"
@@ -209,7 +209,7 @@ function CreateJO() {
                         </MenuItem>
                     ))}
                 </TextField>
-                {formik.errors.degree ? <div>{formik.errors.degree}</div> : null}
+                {/* {formik.errors.degree ? <div>{formik.errors.degree}</div> : null} */}
                 <p>*Nếu nơi ứng tuyển không phải là doanh nghiệp hãy điền rõ địa chỉ ở ô bên dưới:</p>
                 <TextField label="Địa chỉ:" variant="standard" value={formik.values.address} onChange={formik.handleChange} name='address' />
                 {formik.values.address != '' ?

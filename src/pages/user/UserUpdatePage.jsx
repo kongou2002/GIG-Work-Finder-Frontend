@@ -74,6 +74,7 @@ function UserUpdatePage() {
             .then((res) => {
                 const { data } = res;
                 setFectch(data);
+                setData({ ...data, [e.target.name]: e.target.value });
                 console.log(fectch);
                 console.log(data);
             })
@@ -81,7 +82,7 @@ function UserUpdatePage() {
     const handlechange = (e) => {
         setValue(e.target.name)
         const available = value == false ? 1 : 0
-        setData({ ...data, [e.target.name]: e.target.value, available: available })
+        setData({ ...data, available })
     }
     console.log(data)
     var url = "https://gig-worker-backend.azurewebsites.net/";
@@ -99,7 +100,8 @@ function UserUpdatePage() {
                 .then(res => {
                     if (res.status == 200) {
                         alert("Update Success")
-                        Navigate('/profile')
+                        //nav('/')
+                        // Navigate('/profile')
                     }
                     console.log(res.data)
                 })
@@ -107,6 +109,7 @@ function UserUpdatePage() {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
         }
         localStorage.removeItem('firebase:rememberedAccount')
+        nav('/')
     }
     return (
         <Container>
