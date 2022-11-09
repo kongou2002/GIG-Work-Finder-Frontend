@@ -144,22 +144,26 @@ function UserUpdatePage() {
                             '& .MuiTextField-root': { m: 1, width: '50ch' },
                         }}
                     >
-                        <div className='head-intro-with-switch'>
-                            <div className="switch-button">
-                                {console.log("available: ", data)}
-                                <Switch checked={value} onChange={handlechange} name='available' />
+                        {user?.role == 'Applicant' &&
+                            <div className='head-intro-with-switch'>
+                                <div className="switch-button">
+                                    {console.log("available: ", data)}
+                                    <Switch checked={value} onChange={handlechange} name='available' />
+                                </div>
+                                <div className='notice-switch'>
+                                    <p>Bật nút bên cạnh nếu bạn muốn thông tin của bạn công khai với nhà tuyển dụng</p>
+                                </div>
                             </div>
-                            <div className='notice-switch'>
-                                <p>Bật nút bên cạnh nếu bạn muốn thông tin của bạn công khai với nhà tuyển dụng</p>
-                            </div>
-                        </div>
+                        }
                         {console.log("test: ", data?.lastName)}
                         <TextField variant='filled' name='lastName' label='Họ' defaultValue={data?.lastName} onChange={inputsHandler} />
                         <TextField variant='filled' name='firstName' label='Tên' defaultValue={data?.firstName} onChange={inputsHandler} />
-                        <TextField variant='filled' name='address'
-                            label='Địa chỉ'
-                            defaultValue={data?.address != null && data?.address != undefined ? data?.address : ''}
-                            onChange={inputsHandler} />
+                        {user?.role == 'Applicant' &&
+                            <TextField variant='filled' name='address'
+                                label='Địa chỉ'
+                                defaultValue={data?.address != null && data?.address != undefined ? data?.address : ''}
+                                onChange={inputsHandler} />
+                        }
                         {/* <DatePicker
                     label="Basic example"
                     value={dateValue}
