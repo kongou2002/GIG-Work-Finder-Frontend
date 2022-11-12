@@ -17,10 +17,9 @@ function UserUpdatePage() {
     const name = user?.name == undefined ? '' : user.name;
     const [data, setData] = useState({
         accountID: user?.id,
-        //lastName: name.indexOf(' ') > -1 ? name.substring(0, name.indexOf(' ')) : name,
+        //lastName: name.indexOf(' ') > -1 ? name.ssubstring(0, name.indexOf(' ')) : name,
         //firstName: name.indexOf(' ') > -1 ? name.substring(name.indexOf(' ') + 1, name.length) : '',
     });
-    console.log('x: ', data?.x)
     const [select, setSelect] = useState()
     const [repo, setRepo] = useState()
     const [loading, setLoading] = useState(true)
@@ -71,7 +70,6 @@ function UserUpdatePage() {
             .then((res) => {
                 const { data } = res;
                 setFectch(data);
-                setData({ ...data, [e.target.name]: e.target.value });
                 console.log(fectch);
                 console.log(data);
             })
@@ -79,17 +77,18 @@ function UserUpdatePage() {
     const handlechange = (e) => {
         setValue(e.target.checked)
         const available = value == false ? 1 : 0
-        setData({ ...data, available })
+        setData({ ...data, available: available })
     }
-    console.log(data)
-    var url = "https://gig-worker-backend.azurewebsites.net/";
+    console.log("data", data)
+    var url = "";
     const handleSubmit = (event) => {
         event.preventDefault(event)
         console.log('data', data)
         if (user.role == "Applicant")
-            url = url + "Applicant/UpdateApp";
-        else url = url + "Recruiter/UpdateRecruiter";
+            url = "https://gig-worker-backend.azurewebsites.net/Applicant/UpdateApp";
+        else url = "https://gig-worker-backend.azurewebsites.net/Recruiter/UpdateRecruiter";
         try {
+
             axios.put(url,
                 // axios.put(`http://localhost:8080/${user?.role}/Update`,
                 data
@@ -105,7 +104,6 @@ function UserUpdatePage() {
             alert("501 Not Implemented: Máy chủ không công nhận các phương thức yêu cầu hoặc không có khả năng xử lý nó.")
         }
         localStorage.removeItem('firebase:rememberedAccount')
-        nav('/')
     }
     return (
         <Container>
