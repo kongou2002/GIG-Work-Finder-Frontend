@@ -3,13 +3,16 @@ import axios from 'axios';
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { date } from 'yup';
 import applicantApi from '../../api/applicantApi';
+import recruiterApi from '../../api/recruiterApi';
 import "./style.scss";
 
 function UserUpdatePage() {
     const nav = useNavigate();
     const user = JSON.parse(localStorage.getItem('FWApp-gig:rememberedAccount'));
     const role = localStorage.getItem('role')
+    const [date, setdate] = useState(Date.now());
     console.log('user', user)
     console.log('user', user.name);
     //const x = applicantApi.getID(user?.id)
@@ -41,18 +44,34 @@ function UserUpdatePage() {
     console.log("province: ", province)
     useEffect(() => {
         const callApi = async () => {
-            const userApi = await applicantApi.getID(user?.id);
-            setData({
-                ...data,
-                firstName: userApi?.firstName,
-                lastName: userApi?.lastName,
-                available: userApi?.available,
-                address: userApi?.address,
-                phone: userApi?.phone,
-                gender: userApi?.gender,
-                description: userApi?.description
-            })
-            setLoading(false)
+            if (user?.role == "Applicant") {
+                const userApi = await applicantApi.getID(user?.id);
+                setData({
+                    ...data,
+                    firstName: userApi?.firstName,
+                    lastName: userApi?.lastName,
+                    available: userApi?.available,
+                    address: userApi?.address,
+                    phone: userApi?.phone,
+                    gender: userApi?.gender,
+                    description: userApi?.description
+                })
+                setLoading(false)
+            }
+            if (user?.role == "Recruiter") {
+                const userApi = await recruiterApi.getID(user?.id);
+                setData({
+                    ...data,
+                    firstName: userApi?.firstName,
+                    lastName: userApi?.lastName,
+                    available: userApi?.available,
+                    address: userApi?.address,
+                    phone: userApi?.phone,
+                    gender: userApi?.gender,
+                    description: userApi?.description
+                })
+                setLoading(false)
+            }
         }
         callApi();
 
@@ -66,6 +85,7 @@ function UserUpdatePage() {
         setData({ ...data, [e.target.name]: e.target.value })
     }
     const selectLocation = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
         axios.get(`https://gig-worker-backend.azurewebsites.net/Location/City?province=${e.target.value}`)
             .then((res) => {
                 const { data } = res;
@@ -75,12 +95,16 @@ function UserUpdatePage() {
             })
     }
     const handlechange = (e) => {
-        setValue(e.target.checked)
+        if (e.target.value == false) {
+            setValue(true)
+        } else {
+            setValue(false)
+        }
         const available = value == false ? 1 : 0
         setData({ ...data, available: available })
     }
-    console.log("data", data)
-    var url = "";
+    console.log(data)
+    var url = "https://gig-worker-backend.azurewebsites.net/";
     const handleSubmit = (event) => {
         event.preventDefault(event)
         console.log('data', data)
@@ -96,7 +120,8 @@ function UserUpdatePage() {
                 .then(res => {
                     if (res.status == 200) {
                         alert("Update Success")
-                        Navigate('/profile')
+                        //nav('/')
+                        // Navigate('/profile')
                     }
                     console.log(res.data)
                 })
@@ -119,22 +144,26 @@ function UserUpdatePage() {
                             '& .MuiTextField-root': { m: 1, width: '50ch' },
                         }}
                     >
-                        <div className='head-intro-with-switch'>
-                            <div className="switch-button">
-                                {console.log("available: ", data)}
-                                <Switch checked={value} onChange={handlechange} name='available' />
+                        {user?.role == 'Applicant' &&
+                            <div className='head-intro-with-switch'>
+                                <div className="switch-button">
+                                    {console.log("available: ", data)}
+                                    <Switch checked={value} onChange={handlechange} name='available' />
+                                </div>
+                                <div className='notice-switch'>
+                                    <p>Bật nút bên cạnh nếu bạn muốn thông tin của bạn công khai với nhà tuyển dụng</p>
+                                </div>
                             </div>
-                            <div className='notice-switch'>
-                                <p>Bật nút bên cạnh nếu bạn muốn thông tin của bạn công khai với nhà tuyển dụng</p>
-                            </div>
-                        </div>
+                        }
                         {console.log("test: ", data?.lastName)}
                         <TextField variant='filled' name='lastName' label='Họ' defaultValue={data?.lastName} onChange={inputsHandler} />
                         <TextField variant='filled' name='firstName' label='Tên' defaultValue={data?.firstName} onChange={inputsHandler} />
-                        <TextField variant='filled' name='address'
-                            label='Địa chỉ'
-                            defaultValue={data?.address != null && data?.address != undefined ? data?.address : ''}
-                            onChange={inputsHandler} />
+                        {user?.role == 'Applicant' &&
+                            <TextField variant='filled' name='address'
+                                label='Địa chỉ'
+                                defaultValue={data?.address != null && data?.address != undefined ? data?.address : ''}
+                                onChange={inputsHandler} />
+                        }
                         {/* <DatePicker
                     label="Basic example"
                     value={dateValue}
@@ -142,7 +171,7 @@ function UserUpdatePage() {
                         setDateValue(newValue);
                     }}
                     renderInput={(dateValue) => */}
-                        {role == 'Applicant' && (<TextField variant='filled' name='dob' label='Ngày sinh' onChange={inputsHandler} />)}
+                        {role == 'Applicant' && (<TextField name='dob' label='Ngày sinh' defaultValue="2017-05-24" onChange={inputsHandler} type="date" />)}
                         <TextField variant='filled' name='gender' label='Giới tính' onChange={inputsHandler} defaultValue={data?.gender} />
                         <TextField variant='filled' name='phone' label='Số điện thoại' onChange={inputsHandler} defaultValue={data?.phone} />
                         {role == 'Applicant' && (
@@ -163,7 +192,7 @@ function UserUpdatePage() {
                                     select
                                     label="Chọn Thành phố/Quận/Huyện"
                                     onChange={inputsHandler}
-                                    name='location'>
+                                    name='locationID'>
                                     {fectch?.map((option) => (
                                         <MenuItem key={option?.locationID} value={option?.locationID}>
                                             {option?.city}

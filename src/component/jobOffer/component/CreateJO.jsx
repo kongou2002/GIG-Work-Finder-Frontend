@@ -40,20 +40,20 @@ function CreateJO() {
             // jobType: "",
         },
         validationSchema: Yup.object({
-            numOfRecruit: Yup.number().required().typeError("xin vui lòng nhập số lượng tuyển"),
-            offerEndTime: Yup.date().required().min(new Date(), "Ngày kết thúc phải lớn hơn ngày hiện tại"),
-            salary: Yup.number().typeError("xin vui lòng nhập lương"),
-            age: Yup.number().typeError("xin vui lòng nhập số tuổi"),
-            startTime: Yup.string().typeError("xin vui lòng nhập giờ bắt đầu").min(1, "xin vui lòng nhập đúng định dạng giờ").max(24, "xin vui lòng nhập đúng định dạng giờ"),
-            endTime: Yup.string().typeError("xin vui lòng nhập giờ kết thúc"),
-            jobDescription: Yup.string().typeError("xin vui lòng nhập mô tả"),
+            numOfRecruit: Yup.number().required("Vui lòng nhập vào số lượng tuyển").typeError("Xin vui lòng nhập số"),
+            offerEndTime: Yup.date().required("Vui lòng chọn ngày kết thúc đăng tuyển").min(new Date(), "Ngày kết thúc phải lớn hơn ngày hiện tại"),
+            salary: Yup.number().typeError("Xin vui lòng nhập lương"),
+            age: Yup.number().typeError("Xin vui lòng nhập số tuổi"),
+            startTime: Yup.string().typeError("Xin vui lòng nhập giờ bắt đầu").min(1, "Xin vui lòng nhập đúng định dạng giờ").max(24, "Xin vui lòng nhập đúng định dạng giờ"),
+            endTime: Yup.string().typeError("Xin vui lòng nhập giờ kết thúc"),
+            jobDescription: Yup.string().typeError("Xin vui lòng nhập mô tả"),
             other: Yup.string(),
-            business: Yup.string().typeError("xin vui lòng chọn công ty"),
+            business: Yup.string().typeError("Xin vui lòng chọn công ty"),
             location: Yup.number(),
             province: Yup.string(),
-            address: Yup.string().typeError("xin vui lòng nhập địa chỉ"),
+            address: Yup.string().typeError("Xin vui lòng nhập địa chỉ"),
             degree: Yup.string(),
-            jobType: Yup.string(),
+            jobType: Yup.string().required("Vui lòng chọn loại công việc"),
         }),
         onSubmit: (values) => {
             console.log(values)
@@ -184,19 +184,24 @@ function CreateJO() {
                 13. Address: input text */}
 
                 <h4>Thông tin loại công việc và địa chỉ ứng tuyển:</h4>
-                <TextField
-                    select
-                    label="Chọn loại công việc"
-                    value={formik.values.jobType}
-                    onChange={formik.handleChange}
-                    name='jobType'>
-                    {repo?.jobNames?.map((option) => (
-                        <MenuItem key={option?.typeID} value={option?.typeID}>
-                            {option?.name}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                {formik.errors.jobType ? <div>{formik.errors.jobType}</div> : null}
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        select
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Chọn loại công việc"
+                        value={formik.values.jobType}
+                        onChange={formik.handleChange}
+                        name='jobType'>
+                        {repo?.jobNames?.map((option) => (
+                            <MenuItem key={option?.typeID} value={option?.typeID}>
+                                {option?.name}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    {formik.errors.jobType ? <div className='error-validate' >{formik.errors.jobType}</div> : null}
+                </div>
                 <TextField
                     select
                     label="Chọn bằng cấp"
@@ -209,7 +214,7 @@ function CreateJO() {
                         </MenuItem>
                     ))}
                 </TextField>
-                {formik.errors.degree ? <div>{formik.errors.degree}</div> : null}
+                {/* {formik.errors.degree ? <div>{formik.errors.degree}</div> : null} */}
                 <p>*Nếu nơi ứng tuyển không phải là doanh nghiệp hãy điền rõ địa chỉ ở ô bên dưới:</p>
                 <TextField label="Địa chỉ:" variant="standard" value={formik.values.address} onChange={formik.handleChange} name='address' />
                 {formik.values.address != '' ?
@@ -254,62 +259,104 @@ function CreateJO() {
 
 
                 <h4>Thông tin chi tiết về công việc:</h4>
-                <TextField required label="Số lượng cần tuyển:" variant="standard" value={formik.values.numOfRecruit} onChange={formik.handleChange} name='numOfRecruit' />
-                {formik.errors.numOfRecruit ? <div>{formik.errors.numOfRecruit}</div> : null}
-                <TextField
-                    label="Ngày kết thúc đăng tuyển"
-                    name='offerEndTime'
-                    type="date"
-                    value={formik.values.offerEndTime}
-                    onChange={formik.handleChange}
-                    sx={{ width: 220 }}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                {formik.errors.offerEndTime ? <div>{formik.errors.offerEndTime}</div> : null}
-                <TextField label="Lương (theo giờ):" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.salary} name='salary' />
-                {formik.errors.salary ? <div>{formik.errors.salary}</div> : null}
-                <TextField label="Tuổi:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.age} name='age' />
-                {formik.errors.age ? <div>{formik.errors.age}</div> : null}
-                <TextField
-                    id="time"
-                    name='startTime'
-                    label="Thời gian bắt đầu"
-                    type="time"
-                    defaultValue="07:30"
-                    value={formik.values.startTime}
-                    onChange={formik.handleChange}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    inputProps={{
-                        step: 300, // 5 min
-                    }}
-                    sx={{ width: 150 }}
-                />
-                {formik.errors.startTime ? <div>{formik.errors.startTime}</div> : null}
-                <TextField
-                    id="time"
-                    name='endTime'
-                    label="Thời gian kết thúc"
-                    type="time"
-                    defaultValue="07:30"
-                    value={formik.values.endTime}
-                    onChange={formik.handleChange}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    inputProps={{
-                        step: 300, // 5 min
-                    }}
-                    sx={{ width: 150 }}
-                />
-                {formik.errors.endTime ? <div>{formik.errors.endTime}</div> : null}
-                <TextField label="Mô tả công việc:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.jobDescription} name='jobDescription' />
-                {formik.errors.jobDescription ? <div>{formik.errors.jobDescription}</div> : null}
-                <TextField label="Yêu cầu khác:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.other} name='other' />
-                {formik.errors.other ? <div>{formik.errors.other}</div> : null}
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        required label="Số lượng cần tuyển:" variant="standard" value={formik.values.numOfRecruit} onChange={formik.handleChange} name='numOfRecruit' />
+                    {formik.errors.numOfRecruit ? <div className='error-validate'>{formik.errors.numOfRecruit}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Ngày kết thúc đăng tuyển"
+                        name='offerEndTime'
+                        type="date"
+                        value={formik.values.offerEndTime}
+                        onChange={formik.handleChange}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                    {formik.errors.offerEndTime ? <div className='error-validate'>{formik.errors.offerEndTime}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Lương (theo giờ):" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.salary} name='salary' />
+                    {formik.errors.salary ? <div className='error-validate'>{formik.errors.salary}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Tuổi:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.age} name='age' />
+                    {formik.errors.age ? <div className='error-validate'>{formik.errors.age}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        id="time"
+                        name='startTime'
+                        label="Thời gian bắt đầu"
+                        type="time"
+                        defaultValue="07:30"
+                        value={formik.values.startTime}
+                        onChange={formik.handleChange}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        inputProps={{
+                            step: 300, // 5 min
+                        }}
+                    />
+                    {formik.errors.startTime ? <div className='error-validate'>{formik.errors.startTime}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        id="time"
+                        name='endTime'
+                        label="Thời gian kết thúc"
+                        type="time"
+                        defaultValue="07:30"
+                        value={formik.values.endTime}
+                        onChange={formik.handleChange}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        inputProps={{
+                            step: 300, // 5 min
+                        }}
+                    />
+                    {formik.errors.endTime ? <div className='error-validate'>{formik.errors.endTime}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Mô tả công việc:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.jobDescription} name='jobDescription' />
+                    {formik.errors.jobDescription ? <div className='error-validate'>{formik.errors.jobDescription}</div> : null}
+                </div>
+                <div style={{ display: 'inline-block' }}>
+                    <TextField
+                        sx={{
+                            '& > :not(style)': { width: '50ch' },
+                        }}
+                        label="Yêu cầu khác:" variant="standard" onChange={formik.handleChange} defaultValue={formik.values.other} name='other' />
+                    {formik.errors.other ? <div className='error-validate'>{formik.errors.other}</div> : null}
+                </div>
 
                 <Button className='submit-button' type='submit'>Đăng tuyển</Button>
             </Box>
