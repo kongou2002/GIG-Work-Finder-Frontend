@@ -11,7 +11,7 @@ function Search(props) {
         setInput({ [e.target.name]: e.target.value })
     }
     const submitButton = () => {
-        
+
     }
 
     return (
@@ -22,14 +22,14 @@ function Search(props) {
                     <h2>Giải pháp tìm việc làm part-time và tìm kiếm nhân sự</h2>
                     <h2>tốt nhất và phù hợp dành cho tất cả mọi người</h2>
                 </div>
-                <p>Tìm kiếm công việc thời vụ phù hợp với bạn:</p>
-                <input
+                {/* <p>Tìm kiếm công việc thời vụ phù hợp với bạn:</p> */}
+                {/* <input
                     type='text'
                     name='search'
                     onChange={inputsHandler}
                     placeholder='  Tìm theo tên công việc, công ty, vị trí gần bạn'
                     value={setInput.Search} />
-                <button onClick={submitButton} >Tìm kiếm</button>
+                <button onClick={submitButton} >Tìm kiếm</button> */}
             </div>
             <div className='home-img-banner'>
                 <div className='bg-img-banner'>

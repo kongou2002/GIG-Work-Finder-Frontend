@@ -41,7 +41,7 @@ function ListApplyApplicant(props) {
                     {repo?.map(data => (
                         <Box className='box-job-of-user-02'>
                             <Box className='img-logo-02'>
-                                <img src={'#'} style={{ width: '100px', height: '100px' }} />
+                                <img src={'https://st4.depositphotos.com/11634452/41441/v/600/depositphotos_414416674-stock-illustration-picture-profile-icon-male-icon.jpg'} style={{ width: '100px', height: '100px' }} />
                             </Box>
                             <Box className='info-bus-03'>
                                 <h1 style={{ color: '#00b000' }}>ỨNG VIÊN: {data?.firstName} {data?.lastName}</h1>

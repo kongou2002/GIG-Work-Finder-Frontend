@@ -58,7 +58,7 @@ function Userbusiness(props) {
                                 <Box className='button-bus-detail-02'>
                                     <Button className='detail-button-02' variant='contained' ><Link to={`/detail/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Xem chi tiết</Link></Button>
                                     <Button className='detail-button-02' variant='contained' ><Link to={`/findJobApplicant/${data?.offerID}`} style={{ textDecoration: 'none', color: 'white' }}>Đề xuất</Link></Button>
-                                    <Button className='update-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật</Link></Button>
+                                    {/* <Button className='update-button-02' variant='contained' ><Link to={`#`} style={{ textDecoration: 'none', color: 'white' }}>Cập nhật</Link></Button> */}
                                     <Button className='delete-button-02' variant='contained'
                                         onClick={
                                             async () => {

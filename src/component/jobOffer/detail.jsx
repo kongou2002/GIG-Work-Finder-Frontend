@@ -133,13 +133,15 @@ function Detail() {
                   Ứng tuyển
                 </Button>
               </Box>
-              :
-              <Box className='apply-button'>
-                {console.log('oid', id?.id, 'userID', jobApp)}
-                <Button onClick={() => { nav('/login') }}>
-                  Đăng nhập để ứng tuyển
-                </Button>
-              </Box>}
+              : user?.role == 'Recruiter' ?
+                (<hr></hr>)
+                :
+                <Box className='apply-button'>
+                  {console.log('oid', id?.id, 'userID', jobApp)}
+                  <Button onClick={() => { nav('/login') }}>
+                    Đăng nhập để ứng tuyển
+                  </Button>
+                </Box>}
 
           </Stack>
 
@@ -163,7 +165,8 @@ function Detail() {
           </Stack>
 
         </Stack>
-      )}
+      )
+      }
     </Container >
   )
 
