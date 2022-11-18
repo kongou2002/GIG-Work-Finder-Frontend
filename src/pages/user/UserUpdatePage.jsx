@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { date } from 'yup';
 import applicantApi from '../../api/applicantApi';
+import axiosClient from '../../api/axiosClient';
 import recruiterApi from '../../api/recruiterApi';
 import "./style.scss";
 
@@ -109,19 +110,18 @@ function UserUpdatePage() {
         event.preventDefault(event)
         console.log('data', data)
         if (user.role == "Applicant")
-            url = "https://gig-worker-backend.azurewebsites.net/Applicant/UpdateApp";
-        else url = "https://gig-worker-backend.azurewebsites.net/Recruiter/UpdateRecruiter";
+            // url = "https://gig-worker-backend.azurewebsites.net/Applicant/UpdateApp";
+            url = "/Applicant/UpdateApp";
+        else url = "/Recruiter/UpdateRecruiter";
         try {
 
-            axios.put(url,
-                // axios.put(`http://localhost:8080/${user?.role}/Update`,
+            axiosClient.put(url,
                 data
             )
                 .then(res => {
-                    if (res.status == 200) {
+                    if (res == 'OK') {
                         alert("Update Success")
-                        //nav('/')
-                        // Navigate('/profile')
+                        nav('/profile')
                     }
                     console.log(res.data)
                 })

@@ -22,21 +22,21 @@ function Detail() {
   const [rate, setRate] = useState();
   useEffect(() => {
     setLoading(true)
-    axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id?.id}`).then((res) => {
+    axios.get(`http://localhost:8080/JobOffer/ID/${id?.id}`).then((res) => {
+      // axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id?.id}`).then((res) => {
       const { data } = res
       setRepo(data)
-      console.log('repo', data)
+      console.log('data', data)
       const fetch = async () => {
         const x = data?.recruiter?.accountID
         console.log('user id: ', x)
         setRate(await recruiterApi.getID(x));
-        console.log(repo);
         console.log('rate: ' + rate);
         const a = await jobApplicantApi.getAllJAppByApplicantID(user?.id)
         setJobApp(a);
         setLoading(false)
       }
-      fetch();
+      if (data?.recruiter !== undefined) fetch();
 
     })
 
@@ -66,7 +66,7 @@ function Detail() {
               <div className='business-name'>
                 <h1>{repo?.business?.businessName}</h1>
                 {(repo?.business?.address != null && repo?.business?.address != undefined) ?
-                  (<p>Địa chỉ: {repo?.business?.address}, {repo?.business?.location.city}, {repo?.business?.location.province}</p>) :
+                  (<p>Địa chỉ: {repo?.business?.address}, {repo?.business?.location?.city}, {repo?.business?.location?.province}</p>) :
                   (<p>Địa chỉ: {repo?.address}, {repo?.location?.city}, {repo?.location?.province}</p>)
                 }
                 <Box>

@@ -67,6 +67,7 @@ function App() {
       if (fwAppUserData.createNew == true) localStorage.setItem('isCreateNew', true);
       console.log('fwAppUserData.createNew', fwAppUserData.createNew)
       localStorage.setItem("FWApp-gig:rememberedAccount", JSON.stringify(fwAppUserData));
+      localStorage.setItem("token", fwAppUserData.token);
     })
     return () => unregisterAuthObserver;
   }, [])
