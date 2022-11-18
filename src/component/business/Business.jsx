@@ -28,7 +28,7 @@ function Business(props) {
     setLoading(true)
     const fetchBusiness = async () => {
       console.log('param', param)
-      const jobList = await businessApi.getID(param?.businessID);
+      const jobList = await businessApi.getID(param?.businessID != undefined ? param?.businessID : id?.id);
       setRepo(jobList);
       setRate(await recruiterApi.getID(jobList?.accountID));
 
