@@ -22,9 +22,10 @@ function Detail() {
   const [rate, setRate] = useState();
   useEffect(() => {
     setLoading(true)
-    axios.get(`http://localhost:8080/JobOffer/ID/${id?.id}`).then((res) => {
-      // axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id?.id}`).then((res) => {
+    // axios.get(`http://localhost:8080/JobOffer/ID/${id?.id}`).then((res) => {
+    axios.get(`https://gig-worker-backend.azurewebsites.net/JobOffer/ID/${id?.id}`).then((res) => {
       const { data } = res
+
       setRepo(data)
       console.log('data', data)
       const fetch = async () => {
@@ -32,9 +33,12 @@ function Detail() {
         console.log('user id: ', x)
         setRate(await recruiterApi.getID(x));
         console.log('rate: ' + rate);
-        const a = await jobApplicantApi.getAllJAppByApplicantID(user?.id)
-        setJobApp(a);
+        if (user?.id != null && user?.id != undefined) {
+          const a = await jobApplicantApi.getAllJAppByApplicantID(user?.id)
+          setJobApp(a);
+        }
         setLoading(false)
+
       }
       if (data?.recruiter !== undefined) fetch();
 
@@ -117,20 +121,25 @@ function Detail() {
                 <p><p className='bold-p'>Bằng cấp tối thiểu:</p><p className='value-p'>{repo?.degree?.degreeName}</p></p>
               </Box>
             </Box>
-            {/* {user.role == 'Applicant' ?  */}
-            <Box className='apply-button'>
-              {console.log('oid', id?.id, 'userID', jobApp)}
-              <Button onClick={
-                async () => {
-                  await jobOfferApi.postApplyJO(id?.id, jobApp[0])
-                  nav('/jobApplyManage');
-                }
-              }>
-                Ứng tuyển
-              </Button>
-            </Box>
-            {/* : */}
-            {/* <h1></h1>} */}
+            {user?.role == 'Applicant' ?
+              <Box className='apply-button'>
+                {console.log('oid', id?.id, 'userID', jobApp)}
+                <Button onClick={
+                  async () => {
+                    await jobOfferApi.postApplyJO(id?.id, jobApp[0])
+                    nav('/jobApplyManage');
+                  }
+                }>
+                  Ứng tuyển
+                </Button>
+              </Box>
+              :
+              <Box className='apply-button'>
+                {console.log('oid', id?.id, 'userID', jobApp)}
+                <Button onClick={() => { nav('/login') }}>
+                  Đăng nhập để ứng tuyển
+                </Button>
+              </Box>}
 
           </Stack>
 

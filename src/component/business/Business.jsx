@@ -27,7 +27,8 @@ function Business(props) {
   useEffect(() => {
     setLoading(true)
     const fetchBusiness = async () => {
-      const jobList = await businessApi.getID(param?.businessID ? param?.businessID : id?.id);
+      console.log('param', param)
+      const jobList = await businessApi.getID(param?.businessID);
       setRepo(jobList);
       setRate(await recruiterApi.getID(jobList?.accountID));
 
@@ -60,12 +61,12 @@ function Business(props) {
             </Box>
 
 
-            {user.id != repo.accountID ?
+            {user?.id != repo?.accountID ?
               <Box className='business-button'>
                 <Button className='business-button-01' variant="contained" onClick={() => { nav(`/profile/Recruiter/${repo.accountID}`) }} sx={{ bgcolor: 'green', color: 'white' }}>Liên hệ chủ cửa hàng</Button>
                 <Button className='business-button-02' variant="contained" sx={{ bgcolor: 'green', color: 'white' }}>Viết đánh giá</Button>
               </Box> :
-              <h4>Chào mừng quản lý: {user.name}</h4>}
+              <h4>Chào mừng quản lý: {user?.name}</h4>}
 
 
           </Stack>
