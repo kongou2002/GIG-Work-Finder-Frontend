@@ -57,7 +57,7 @@ function CreateJO() {
         }),
         onSubmit: (values) => {
             console.log(values)
-            alert(JSON.stringify(values, null, 2));
+            //alert(JSON.stringify(values, null, 2));
             const user = JSON.parse(localStorage.getItem("FWApp-gig:rememberedAccount"));
             const data = {
                 accountID: user?.id,
